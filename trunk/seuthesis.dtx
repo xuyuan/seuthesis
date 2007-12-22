@@ -1,0 +1,466 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2007 by Xu Yuan <xuyuan.cn@gmail.com>
+% $Id$
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3a
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3a or later is part of all distributions of LaTeX
+% version 2004/10/01 or later.
+%
+%
+% \fi
+
+%\iffalse
+%<*driver>
+\ProvidesFile{seuthesis.dtx}[2007/12/22 0.1 Southeast University Master Thesis Template]
+\documentclass{ltxdoc}
+\usepackage{CJK}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+
+\AtBeginDocument{\begin{CJK*}{GBK}{fzst}}
+\AtEndDocument{\end{CJK*}}
+\EnableCrossrefs %\DisableCrossrefs
+\CodelineIndex   %index points to line number otherwise \PageIndex
+\RecordChanges   %version control 
+\begin{document}
+\hypersetup{
+  pdfstartview=FitH, %页宽适合窗口
+  CJKbookmarks, %中文书签
+  bookmarks, %生成书签
+  pdfauthor={Xu Yuan},
+  pdftitle={The seuthesis class}, %文件标题
+  pdfkeywords={seu thesis class},
+  pdfsubject={The seuthesis class}, %文件主题
+  bookmarksnumbered %书签中章节编号
+}
+
+\changes{v0.0}{2007/12/02}{Initial version}
+\changes{v0.1}{2007/12/22}{add the document and sample}
+
+\GetFileInfo{seuthesis.dtx}
+\title{The \textsf{seuthesis} class\thanks{东南大学~\LaTeX{}~学位论文模板}}
+\date{v\fileversion\ (\filedate)}
+\author{Xu Yuan \\ \texttt{xuyuan.cn@gmail.com}}
+
+\maketitle
+
+\begin{abstract}
+东南大学~\LaTeX{}~学位论文模板，欢迎XDJM使用。
+\end{abstract}
+
+\section{说明}
+目前只是最初的版本，基本实现了封面、正文等部分，但还有一些不满足学校要求的地方，准备在google上开一个项目，欢迎东大的LaTexer一起参加开发。
+
+\subsection{文件}
+\subsubsection{源文件}
+\begin{description}
+\item[seuthesis.dtx] 包含类或宏包及其说明文件的文件，需用同名.ins文件或docstrip工具分解。
+\item[seuthesis.ins] 同名.dtx的安装文件，用~\LaTeX{}~编译，可得到sty或cls等类型文件。
+\item[seuthesis.bib] 文献数据库。
+\item[Makefile] make编译规则，使用make命令由源文件得到目标文件。
+\item[sample.tex] 学位论文~\LaTeX{}~源文件示例。
+\item[logo.eps/pdf] 东大校徽图案。
+\end{description}
+\subsubsection{目标文件}
+\begin{description}
+\item[seuthesis.pdf] 东南大学~\LaTeX{}~学位论文模板说明文档。
+\item[sample.pdf] 示例学位论文例。
+\item[seuthesis.cls] 东南大学~\LaTeX{}~学位论文稿件类型文件，可用命令\\documentclass调用。
+\item[seuthesis.cfg] 供类包或宏包调用的配置文件。
+\end{description}
+
+\subsection{编译说明}
+本模板在~\sc{Suse 10.2}~自带的~\LaTeX{}~下编译通过，由于使用了~\sc{Suse}~系统自带的方正字体，在其它平台下可能会找不到字体，只要重新定义字体命令就可以了。如有任何问题，欢迎和我探讨。
+
+\section{致谢}
+本模板参考了网上的一些文档\cite{seugs:standard,seucover,wloo,xrn:thuthesis,xrn:howtopackage}，在此表示感谢！
+
+\section{模板实现}
+\DocInput{seuthesis.dtx}
+
+\bibliographystyle{unsrt}
+\bibliography{seuthesis}
+\end{document}
+%</driver>
+%
+%<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<cls>\ProvidesClass{seuthesis}
+%\fi
+
+%    \begin{macrocode}
+%<*cls>
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
+\ProcessOptions
+\LoadClass[a4paper,10.5pt]{scrbook}
+%    \end{macrocode}
+%
+% 宏包
+%    \begin{macrocode}
+ \RequirePackage{ccmap} %可拷贝的~pdf
+ \RequirePackage{graphicx}
+ \RequirePackage{indentfirst}
+ \RequirePackage{setspace}
+ \RequirePackage{tikz}
+ \RequirePackage{hyperref}
+
+ % A4纸张，四周页边距2cm，带连续页码（阿拉伯数字页码，底部居中）。
+ %双面印刷。若根据装订需要，左、右两侧的页边距也可以选2.5cm。
+ % 设置页边距
+ \RequirePackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+ \RequirePackage[pagestyles]{titlesec}
+ \RequirePackage{titletoc} % 设置目录
+
+ \RequirePackage{CJK} %中文支持
+ \RequirePackage{CJKnumb}
+ \AtBeginDocument{\begin{CJK*}{GBK}{fzst}\CJKtilde\CJKindent\CJKcaption{GB}%
+ \input{seuthesis.cfg}} %引入配置文件
+
+ \AtEndDocument{\end{CJK*}}
+%    \end{macrocode}
+%
+% 字体设置
+%    \begin{macrocode}
+\newcommand{\song}{\CJKfamily{fzst}}
+\newcommand{\lishu}{\CJKfamily{li}}
+\newcommand{\hei}{\CJKfamily{fzht}}
+\newcommand{\kai}{\CJKfamily{fzkt}}
+%    \end{macrocode}
+% 字号设置
+%    \begin{macrocode}
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
+\newcommand{\yichu}{\fontsize{32pt}{\baselineskip}\selectfont}
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
+%    \end{macrocode}
+%
+% 封面
+%    \begin{macrocode}
+ \renewcommand{\maketitle}{
+   \chinesecover
+   \englishcover
+   \frontmatter % 开始正文之前的部分
+   \pagestyle{seufrontstyle}
+   \seudeclare
+   \song\sihao{\tableofcontents} %目录部分字体可采用4号宋体。
+   \pagestyle{seustyle}
+   \song\wuhao
+   \mainmatter % 开始正文部分
+}
+% 中文封面
+\newcommand{\chinesecover}{
+\begin{titlepage}
+
+\begin{tabular}{ll}%宋体小四
+  \makebox[1.25cm][s]{\normalsize \categorynumberpre}{
+    \underline{\makebox[1.25cm][c]{\varcategorynumber}}} &
+  \makebox[1.25cm][s]{\normalsize \secretlevelpre}{
+    \underline{\makebox[1.25cm][c]{\varsecretlevel}}}\\
+  \makebox[1.25cm][c]{\hspace{1pt}U\hfill D\hfill C\hspace{2pt}}{
+    \underline{\makebox[1.25cm][c]{\varUDC}}} & 
+  \makebox[1.25cm][s]{\normalsize \studentidpre}{
+    \underline{\makebox[1.25cm][c]{\varstudentid}}}\\
+\end{tabular}
+
+\begin{picture}(0,0)(-325,55)
+\includegraphics[scale=1]{logo}
+\end{picture}
+
+\vspace*{70pt}
+\begin{center}
+  \makebox[10cm][s]{\xiaochuhao\lishu\universityname}\\%隶书小初
+  ~\\
+  \makebox[14cm][s]{\xiaochuhao\lishu\academicdegree}%隶书小初
+\end{center}
+
+\vspace*{20pt}
+\begin{center}
+  \yihao\hei\@title\\%题名 黑体一号居中
+  ~\\
+  \yihao\hei\varsubtitle%副题名 黑体一号居中
+\end{center}
+
+\vspace*{40pt}
+
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{0pt}
+\begin{center}
+\begin{tabular}{cr}
+  \makebox[4cm][s]{\xiaoerhao\song\authorpre~~~~~~} &%宋体小二
+  \underline{\makebox[6cm][s]{\hspace{2cm}\makebox[2cm][s]{\xiaoerhao\hei\@author}}} \\%黑体小二粗体
+  \makebox[4cm][s]{\xiaoerhao\song\advisorpre~~} &
+  \underline{\makebox[6cm][s]{\hspace{1cm}\xiaoerhao\hei\varadvisorname\hspace{1cm}\xiaoerhao\hei\varadvisortitle}} \\
+      & 
+      \underline{\makebox[6cm][s]{\hspace{1cm}\xiaoerhao\hei\varcoadvisorname\hspace{1cm}\xiaoerhao\hei\varcoadvisortitle}} \\
+\end{tabular}
+\end{center}
+
+\vspace*{20pt}
+
+\setlength{\tabcolsep}{10pt}
+\begin{center}
+\begin{tabular}{ll}
+  \makebox[3cm][s]{\song\sihao\applicantlevelpre %宋体四号
+    \underline{\makebox[5cm][c]{\hei\varapplicantlevel}}} & %黑体四号粗体
+
+  \makebox[3cm][s]{\song\sihao\majorpre
+    \underline{\makebox[5cm][c]{\hei\varmajor}}}\\
+
+  \song\sihao\submitdatepre
+    \underline{\makebox[5cm][c]{\hei\varsubmitdate}} &
+
+  \song\sihao\defenddatepre
+    \underline{\makebox[5cm][c]{\hei\vardefenddate}}\\
+
+  \song\sihao\authorizeorganizationpre
+    \underline{\makebox[5cm][c]{\hei\varauthorizeorganization}} &
+
+  \song\sihao\authorizedatepre
+    \underline{\makebox[5cm][c]{\hei\varauthorizedate}}\\
+
+  \song\sihao\committeechairpre
+    \underline{\makebox[4.5cm][c]{\hei\varcommitteechair}} &
+
+  \song\sihao\readerpre
+    \underline{\makebox[5cm][c]{\hei\varreader}}\\
+\end{tabular}
+\end{center}
+
+\vfill
+
+\song\sihao\centerline{\@date}
+
+\end{titlepage}
+}
+%
+% 英文封面
+\newcommand{\englishcover}{
+  \thispagestyle{empty}%
+  \begin{spacing}{1.0}\begin{center}
+    \begin{spacing}{1.5}\LARGE\textrm{\vartitleeng}\end{spacing}%
+    \normalsize{\varsubtitleeng}
+    \vspace{1.0in}%
+    {\large
+      {A Dissertation Submitted to}\\
+      {\universitynameeng}\\
+      {For the Academic Degree of \academicdegreeeng}\\
+      {\vspace{0.5in}}%
+      {BY}\\
+      {\varauthoreng}\\
+      {\vspace{0.5in}}%
+      {Supervised by:}\\
+      {\varadvisortitleeng\  \varadvisornameeng}\\
+      {and}\\
+      {\varcoadvisortitleeng\  \varcoadvisornameeng}\\
+      {\vspace{0.5in}}%
+      {\vfill}
+      {\vardepartmenteng}\\
+      {\universitynameeng}\\
+      {\varsubmitdateeng}\\
+    }%
+  \end{center}\end{spacing}%
+  \clearpage%
+}
+%</cls>
+%    \end{macrocode}
+%
+% 中文关键字映射
+%    \begin{macrocode}
+%<*cfg>
+\ProvidesFile{seuthesis.cfg}
+\newcommand{\universityname}{东南大学}
+\newcommand{\universitynameeng}{Southeast University}
+\newcommand{\vardepartment}{自动化学院}
+\newcommand{\vardepartmenteng}{School of Automation}
+\newcommand{\department}[2]{
+  \renewcommand{\vardepartment}{#1}
+  \renewcommand{\vardepartmenteng}{#2}
+}
+\newcommand{\academicdegree}{硕士学位论文}
+\newcommand{\academicdegreeeng}{Master of Engineering}
+\newcommand{\vartitleeng}{}
+\newcommand{\englishtitle}[1]{\renewcommand{\vartitleeng}{#1}}
+\newcommand{\varauthoreng}{}
+\newcommand{\englishauthor}[1]{\renewcommand{\varauthoreng}{#1}}
+\newcommand{\varsubtitle}{}
+\newcommand{\subtitle}[1]{\renewcommand{\varsubtitle}{#1}}
+\newcommand{\varsubtitleeng}{}
+\newcommand{\englishsubtitle}[1]{\renewcommand{\varsubtitleeng}{#1}}
+\newcommand{\categorynumberpre}{分类号}
+\newcommand{\varcategorynumber}{}
+\newcommand{\categorynumber}[1]{\renewcommand{\varcategorynumber}{#1}}
+\newcommand{\secretlevelpre}{密级}
+\newcommand{\varsecretlevel}{公开}
+\newcommand{\secretlevel}[1]{\renewcommand{\varsecretlevel}{#1}}
+\newcommand{\varUDC}{}
+\newcommand{\UDC}[1]{\renewcommand{\varUDC}{#1}}
+\newcommand{\studentidpre}{学号}
+\newcommand{\varstudentid}{}
+\newcommand{\studentid}[1]{\renewcommand{\varstudentid}{#1}}
+\newcommand{\authorpre}{研究生姓名：}
+\newcommand{\advisorpre}{导~~师~~姓~~名：}
+\newcommand{\varadvisortitle}{教授}
+\newcommand{\varadvisortitleeng}{Prof.}
+\newcommand{\varadvisorname}{}
+\newcommand{\varadvisornameeng}{}
+\newcommand{\advisor}[4]{
+  \renewcommand{\varadvisorname}{#1}
+  \renewcommand{\varadvisortitle}{#2}
+  \renewcommand{\varadvisornameeng}{#3}
+  \renewcommand{\varadvisortitleeng}{#4}
+}
+\newcommand{\varcoadvisortitle}{教授}
+\newcommand{\varcoadvisortitleeng}{Prof.}
+\newcommand{\varcoadvisorname}{}
+\newcommand{\varcoadvisornameeng}{}
+\newcommand{\coadvisor}[4]{
+  \renewcommand{\varcoadvisorname}{#1}
+  \renewcommand{\varcoadvisortitle}{#2}
+  \renewcommand{\varcoadvisornameeng}{#3}
+  \renewcommand{\varcoadvisortitleeng}{#4}
+}
+\newcommand{\applicantlevelpre}{申请学位级别}
+\newcommand{\varapplicantlevel}{~~~硕~~士~~~}
+\newcommand{\applicantlevel}[1]{\renewcommand{\varapplicantlevel}{#1}}
+\newcommand{\majorpre}{学科专业名称}
+\newcommand{\varmajor}{}
+\newcommand{\major}[1]{\renewcommand{\varmajor}{#1}}
+\newcommand{\submitdatepre}{论文提交日期}
+\newcommand{\varsubmitdate}{2050年7月7日}
+\newcommand{\varsubmitdateeng}{}
+\newcommand{\submitdate}[2]{
+  \renewcommand{\varsubmitdate}{#1}
+  \renewcommand{\varsubmitdateeng}{#2}
+}
+\newcommand{\defenddatepre}{论文答辩日期}
+\newcommand{\vardefenddate}{2050年7月7日}
+\newcommand{\defenddate}[1]{\renewcommand{\vardefenddate}{#1}}
+\newcommand{\authorizeorganizationpre}{学位授予单位}
+\newcommand{\varauthorizeorganization}{~~东~南~大~学~~}
+\newcommand{\authorizeorganization}[1]{\renewcommand{\varauthorizeorganization}{#1}}
+\newcommand{\authorizedatepre}{学位授予日期}
+\newcommand{\varauthorizedate}{2050年7月7日}
+\newcommand{\authorizedate}[1]{\renewcommand{\varauthorizedate}{#1}}
+\newcommand{\committeechairpre}{答辩委员会主席}
+\newcommand{\varcommitteechair}{}
+\newcommand{\committeechair}[1]{\renewcommand{\varcommitteechair}{#1}}
+\newcommand{\readerpre}{评~~~~~~阅~~~~~~人}
+\newcommand{\varreader}{}
+\newcommand{\reader}[1]{\renewcommand{\varreader}{#1}}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+ \newcommand{\signline}{\underline{\makebox[2.5cm][s]{}}}
+ \newcommand{\seudeclare}{
+   \begin{center}
+     \hei\sanhao{东南大学学位论文独创性声明}
+   \end{center}
+   
+   \xiaosihao\parindent2em{本人声明所呈交的学位论文是我个人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得东南大学或其它教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。}
+   \\
+   \begin{flushright}
+     研究生签名：\signline 日~期：\signline
+   \end{flushright}
+
+   {\vspace{1in}}
+
+   \begin{center}
+     \hei\sanhao{东南大学学位论文使用授权声明}
+   \end{center}
+   
+   \xiaosihao\parindent2em{东南大学、中国科学技术信息研究所、国家图书馆有权保留本人所送交学位论文的复印件和电子文档，可以采用影印、缩印或其他复制手段保存论文。本人电子文档的内容和纸质论文的内容相一致。除在保密期内的保密论文外，允许论文被查阅和借阅，可以公布（包括刊登）论文的全部或部分内容。论文的公布（包括刊登）授权东南大学研究生院办理。}
+   \\
+   \begin{flushright}
+     研究生签名：\signline 导师签名：\signline 日~期：\signline
+   \end{flushright}
+ }
+%    \end{macrocode}
+%
+% 定义页面风格
+% 页眉采用下列形式（在页眉页脚的页面设置中选择“奇偶页不同”）：
+% 偶数页：东南大学硕士学位论文（小五号宋体居中）
+% 奇数页：第 * 章 章题目（小五号宋体居中）
+% 页脚
+% 正文及其以后部分，其页脚为居中、连续的阿拉伯数字页码。不宜采用分章的非连续页码。摘要和目录等内容的页脚为居中、连续的大写罗马数字页码。
+%    \begin{macrocode}
+\newpagestyle{seustyle}{
+  \sethead[][\song\xiaowuhao东南大学硕士学位论文][] % 偶数页
+  {}{\song\xiaowuhao\chaptername\quad\chaptertitle}{} % 奇数页
+  \setfoot{}{\thepage}{}
+  \headrule
+}
+\renewpagestyle{plain}{
+  \setfoot{}{\thepage}{}
+}
+\newpagestyle{seufrontstyle}{
+  \sethead[][\song\xiaowuhao东南大学硕士学位论文][]
+  {}{\song\xiaowuhao东南大学硕士学位论文}{}
+  \setfoot{}{\thepage}{}
+  \headrule
+}
+%
+%    \end{macrocode}
+%
+% 设置章标题的格式 三号黑体居中
+%    \begin{macrocode}
+ \titleformat{\chapter}[hang]{\centering\hei\sanhao}{\chaptername}{1em}{}
+ \renewcommand{\chaptername}{第\CJKnumber{\thechapter}章}
+
+ \titleformat{\section}[hang]{\song\sihao\bfseries}{\thesection}{1em}{}%四号宋体（粗体）居左
+
+ \titleformat{\subsection}[hang]{\song\xiaosihao}{\thesubsection}{1em}{}% 小四
+
+%    \end{macrocode}
+%
+% 设置章目录的格式
+%    \begin{macrocode}
+ \renewcommand{\contentsname}{目\quad 录}
+ \titlecontents{chapter}[0pt]{\vspace{.5\baselineskip}\bfseries}
+    {第\CJKnumber{\thecontentslabel}章\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+
+%    \end{macrocode}
+%
+% 设置图的格式 表格名及图名用5号宋体
+%    \begin{macrocode}
+ \renewcommand{\prefigurename}{\song\wuhao图}
+ \renewcommand{\postfigurename}{}
+%
+%    \end{macrocode}
+%
+% 设置书签
+%    \begin{macrocode}
+\hypersetup{
+  pdfstartview=FitH, %页宽适合窗口
+  CJKbookmarks, %中文书签
+  bookmarks, %生成书签
+  %pdfauthor={\varauthoreng},
+  %pdftitle={东南大学硕士学位论文}, %文件标题
+  %pdfkeywords={RoboCup},
+  %pdfsubject={\vartitleeng}, %文件主题
+  bookmarksnumbered %书签中章节编号
+} 
+%</cfg>
+%    \end{macrocode}
+% \Finale
+
+% \endinput
+% Local Variables: 
+% mode: doctex
+% TeX-master: t
+% End: 
