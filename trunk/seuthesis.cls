@@ -44,14 +44,14 @@
 
  \RequirePackage{CJK} %中文支持
  \RequirePackage{CJKnumb}
- \AtBeginDocument{\begin{CJK*}{GBK}{fzst}\CJKtilde\CJKindent\CJKcaption{GB}%
+ \AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
  \input{seuthesis.cfg}} %引入配置文件
 
  \AtEndDocument{\end{CJK*}}
-\newcommand{\song}{\CJKfamily{fzst}}
+\newcommand{\song}{\CJKfamily{song}}
 \newcommand{\lishu}{\CJKfamily{li}}
-\newcommand{\hei}{\CJKfamily{fzht}}
-\newcommand{\kai}{\CJKfamily{fzkt}}
+\newcommand{\hei}{\CJKfamily{hei}}
+\newcommand{\kai}{\CJKfamily{kai}}
 \newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
 \newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
 \newcommand{\yichu}{\fontsize{32pt}{\baselineskip}\selectfont}
