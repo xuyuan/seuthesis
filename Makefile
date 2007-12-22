@@ -24,8 +24,6 @@ SRC=${PACKAGE}.ins ${PACKAGE}.dtx
 SAMPLE=sample
 SAMPLE_SRC=${SAMPLE}.tex
 
-.PYTHON: all cls pdf dvi ps clean
-
 all: pdf
 
 cls: ${PACKAGE}.cls
@@ -37,7 +35,10 @@ dvi: ${PACKAGE}.dvi ${SAMPLE}.dvi
 ps: ${PACKAGE}.ps ${SAMPLE}.pdf
 
 clean:
-	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.ist *.idx *.ilg *.out *.bak
+	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.ist *.idx *.ilg *.out *.bak *.bbl *.blg 
+
+distclean: clean
+	rm -f *.cls *.cfg
 
 ${PACKAGE}.cls: ${SRC}
 	rm -f ${PACKAGE}.cls ${PACKAGE}.cfg
@@ -53,6 +54,7 @@ ${PACKAGE}.dvi: ${PACKAGE}.cls ${PACKAGE}.dtx
 ${PACKAGE}.pdf: ${PACKAGE}.cls ${PACKAGE}.dtx
 #	ps2pdf  ${PACKAGE}.ps
 	pdflatex ${PACKAGE}.dtx
+	bibtex ${PACKAGE}
 	gbk2uni ${PACKAGE}
 	pdflatex ${PACKAGE}.dtx
 

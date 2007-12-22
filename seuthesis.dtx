@@ -24,7 +24,7 @@
 \usepackage{hyperref}
 \usepackage{indentfirst}
 
-\AtBeginDocument{\begin{CJK*}{GBK}{fzst}}
+\AtBeginDocument{\begin{CJK*}{GBK}{song}}
 \AtEndDocument{\end{CJK*}}
 \EnableCrossrefs %\DisableCrossrefs
 \CodelineIndex   %index points to line number otherwise \PageIndex
@@ -56,7 +56,7 @@
 \end{abstract}
 
 \section{说明}
-目前只是最初的版本，基本实现了封面、正文等部分，但还有一些不满足学校要求的地方，准备在google上开一个项目，欢迎东大的LaTexer一起参加开发。
+目前只是最初的版本，基本实现了封面、正文等部分，但还有一些不满足学校要求的地方，已在google建立项目:\url{http://seuthesis.googlecode.com/}，欢迎东大的LaTexer一起参加开发。
 
 \subsection{文件}
 \subsubsection{源文件}
@@ -119,7 +119,7 @@
 
  \RequirePackage{CJK} %中文支持
  \RequirePackage{CJKnumb}
- \AtBeginDocument{\begin{CJK*}{GBK}{fzst}\CJKtilde\CJKindent\CJKcaption{GB}%
+ \AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
  \input{seuthesis.cfg}} %引入配置文件
 
  \AtEndDocument{\end{CJK*}}
@@ -127,10 +127,10 @@
 %
 % 字体设置
 %    \begin{macrocode}
-\newcommand{\song}{\CJKfamily{fzst}}
+\newcommand{\song}{\CJKfamily{song}}
 \newcommand{\lishu}{\CJKfamily{li}}
-\newcommand{\hei}{\CJKfamily{fzht}}
-\newcommand{\kai}{\CJKfamily{fzkt}}
+\newcommand{\hei}{\CJKfamily{hei}}
+\newcommand{\kai}{\CJKfamily{kai}}
 %    \end{macrocode}
 % 字号设置
 %    \begin{macrocode}
