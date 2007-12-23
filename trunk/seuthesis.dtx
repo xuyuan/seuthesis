@@ -18,71 +18,90 @@
 
 %\iffalse
 %<*driver>
-\ProvidesFile{seuthesis.dtx}[2007/12/22 0.1 Southeast University Master Thesis Template]
+\ProvidesFile{seuthesis.dtx}[2007/12/23 0.2 Southeast University Master Thesis Template]
 \documentclass{ltxdoc}
-\usepackage{CJK}
-\usepackage{hyperref}
+\usepackage{CJKutf8}
+\usepackage[unicode]{hyperref}
 \usepackage{indentfirst}
+\usepackage{ccmap} %å¯æ‹·è´çš„~pdf
 
-\AtBeginDocument{\begin{CJK*}{GBK}{song}}
+\AtBeginDocument{\begin{CJK*}{UTF8}{song}}
 \AtEndDocument{\end{CJK*}}
 \EnableCrossrefs %\DisableCrossrefs
 \CodelineIndex   %index points to line number otherwise \PageIndex
 \RecordChanges   %version control 
 \begin{document}
 \hypersetup{
-  pdfstartview=FitH, %Ò³¿íÊÊºÏ´°¿Ú
-  CJKbookmarks, %ÖĞÎÄÊéÇ©
-  bookmarks, %Éú³ÉÊéÇ©
+  pdfstartview=FitH, %é¡µå®½é€‚åˆçª—å£
+  bookmarks, %ç”Ÿæˆä¹¦ç­¾
   pdfauthor={Xu Yuan},
-  pdftitle={The seuthesis class}, %ÎÄ¼ş±êÌâ
+  pdftitle={The seuthesis class}, %æ–‡ä»¶æ ‡é¢˜
   pdfkeywords={seu thesis class},
-  pdfsubject={The seuthesis class}, %ÎÄ¼şÖ÷Ìâ
-  bookmarksnumbered %ÊéÇ©ÖĞÕÂ½Ú±àºÅ
+  pdfsubject={The seuthesis class}, %æ–‡ä»¶ä¸»é¢˜
+  bookmarksnumbered %ä¹¦ç­¾ä¸­ç« èŠ‚ç¼–å·
 }
 
 \changes{v0.0}{2007/12/02}{Initial version}
 \changes{v0.1}{2007/12/22}{add the document and sample}
+\changes{v0.2}{2007/12/23}{unicode support}
 
 \GetFileInfo{seuthesis.dtx}
-\title{The \textsf{seuthesis} class\thanks{¶«ÄÏ´óÑ§~\LaTeX{}~Ñ§Î»ÂÛÎÄÄ£°å}}
+\title{The \textsf{seuthesis} class\thanks{ä¸œå—å¤§å­¦~\LaTeX{}~å­¦ä½è®ºæ–‡æ¨¡æ¿}}
 \date{v\fileversion\ (\filedate)}
 \author{Xu Yuan \\ \texttt{xuyuan.cn@gmail.com}}
 
 \maketitle
 
 \begin{abstract}
-¶«ÄÏ´óÑ§~\LaTeX{}~Ñ§Î»ÂÛÎÄÄ£°å£¬»¶Ó­XDJMÊ¹ÓÃ¡£
+ä¸œå—å¤§å­¦~\LaTeX{}~å­¦ä½è®ºæ–‡æ¨¡æ¿ï¼Œæ¬¢è¿å„ä½åŒå­¦ä½¿ç”¨ã€‚
 \end{abstract}
 
-\section{ËµÃ÷}
-Ä¿Ç°Ö»ÊÇ×î³õµÄ°æ±¾£¬»ù±¾ÊµÏÖÁË·âÃæ¡¢ÕıÎÄµÈ²¿·Ö£¬µ«»¹ÓĞÒ»Ğ©²»Âú×ãÑ§Ğ£ÒªÇóµÄµØ·½£¬ÒÑÔÚgoogle½¨Á¢ÏîÄ¿:\url{http://seuthesis.googlecode.com/}£¬»¶Ó­¶«´óµÄLaTexerÒ»Æğ²Î¼Ó¿ª·¢¡£
+\section{è¯´æ˜}
+ç›®å‰åªæ˜¯æœ€åˆçš„ç‰ˆæœ¬ï¼ŒåŸºæœ¬å®ç°äº†å°é¢ã€æ­£æ–‡ç­‰éƒ¨åˆ†ï¼Œæ”¯æŒ~UNICODE~å’Œ~GBK~ç¼–ç ã€‚
 
-\subsection{ÎÄ¼ş}
-\subsubsection{Ô´ÎÄ¼ş}
+è¿˜æœ‰ä¸€äº›ä¸æ»¡è¶³å­¦æ ¡è¦æ±‚çš„åœ°æ–¹ï¼Œå·²åœ¨googleå»ºç«‹é¡¹ç›®:\url{http://seuthesis.googlecode.com/}ï¼Œæ¬¢è¿ä¸œå¤§çš„LaTexerä¸€èµ·å‚åŠ å¼€å‘ã€‚
+
+\section{ä¸‹è½½}
 \begin{description}
-\item[seuthesis.dtx] °üº¬Àà»òºê°ü¼°ÆäËµÃ÷ÎÄ¼şµÄÎÄ¼ş£¬ĞèÓÃÍ¬Ãû.insÎÄ¼ş»òdocstrip¹¤¾ß·Ö½â¡£
-\item[seuthesis.ins] Í¬Ãû.dtxµÄ°²×°ÎÄ¼ş£¬ÓÃ~\LaTeX{}~±àÒë£¬¿ÉµÃµ½sty»òclsµÈÀàĞÍÎÄ¼ş¡£
-\item[seuthesis.bib] ÎÄÏ×Êı¾İ¿â¡£
-\item[Makefile] make±àÒë¹æÔò£¬Ê¹ÓÃmakeÃüÁîÓÉÔ´ÎÄ¼şµÃµ½Ä¿±êÎÄ¼ş¡£
-\item[sample.tex] Ñ§Î»ÂÛÎÄ~\LaTeX{}~Ô´ÎÄ¼şÊ¾Àı¡£
-\item[logo.eps/pdf] ¶«´óĞ£»ÕÍ¼°¸¡£
-\end{description}
-\subsubsection{Ä¿±êÎÄ¼ş}
-\begin{description}
-\item[seuthesis.pdf] ¶«ÄÏ´óÑ§~\LaTeX{}~Ñ§Î»ÂÛÎÄÄ£°åËµÃ÷ÎÄµµ¡£
-\item[sample.pdf] Ê¾ÀıÑ§Î»ÂÛÎÄÀı¡£
-\item[seuthesis.cls] ¶«ÄÏ´óÑ§~\LaTeX{}~Ñ§Î»ÂÛÎÄ¸å¼şÀàĞÍÎÄ¼ş£¬¿ÉÓÃÃüÁî\\documentclassµ÷ÓÃ¡£
-\item[seuthesis.cfg] ¹©Àà°ü»òºê°üµ÷ÓÃµÄÅäÖÃÎÄ¼ş¡£
+\item[å‘å¸ƒç‰ˆ] \url{http://code.google.com/p/seuthesis/downloads/list}
+\item[svn] \texttt{svn checkout http://seuthesis.googlecode.com/svn/trunk/ seuthesis-read-only}
 \end{description}
 
-\subsection{±àÒëËµÃ÷}
-±¾Ä£°åÔÚ~\sc{Suse 10.2}~×Ô´øµÄ~\LaTeX{}~ÏÂ±àÒëÍ¨¹ı£¬ÓÉÓÚÊ¹ÓÃÁË~\sc{Suse}~ÏµÍ³×Ô´øµÄ·½Õı×ÖÌå£¬ÔÚÆäËüÆ½Ì¨ÏÂ¿ÉÄÜ»áÕÒ²»µ½×ÖÌå£¬Ö»ÒªÖØĞÂ¶¨Òå×ÖÌåÃüÁî¾Í¿ÉÒÔÁË¡£ÈçÓĞÈÎºÎÎÊÌâ£¬»¶Ó­ºÍÎÒÌ½ÌÖ¡£
+\subsection{æ–‡ä»¶}
+\subsubsection{æºæ–‡ä»¶}
+\begin{description}
+\item[seuthesis.dtx] åŒ…å«ç±»æˆ–å®åŒ…åŠå…¶è¯´æ˜æ–‡ä»¶çš„æ–‡ä»¶ï¼Œéœ€ç”¨åŒå.insæ–‡ä»¶æˆ–docstripå·¥å…·åˆ†è§£ã€‚
+\item[seuthesis.ins] åŒå.dtxçš„å®‰è£…æ–‡ä»¶ï¼Œç”¨~\LaTeX{}~ç¼–è¯‘ï¼Œå¯å¾—åˆ°styæˆ–clsç­‰ç±»å‹æ–‡ä»¶ã€‚
+\item[seuthesis.bib] æ–‡çŒ®æ•°æ®åº“ã€‚
+\item[Makefile] makeç¼–è¯‘è§„åˆ™ï¼Œä½¿ç”¨makeå‘½ä»¤ç”±æºæ–‡ä»¶å¾—åˆ°ç›®æ ‡æ–‡ä»¶ã€‚
+\item[sample-*.tex] å­¦ä½è®ºæ–‡~\LaTeX{}~æºæ–‡ä»¶ç¤ºä¾‹ï¼Œæœ‰~UNICODE~å’Œ~GBK~ä¸¤ç§ç¼–ç ã€‚
+\item[logo.eps/pdf] ä¸œå¤§æ ¡å¾½å›¾æ¡ˆã€‚
+\end{description}
+\subsubsection{ç›®æ ‡æ–‡ä»¶}
+\begin{description}
+\item[seuthesis.pdf] ä¸œå—å¤§å­¦~\LaTeX{}~å­¦ä½è®ºæ–‡æ¨¡æ¿è¯´æ˜æ–‡æ¡£ã€‚
+\item[sample-*.pdf] ç¤ºä¾‹å­¦ä½è®ºæ–‡ï¼Œåˆ†åˆ«å¯¹åº”äº~UNICODE~å’Œ~GBK~ä¸¤ç§ç¼–ç ã€‚
+\item[seuthesis.cls] ä¸œå—å¤§å­¦~\LaTeX{}~å­¦ä½è®ºæ–‡ç¨¿ä»¶ç±»å‹æ–‡ä»¶ï¼Œå¯ç”¨å‘½ä»¤$\backslash$documentclassè°ƒç”¨ã€‚
+\item[seuthesis-*.cfg] ä¾›ç±»åŒ…æˆ–å®åŒ…è°ƒç”¨çš„é…ç½®æ–‡ä»¶ï¼Œæœ‰~UNICODE~å’Œ~GBK~ä¸¤ç§ç¼–ç ã€‚
+\end{description}
 
-\section{ÖÂĞ»}
-±¾Ä£°å²Î¿¼ÁËÍøÉÏµÄÒ»Ğ©ÎÄµµ\cite{seugs:standard,seucover,wloo,xrn:thuthesis,xrn:howtopackage}£¬ÔÚ´Ë±íÊ¾¸ĞĞ»£¡
+\subsection{ä½¿ç”¨è¯´æ˜}
+\texttt{$\backslash$documentclass[\textit{é€‰é¡¹}]\{seuthesis\}}
 
-\section{Ä£°åÊµÏÖ}
+\subsubsection{é€‰é¡¹}
+ç¼–ç é€‰é¡¹ï¼š
+\begin{description}
+\item[unicode] ï¼ˆé»˜è®¤ï¼‰ä½¿ç”¨~UNICODE~ç¼–ç ã€‚
+\item[gbk] ä½¿ç”¨~GBK~ç¼–ç ã€‚ 
+\end{description}
+
+\subsection{ç¼–è¯‘è¯´æ˜}
+æœ¬æ¨¡æ¿åœ¨~\sc{Suse 10.2}~è‡ªå¸¦çš„~\LaTeX{}~å’Œ~texlive2007~ä¸‹ç¼–è¯‘é€šè¿‡ã€‚å¦‚æœ‰ä»»ä½•é—®é¢˜ï¼Œæ¬¢è¿å’Œæˆ‘æ¢è®¨ã€‚
+
+\section{è‡´è°¢}
+æœ¬æ¨¡æ¿å‚è€ƒäº†ç½‘ä¸Šçš„ä¸€äº›æ–‡æ¡£\cite{seugs:standard,seucover,wloo,xrn:thuthesis,xrn:howtopackage}ï¼Œåœ¨æ­¤è¡¨ç¤ºæ„Ÿè°¢ï¼
+
+\section{æ¨¡æ¿å®ç°}
 \DocInput{seuthesis.dtx}
 
 \bibliographystyle{unsrt}
@@ -91,48 +110,72 @@
 %</driver>
 %
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls>\ProvidesClass{seuthesis}
+%<cls>\ProvidesClass{seuthesis}[2007/12/23 v0.2 The LaTeX template for thesis of Southeast University]
+%<cls>\typeout{Document Style `seuthesis' v0.2 by Xu Yuan (2007/12/23)}
 %\fi
 
+% é»˜è®¤ä½¿ç”¨UNICODEç¼–ç ï¼ŒGBKä½œä¸ºå¯é€‰é¡¹
 %    \begin{macrocode}
 %<*cls>
+\newif\ifseuunicode\seuunicodetrue
+\DeclareOption{gbk}{\seuunicodefalse}
+\DeclareOption{unicode}{\seuunicodetrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
 \ProcessOptions
 \LoadClass[a4paper,10.5pt]{scrbook}
 %    \end{macrocode}
 %
-% ºê°ü
+% å®åŒ…
 %    \begin{macrocode}
- \RequirePackage{ccmap} %¿É¿½±´µÄ~pdf
+ \RequirePackage{ccmap} %å¯æ‹·è´çš„~pdf
  \RequirePackage{graphicx}
  \RequirePackage{indentfirst}
  \RequirePackage{setspace}
  \RequirePackage{tikz}
- \RequirePackage{hyperref}
 
- % A4Ö½ÕÅ£¬ËÄÖÜÒ³±ß¾à2cm£¬´øÁ¬ĞøÒ³Âë£¨°¢À­²®Êı×ÖÒ³Âë£¬µ×²¿¾ÓÖĞ£©¡£
- %Ë«ÃæÓ¡Ë¢¡£Èô¸ù¾İ×°¶©ĞèÒª£¬×ó¡¢ÓÒÁ½²àµÄÒ³±ß¾àÒ²¿ÉÒÔÑ¡2.5cm¡£
- % ÉèÖÃÒ³±ß¾à
+ % A4çº¸å¼ ï¼Œå››å‘¨é¡µè¾¹è·2cmï¼Œå¸¦è¿ç»­é¡µç ï¼ˆé˜¿æ‹‰ä¼¯æ•°å­—é¡µç ï¼Œåº•éƒ¨å±…ä¸­ï¼‰ã€‚
+ %åŒé¢å°åˆ·ã€‚è‹¥æ ¹æ®è£…è®¢éœ€è¦ï¼Œå·¦ã€å³ä¸¤ä¾§çš„é¡µè¾¹è·ä¹Ÿå¯ä»¥é€‰2.5cmã€‚
+ % è®¾ç½®é¡µè¾¹è·
  \RequirePackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
  \RequirePackage[pagestyles]{titlesec}
- \RequirePackage{titletoc} % ÉèÖÃÄ¿Â¼
+ \RequirePackage{titletoc} % è®¾ç½®ç›®å½•
+%    \end{macrocode}
+%
+% é€‰æ‹©CJKç¼–ç è¿˜æ˜¯UNICODEç¼–ç 
+%    \begin{macrocode}
+ \ifseuunicode
+  \typeout{[seuthesis]: Using UNICODE encoding}
+  \RequirePackage[unicode]{hyperref}
+  \hypersetup{unicode=true}
+  \RequirePackage{CJKutf8} %ä¸­æ–‡æ”¯æŒ
+  \AtBeginDocument{\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
+      \InputIfFileExists{seuthesis-utf8.cfg}%
+      {\typeout{[seuthesis]: Load seuthesis-utf8.cfg successfully!}}%
+      {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}
+    } %å¼•å…¥é…ç½®æ–‡ä»¶
+ \else
+  \typeout{[seuthesis]: Using GBK encoding}
+  \RequirePackage[CJKbookmarks=true]{hyperref}
+  \RequirePackage{CJK} %ä¸­æ–‡æ”¯æŒ
+  \AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
+      \InputIfFileExists{seuthesis-gbk.cfg}%
+      {\typeout{[seuthesis]: Load seuthesis-gbk.cfg successfully!}}%
+      {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}
+    } % å¼•å…¥é…ç½®æ–‡ä»¶
+ \fi
 
- \RequirePackage{CJK} %ÖĞÎÄÖ§³Ö
  \RequirePackage{CJKnumb}
- \AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
- \input{seuthesis.cfg}} %ÒıÈëÅäÖÃÎÄ¼ş
-
  \AtEndDocument{\end{CJK*}}
 %    \end{macrocode}
 %
-% ×ÖÌåÉèÖÃ
+% å­—ä½“è®¾ç½®
 %    \begin{macrocode}
 \newcommand{\song}{\CJKfamily{song}}
 \newcommand{\lishu}{\CJKfamily{li}}
 \newcommand{\hei}{\CJKfamily{hei}}
 \newcommand{\kai}{\CJKfamily{kai}}
 %    \end{macrocode}
-% ×ÖºÅÉèÖÃ
+% å­—å·è®¾ç½®
 %    \begin{macrocode}
 \newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
 \newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
@@ -149,24 +192,36 @@
 \newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
 %    \end{macrocode}
 %
-% ·âÃæ
+% å°é¢
 %    \begin{macrocode}
  \renewcommand{\maketitle}{
+   %    
+   % è®¾ç½®ä¹¦ç­¾ 
+   % Note: The `CJKbookmarks' option should only be used for bookmarks *not* in Unicode.
+   \hypersetup{
+     pdfstartview=FitH, %é¡µå®½é€‚åˆçª—å£
+     bookmarks, %ç”Ÿæˆä¹¦ç­¾
+     pdfauthor={\varauthoreng},
+     pdftitle={Southeast University Thesis}, %æ–‡ä»¶æ ‡é¢˜
+     pdfsubject={\vartitleeng}, %æ–‡ä»¶ä¸»é¢˜
+     bookmarksnumbered %ä¹¦ç­¾ä¸­ç« èŠ‚ç¼–å·
+   }
+
    \chinesecover
    \englishcover
-   \frontmatter % ¿ªÊ¼ÕıÎÄÖ®Ç°µÄ²¿·Ö
+   \frontmatter % å¼€å§‹æ­£æ–‡ä¹‹å‰çš„éƒ¨åˆ†
    \pagestyle{seufrontstyle}
    \seudeclare
-   \song\sihao{\tableofcontents} %Ä¿Â¼²¿·Ö×ÖÌå¿É²ÉÓÃ4ºÅËÎÌå¡£
+   \song\sihao{\tableofcontents} %ç›®å½•éƒ¨åˆ†å­—ä½“å¯é‡‡ç”¨4å·å®‹ä½“ã€‚
    \pagestyle{seustyle}
    \song\wuhao
-   \mainmatter % ¿ªÊ¼ÕıÎÄ²¿·Ö
+   \mainmatter % å¼€å§‹æ­£æ–‡éƒ¨åˆ†
 }
-% ÖĞÎÄ·âÃæ
+% ä¸­æ–‡å°é¢
 \newcommand{\chinesecover}{
 \begin{titlepage}
 
-\begin{tabular}{ll}%ËÎÌåĞ¡ËÄ
+\begin{tabular}{ll}%å®‹ä½“å°å››
   \makebox[1.25cm][s]{\normalsize \categorynumberpre}{
     \underline{\makebox[1.25cm][c]{\varcategorynumber}}} &
   \makebox[1.25cm][s]{\normalsize \secretlevelpre}{
@@ -183,16 +238,16 @@
 
 \vspace*{70pt}
 \begin{center}
-  \makebox[10cm][s]{\xiaochuhao\lishu\universityname}\\%Á¥ÊéĞ¡³õ
+  \makebox[10cm][s]{\xiaochuhao\lishu\universityname}\\%éš¶ä¹¦å°åˆ
   ~\\
-  \makebox[14cm][s]{\xiaochuhao\lishu\academicdegree}%Á¥ÊéĞ¡³õ
+  \makebox[14cm][s]{\xiaochuhao\lishu\academicdegree}%éš¶ä¹¦å°åˆ
 \end{center}
 
 \vspace*{20pt}
 \begin{center}
-  \yihao\hei\@title\\%ÌâÃû ºÚÌåÒ»ºÅ¾ÓÖĞ
+  \yihao\hei\@title\\%é¢˜å é»‘ä½“ä¸€å·å±…ä¸­
   ~\\
-  \yihao\hei\varsubtitle%¸±ÌâÃû ºÚÌåÒ»ºÅ¾ÓÖĞ
+  \yihao\hei\varsubtitle%å‰¯é¢˜å é»‘ä½“ä¸€å·å±…ä¸­
 \end{center}
 
 \vspace*{40pt}
@@ -201,8 +256,8 @@
 \setlength{\tabcolsep}{0pt}
 \begin{center}
 \begin{tabular}{cr}
-  \makebox[4cm][s]{\xiaoerhao\song\authorpre~~~~~~} &%ËÎÌåĞ¡¶ş
-  \underline{\makebox[6cm][s]{\hspace{2cm}\makebox[2cm][s]{\xiaoerhao\hei\@author}}} \\%ºÚÌåĞ¡¶ş´ÖÌå
+  \makebox[4cm][s]{\xiaoerhao\song\authorpre~~~~~~} &%å®‹ä½“å°äºŒ
+  \underline{\makebox[6cm][s]{\hspace{2cm}\makebox[2cm][s]{\xiaoerhao\hei\@author}}} \\%é»‘ä½“å°äºŒç²—ä½“
   \makebox[4cm][s]{\xiaoerhao\song\advisorpre~~} &
   \underline{\makebox[6cm][s]{\hspace{1cm}\xiaoerhao\hei\varadvisorname\hspace{1cm}\xiaoerhao\hei\varadvisortitle}} \\
       & 
@@ -215,8 +270,8 @@
 \setlength{\tabcolsep}{10pt}
 \begin{center}
 \begin{tabular}{ll}
-  \makebox[3cm][s]{\song\sihao\applicantlevelpre %ËÎÌåËÄºÅ
-    \underline{\makebox[5cm][c]{\hei\varapplicantlevel}}} & %ºÚÌåËÄºÅ´ÖÌå
+  \makebox[3cm][s]{\song\sihao\applicantlevelpre %å®‹ä½“å››å·
+    \underline{\makebox[5cm][c]{\hei\varapplicantlevel}}} & %é»‘ä½“å››å·ç²—ä½“
 
   \makebox[3cm][s]{\song\sihao\majorpre
     \underline{\makebox[5cm][c]{\hei\varmajor}}}\\
@@ -248,7 +303,7 @@
 \end{titlepage}
 }
 %
-% Ó¢ÎÄ·âÃæ
+% è‹±æ–‡å°é¢
 \newcommand{\englishcover}{
   \thispagestyle{empty}%
   \begin{spacing}{1.0}\begin{center}
@@ -279,19 +334,19 @@
 %</cls>
 %    \end{macrocode}
 %
-% ÖĞÎÄ¹Ø¼ü×ÖÓ³Éä
+% ä¸­æ–‡å…³é”®å­—æ˜ å°„
 %    \begin{macrocode}
 %<*cfg>
 \ProvidesFile{seuthesis.cfg}
-\newcommand{\universityname}{¶«ÄÏ´óÑ§}
+\newcommand{\universityname}{ä¸œå—å¤§å­¦}
 \newcommand{\universitynameeng}{Southeast University}
-\newcommand{\vardepartment}{×Ô¶¯»¯Ñ§Ôº}
+\newcommand{\vardepartment}{è‡ªåŠ¨åŒ–å­¦é™¢}
 \newcommand{\vardepartmenteng}{School of Automation}
 \newcommand{\department}[2]{
   \renewcommand{\vardepartment}{#1}
   \renewcommand{\vardepartmenteng}{#2}
 }
-\newcommand{\academicdegree}{Ë¶Ê¿Ñ§Î»ÂÛÎÄ}
+\newcommand{\academicdegree}{ç¡•å£«å­¦ä½è®ºæ–‡}
 \newcommand{\academicdegreeeng}{Master of Engineering}
 \newcommand{\vartitleeng}{}
 \newcommand{\englishtitle}[1]{\renewcommand{\vartitleeng}{#1}}
@@ -301,20 +356,20 @@
 \newcommand{\subtitle}[1]{\renewcommand{\varsubtitle}{#1}}
 \newcommand{\varsubtitleeng}{}
 \newcommand{\englishsubtitle}[1]{\renewcommand{\varsubtitleeng}{#1}}
-\newcommand{\categorynumberpre}{·ÖÀàºÅ}
+\newcommand{\categorynumberpre}{åˆ†ç±»å·}
 \newcommand{\varcategorynumber}{}
 \newcommand{\categorynumber}[1]{\renewcommand{\varcategorynumber}{#1}}
-\newcommand{\secretlevelpre}{ÃÜ¼¶}
-\newcommand{\varsecretlevel}{¹«¿ª}
+\newcommand{\secretlevelpre}{å¯†çº§}
+\newcommand{\varsecretlevel}{å…¬å¼€}
 \newcommand{\secretlevel}[1]{\renewcommand{\varsecretlevel}{#1}}
 \newcommand{\varUDC}{}
 \newcommand{\UDC}[1]{\renewcommand{\varUDC}{#1}}
-\newcommand{\studentidpre}{Ñ§ºÅ}
+\newcommand{\studentidpre}{å­¦å·}
 \newcommand{\varstudentid}{}
 \newcommand{\studentid}[1]{\renewcommand{\varstudentid}{#1}}
-\newcommand{\authorpre}{ÑĞ¾¿ÉúĞÕÃû£º}
-\newcommand{\advisorpre}{µ¼~~Ê¦~~ĞÕ~~Ãû£º}
-\newcommand{\varadvisortitle}{½ÌÊÚ}
+\newcommand{\authorpre}{ç ”ç©¶ç”Ÿå§“åï¼š}
+\newcommand{\advisorpre}{å¯¼~~å¸ˆ~~å§“~~åï¼š}
+\newcommand{\varadvisortitle}{æ•™æˆ}
 \newcommand{\varadvisortitleeng}{Prof.}
 \newcommand{\varadvisorname}{}
 \newcommand{\varadvisornameeng}{}
@@ -324,7 +379,7 @@
   \renewcommand{\varadvisornameeng}{#3}
   \renewcommand{\varadvisortitleeng}{#4}
 }
-\newcommand{\varcoadvisortitle}{½ÌÊÚ}
+\newcommand{\varcoadvisortitle}{æ•™æˆ}
 \newcommand{\varcoadvisortitleeng}{Prof.}
 \newcommand{\varcoadvisorname}{}
 \newcommand{\varcoadvisornameeng}{}
@@ -334,32 +389,32 @@
   \renewcommand{\varcoadvisornameeng}{#3}
   \renewcommand{\varcoadvisortitleeng}{#4}
 }
-\newcommand{\applicantlevelpre}{ÉêÇëÑ§Î»¼¶±ğ}
-\newcommand{\varapplicantlevel}{~~~Ë¶~~Ê¿~~~}
+\newcommand{\applicantlevelpre}{ç”³è¯·å­¦ä½çº§åˆ«}
+\newcommand{\varapplicantlevel}{~~~ç¡•~~å£«~~~}
 \newcommand{\applicantlevel}[1]{\renewcommand{\varapplicantlevel}{#1}}
-\newcommand{\majorpre}{Ñ§¿Æ×¨ÒµÃû³Æ}
+\newcommand{\majorpre}{å­¦ç§‘ä¸“ä¸šåç§°}
 \newcommand{\varmajor}{}
 \newcommand{\major}[1]{\renewcommand{\varmajor}{#1}}
-\newcommand{\submitdatepre}{ÂÛÎÄÌá½»ÈÕÆÚ}
-\newcommand{\varsubmitdate}{2050Äê7ÔÂ7ÈÕ}
+\newcommand{\submitdatepre}{è®ºæ–‡æäº¤æ—¥æœŸ}
+\newcommand{\varsubmitdate}{2050å¹´7æœˆ7æ—¥}
 \newcommand{\varsubmitdateeng}{}
 \newcommand{\submitdate}[2]{
   \renewcommand{\varsubmitdate}{#1}
   \renewcommand{\varsubmitdateeng}{#2}
 }
-\newcommand{\defenddatepre}{ÂÛÎÄ´ğ±çÈÕÆÚ}
-\newcommand{\vardefenddate}{2050Äê7ÔÂ7ÈÕ}
+\newcommand{\defenddatepre}{è®ºæ–‡ç­”è¾©æ—¥æœŸ}
+\newcommand{\vardefenddate}{2050å¹´7æœˆ7æ—¥}
 \newcommand{\defenddate}[1]{\renewcommand{\vardefenddate}{#1}}
-\newcommand{\authorizeorganizationpre}{Ñ§Î»ÊÚÓèµ¥Î»}
-\newcommand{\varauthorizeorganization}{~~¶«~ÄÏ~´ó~Ñ§~~}
+\newcommand{\authorizeorganizationpre}{å­¦ä½æˆäºˆå•ä½}
+\newcommand{\varauthorizeorganization}{~~ä¸œ~å—~å¤§~å­¦~~}
 \newcommand{\authorizeorganization}[1]{\renewcommand{\varauthorizeorganization}{#1}}
-\newcommand{\authorizedatepre}{Ñ§Î»ÊÚÓèÈÕÆÚ}
-\newcommand{\varauthorizedate}{2050Äê7ÔÂ7ÈÕ}
+\newcommand{\authorizedatepre}{å­¦ä½æˆäºˆæ—¥æœŸ}
+\newcommand{\varauthorizedate}{2050å¹´7æœˆ7æ—¥}
 \newcommand{\authorizedate}[1]{\renewcommand{\varauthorizedate}{#1}}
-\newcommand{\committeechairpre}{´ğ±çÎ¯Ô±»áÖ÷Ï¯}
+\newcommand{\committeechairpre}{ç­”è¾©å§”å‘˜ä¼šä¸»å¸­}
 \newcommand{\varcommitteechair}{}
 \newcommand{\committeechair}[1]{\renewcommand{\varcommitteechair}{#1}}
-\newcommand{\readerpre}{ÆÀ~~~~~~ÔÄ~~~~~~ÈË}
+\newcommand{\readerpre}{è¯„~~~~~~é˜…~~~~~~äºº}
 \newcommand{\varreader}{}
 \newcommand{\reader}[1]{\renewcommand{\varreader}{#1}}
 %    \end{macrocode}
@@ -368,39 +423,39 @@
  \newcommand{\signline}{\underline{\makebox[2.5cm][s]{}}}
  \newcommand{\seudeclare}{
    \begin{center}
-     \hei\sanhao{¶«ÄÏ´óÑ§Ñ§Î»ÂÛÎÄ¶À´´ĞÔÉùÃ÷}
+     \hei\sanhao{ä¸œå—å¤§å­¦å­¦ä½è®ºæ–‡ç‹¬åˆ›æ€§å£°æ˜}
    \end{center}
    
-   \xiaosihao\parindent2em{±¾ÈËÉùÃ÷Ëù³Ê½»µÄÑ§Î»ÂÛÎÄÊÇÎÒ¸öÈËÔÚµ¼Ê¦Ö¸µ¼ÏÂ½øĞĞµÄÑĞ¾¿¹¤×÷¼°È¡µÃµÄÑĞ¾¿³É¹û¡£¾¡ÎÒËùÖª£¬³ıÁËÎÄÖĞÌØ±ğ¼ÓÒÔ±ê×¢ºÍÖÂĞ»µÄµØ·½Íâ£¬ÂÛÎÄÖĞ²»°üº¬ÆäËûÈËÒÑ¾­·¢±í»ò×«Ğ´¹ıµÄÑĞ¾¿³É¹û£¬Ò²²»°üº¬Îª»ñµÃ¶«ÄÏ´óÑ§»òÆäËü½ÌÓı»ú¹¹µÄÑ§Î»»òÖ¤Êé¶øÊ¹ÓÃ¹ıµÄ²ÄÁÏ¡£ÓëÎÒÒ»Í¬¹¤×÷µÄÍ¬Ö¾¶Ô±¾ÑĞ¾¿Ëù×öµÄÈÎºÎ¹±Ï×¾ùÒÑÔÚÂÛÎÄÖĞ×÷ÁËÃ÷È·µÄËµÃ÷²¢±íÊ¾ÁËĞ»Òâ¡£}
+   \xiaosihao\parindent2em{æœ¬äººå£°æ˜æ‰€å‘ˆäº¤çš„å­¦ä½è®ºæ–‡æ˜¯æˆ‘ä¸ªäººåœ¨å¯¼å¸ˆæŒ‡å¯¼ä¸‹è¿›è¡Œçš„ç ”ç©¶å·¥ä½œåŠå–å¾—çš„ç ”ç©¶æˆæœã€‚å°½æˆ‘æ‰€çŸ¥ï¼Œé™¤äº†æ–‡ä¸­ç‰¹åˆ«åŠ ä»¥æ ‡æ³¨å’Œè‡´è°¢çš„åœ°æ–¹å¤–ï¼Œè®ºæ–‡ä¸­ä¸åŒ…å«å…¶ä»–äººå·²ç»å‘è¡¨æˆ–æ’°å†™è¿‡çš„ç ”ç©¶æˆæœï¼Œä¹Ÿä¸åŒ…å«ä¸ºè·å¾—ä¸œå—å¤§å­¦æˆ–å…¶å®ƒæ•™è‚²æœºæ„çš„å­¦ä½æˆ–è¯ä¹¦è€Œä½¿ç”¨è¿‡çš„ææ–™ã€‚ä¸æˆ‘ä¸€åŒå·¥ä½œçš„åŒå¿—å¯¹æœ¬ç ”ç©¶æ‰€åšçš„ä»»ä½•è´¡çŒ®å‡å·²åœ¨è®ºæ–‡ä¸­ä½œäº†æ˜ç¡®çš„è¯´æ˜å¹¶è¡¨ç¤ºäº†è°¢æ„ã€‚}
    \\
    \begin{flushright}
-     ÑĞ¾¿ÉúÇ©Ãû£º\signline ÈÕ~ÆÚ£º\signline
+     ç ”ç©¶ç”Ÿç­¾åï¼š\signline æ—¥~æœŸï¼š\signline
    \end{flushright}
 
    {\vspace{1in}}
 
    \begin{center}
-     \hei\sanhao{¶«ÄÏ´óÑ§Ñ§Î»ÂÛÎÄÊ¹ÓÃÊÚÈ¨ÉùÃ÷}
+     \hei\sanhao{ä¸œå—å¤§å­¦å­¦ä½è®ºæ–‡ä½¿ç”¨æˆæƒå£°æ˜}
    \end{center}
    
-   \xiaosihao\parindent2em{¶«ÄÏ´óÑ§¡¢ÖĞ¹ú¿ÆÑ§¼¼ÊõĞÅÏ¢ÑĞ¾¿Ëù¡¢¹ú¼ÒÍ¼Êé¹İÓĞÈ¨±£Áô±¾ÈËËùËÍ½»Ñ§Î»ÂÛÎÄµÄ¸´Ó¡¼şºÍµç×ÓÎÄµµ£¬¿ÉÒÔ²ÉÓÃÓ°Ó¡¡¢ËõÓ¡»òÆäËû¸´ÖÆÊÖ¶Î±£´æÂÛÎÄ¡£±¾ÈËµç×ÓÎÄµµµÄÄÚÈİºÍÖ½ÖÊÂÛÎÄµÄÄÚÈİÏàÒ»ÖÂ¡£³ıÔÚ±£ÃÜÆÚÄÚµÄ±£ÃÜÂÛÎÄÍâ£¬ÔÊĞíÂÛÎÄ±»²éÔÄºÍ½èÔÄ£¬¿ÉÒÔ¹«²¼£¨°üÀ¨¿¯µÇ£©ÂÛÎÄµÄÈ«²¿»ò²¿·ÖÄÚÈİ¡£ÂÛÎÄµÄ¹«²¼£¨°üÀ¨¿¯µÇ£©ÊÚÈ¨¶«ÄÏ´óÑ§ÑĞ¾¿ÉúÔº°ìÀí¡£}
+   \xiaosihao\parindent2em{ä¸œå—å¤§å­¦ã€ä¸­å›½ç§‘å­¦æŠ€æœ¯ä¿¡æ¯ç ”ç©¶æ‰€ã€å›½å®¶å›¾ä¹¦é¦†æœ‰æƒä¿ç•™æœ¬äººæ‰€é€äº¤å­¦ä½è®ºæ–‡çš„å¤å°ä»¶å’Œç”µå­æ–‡æ¡£ï¼Œå¯ä»¥é‡‡ç”¨å½±å°ã€ç¼©å°æˆ–å…¶ä»–å¤åˆ¶æ‰‹æ®µä¿å­˜è®ºæ–‡ã€‚æœ¬äººç”µå­æ–‡æ¡£çš„å†…å®¹å’Œçº¸è´¨è®ºæ–‡çš„å†…å®¹ç›¸ä¸€è‡´ã€‚é™¤åœ¨ä¿å¯†æœŸå†…çš„ä¿å¯†è®ºæ–‡å¤–ï¼Œå…è®¸è®ºæ–‡è¢«æŸ¥é˜…å’Œå€Ÿé˜…ï¼Œå¯ä»¥å…¬å¸ƒï¼ˆåŒ…æ‹¬åˆŠç™»ï¼‰è®ºæ–‡çš„å…¨éƒ¨æˆ–éƒ¨åˆ†å†…å®¹ã€‚è®ºæ–‡çš„å…¬å¸ƒï¼ˆåŒ…æ‹¬åˆŠç™»ï¼‰æˆæƒä¸œå—å¤§å­¦ç ”ç©¶ç”Ÿé™¢åŠç†ã€‚}
    \\
    \begin{flushright}
-     ÑĞ¾¿ÉúÇ©Ãû£º\signline µ¼Ê¦Ç©Ãû£º\signline ÈÕ~ÆÚ£º\signline
+     ç ”ç©¶ç”Ÿç­¾åï¼š\signline å¯¼å¸ˆç­¾åï¼š\signline æ—¥~æœŸï¼š\signline
    \end{flushright}
  }
 %    \end{macrocode}
 %
-% ¶¨ÒåÒ³Ãæ·ç¸ñ
-% Ò³Ã¼²ÉÓÃÏÂÁĞĞÎÊ½£¨ÔÚÒ³Ã¼Ò³½ÅµÄÒ³ÃæÉèÖÃÖĞÑ¡Ôñ¡°ÆæÅ¼Ò³²»Í¬¡±£©£º
-% Å¼ÊıÒ³£º¶«ÄÏ´óÑ§Ë¶Ê¿Ñ§Î»ÂÛÎÄ£¨Ğ¡ÎåºÅËÎÌå¾ÓÖĞ£©
-% ÆæÊıÒ³£ºµÚ * ÕÂ ÕÂÌâÄ¿£¨Ğ¡ÎåºÅËÎÌå¾ÓÖĞ£©
-% Ò³½Å
-% ÕıÎÄ¼°ÆäÒÔºó²¿·Ö£¬ÆäÒ³½ÅÎª¾ÓÖĞ¡¢Á¬ĞøµÄ°¢À­²®Êı×ÖÒ³Âë¡£²»ÒË²ÉÓÃ·ÖÕÂµÄ·ÇÁ¬ĞøÒ³Âë¡£ÕªÒªºÍÄ¿Â¼µÈÄÚÈİµÄÒ³½ÅÎª¾ÓÖĞ¡¢Á¬ĞøµÄ´óĞ´ÂŞÂíÊı×ÖÒ³Âë¡£
+% å®šä¹‰é¡µé¢é£æ ¼
+% é¡µçœ‰é‡‡ç”¨ä¸‹åˆ—å½¢å¼ï¼ˆåœ¨é¡µçœ‰é¡µè„šçš„é¡µé¢è®¾ç½®ä¸­é€‰æ‹©â€œå¥‡å¶é¡µä¸åŒâ€ï¼‰ï¼š
+% å¶æ•°é¡µï¼šä¸œå—å¤§å­¦ç¡•å£«å­¦ä½è®ºæ–‡ï¼ˆå°äº”å·å®‹ä½“å±…ä¸­ï¼‰
+% å¥‡æ•°é¡µï¼šç¬¬ * ç«  ç« é¢˜ç›®ï¼ˆå°äº”å·å®‹ä½“å±…ä¸­ï¼‰
+% é¡µè„š
+% æ­£æ–‡åŠå…¶ä»¥åéƒ¨åˆ†ï¼Œå…¶é¡µè„šä¸ºå±…ä¸­ã€è¿ç»­çš„é˜¿æ‹‰ä¼¯æ•°å­—é¡µç ã€‚ä¸å®œé‡‡ç”¨åˆ†ç« çš„éè¿ç»­é¡µç ã€‚æ‘˜è¦å’Œç›®å½•ç­‰å†…å®¹çš„é¡µè„šä¸ºå±…ä¸­ã€è¿ç»­çš„å¤§å†™ç½—é©¬æ•°å­—é¡µç ã€‚
 %    \begin{macrocode}
 \newpagestyle{seustyle}{
-  \sethead[][\song\xiaowuhao¶«ÄÏ´óÑ§Ë¶Ê¿Ñ§Î»ÂÛÎÄ][] % Å¼ÊıÒ³
-  {}{\song\xiaowuhao\chaptername\quad\chaptertitle}{} % ÆæÊıÒ³
+  \sethead[][\song\xiaowuhaoä¸œå—å¤§å­¦ç¡•å£«å­¦ä½è®ºæ–‡][] % å¶æ•°é¡µ
+  {}{\song\xiaowuhao\chaptername\quad\chaptertitle}{} % å¥‡æ•°é¡µ
   \setfoot{}{\thepage}{}
   \headrule
 }
@@ -408,53 +463,39 @@
   \setfoot{}{\thepage}{}
 }
 \newpagestyle{seufrontstyle}{
-  \sethead[][\song\xiaowuhao¶«ÄÏ´óÑ§Ë¶Ê¿Ñ§Î»ÂÛÎÄ][]
-  {}{\song\xiaowuhao¶«ÄÏ´óÑ§Ë¶Ê¿Ñ§Î»ÂÛÎÄ}{}
+  \sethead[][\song\xiaowuhaoä¸œå—å¤§å­¦ç¡•å£«å­¦ä½è®ºæ–‡][]
+  {}{\song\xiaowuhaoä¸œå—å¤§å­¦ç¡•å£«å­¦ä½è®ºæ–‡}{}
   \setfoot{}{\thepage}{}
   \headrule
 }
 %
 %    \end{macrocode}
 %
-% ÉèÖÃÕÂ±êÌâµÄ¸ñÊ½ ÈıºÅºÚÌå¾ÓÖĞ
+% è®¾ç½®ç« æ ‡é¢˜çš„æ ¼å¼ ä¸‰å·é»‘ä½“å±…ä¸­
 %    \begin{macrocode}
  \titleformat{\chapter}[hang]{\centering\hei\sanhao}{\chaptername}{1em}{}
- \renewcommand{\chaptername}{µÚ\CJKnumber{\thechapter}ÕÂ}
+ \renewcommand{\chaptername}{ç¬¬\CJKnumber{\thechapter}ç« }
 
- \titleformat{\section}[hang]{\song\sihao\bfseries}{\thesection}{1em}{}%ËÄºÅËÎÌå£¨´ÖÌå£©¾Ó×ó
+ \titleformat{\section}[hang]{\song\sihao\bfseries}{\thesection}{1em}{}%å››å·å®‹ä½“ï¼ˆç²—ä½“ï¼‰å±…å·¦
 
- \titleformat{\subsection}[hang]{\song\xiaosihao}{\thesubsection}{1em}{}% Ğ¡ËÄ
+ \titleformat{\subsection}[hang]{\song\xiaosihao}{\thesubsection}{1em}{}% å°å››
 
 %    \end{macrocode}
 %
-% ÉèÖÃÕÂÄ¿Â¼µÄ¸ñÊ½
+% è®¾ç½®ç« ç›®å½•çš„æ ¼å¼
 %    \begin{macrocode}
- \renewcommand{\contentsname}{Ä¿\quad Â¼}
+ \renewcommand{\contentsname}{ç›®\quad å½•}
  \titlecontents{chapter}[0pt]{\vspace{.5\baselineskip}\bfseries}
-    {µÚ\CJKnumber{\thecontentslabel}ÕÂ\quad}{}
+    {ç¬¬\CJKnumber{\thecontentslabel}ç« \quad}{}
     {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
 
 %    \end{macrocode}
 %
-% ÉèÖÃÍ¼µÄ¸ñÊ½ ±í¸ñÃû¼°Í¼ÃûÓÃ5ºÅËÎÌå
+% è®¾ç½®å›¾çš„æ ¼å¼ è¡¨æ ¼ååŠå›¾åç”¨5å·å®‹ä½“
 %    \begin{macrocode}
- \renewcommand{\prefigurename}{\song\wuhaoÍ¼}
+ \renewcommand{\prefigurename}{\song\wuhaoå›¾}
  \renewcommand{\postfigurename}{}
 %
-%    \end{macrocode}
-%
-% ÉèÖÃÊéÇ©
-%    \begin{macrocode}
-\hypersetup{
-  pdfstartview=FitH, %Ò³¿íÊÊºÏ´°¿Ú
-  CJKbookmarks, %ÖĞÎÄÊéÇ©
-  bookmarks, %Éú³ÉÊéÇ©
-  %pdfauthor={\varauthoreng},
-  %pdftitle={¶«ÄÏ´óÑ§Ë¶Ê¿Ñ§Î»ÂÛÎÄ}, %ÎÄ¼ş±êÌâ
-  %pdfkeywords={RoboCup},
-  %pdfsubject={\vartitleeng}, %ÎÄ¼şÖ÷Ìâ
-  bookmarksnumbered %ÊéÇ©ÖĞÕÂ½Ú±àºÅ
-} 
 %</cfg>
 %    \end{macrocode}
 % \Finale

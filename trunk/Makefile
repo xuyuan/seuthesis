@@ -19,56 +19,43 @@
 PACKAGE=seuthesis
 SRC=${PACKAGE}.ins ${PACKAGE}.dtx
 
-#SAMPLE=main
-#SAMPLE_SRC=${SAMPLE}.tex content/*.tex
-SAMPLE=sample
-SAMPLE_SRC=${SAMPLE}.tex
+MAIN=main
+MAIN_SRC=${MAIN}.tex content/*.tex
 
-all: pdf
+all: package sample
 
-cls: ${PACKAGE}.cls
+main: main.pdf
 
-pdf: ${SAMPLE}.pdf ${PACKAGE}.pdf
+package: ${PACKAGE}.pdf
 
-dvi: ${PACKAGE}.dvi ${SAMPLE}.dvi
-
-ps: ${PACKAGE}.ps ${SAMPLE}.pdf
+sample: sample-gbk.pdf sample-utf8.pdf
 
 clean:
-	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.ist *.idx *.ilg *.out *.bak *.bbl *.blg 
+	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.ist *.idx *.ilg *.out *.bak *.bbl *.brf *.blg *.dvi *.ps sample-content-gbk.tex
 
 distclean: clean
 	rm -f *.cls *.cfg
 
 ${PACKAGE}.cls: ${SRC}
-	rm -f ${PACKAGE}.cls ${PACKAGE}.cfg
+	rm -f ${PACKAGE}.cls ${PACKAGE}-gbk.cfg ${PACKAGE}-utf8.cfg
 	latex ${PACKAGE}.ins
+	iconv -f utf8 -t gbk ${PACKAGE}-utf8.cfg > ${PACKAGE}-gbk.cfg
 
-${PACKAGE}.dvi: ${PACKAGE}.cls ${PACKAGE}.dtx
-	latex ${PACKAGE}.dtx
-	bibtex ${PACKAGE}
-	makeindex -s gind.ist -o ${PACKAGE}.ind ${PACKAGE}.idx
-	makeindex -s gglo.ist -o ${PACKAGE}.gls ${PACKAGE}.glo
-	latex ${PACKAGE}.dtx
-
-${PACKAGE}.pdf: ${PACKAGE}.cls ${PACKAGE}.dtx
-#	ps2pdf  ${PACKAGE}.ps
+${PACKAGE}.pdf: ${PACKAGE}.dtx ${PACKAGE}.bib
 	pdflatex ${PACKAGE}.dtx
 	bibtex ${PACKAGE}
-	gbk2uni ${PACKAGE}
 	pdflatex ${PACKAGE}.dtx
 
-${PACKAGE}.ps: ${PACKAGE}.dvi
-#	gbk2uni ${PACKAGE}
-	latex ${PACKAGE}.dtx
-	dvips -Ppdf -G0 ${PACKAGE}.dvi
+sample-gbk.pdf: sample-gbk.tex sample-content-utf8.tex ${PACKAGE}.cls
+	iconv -f utf8 -t gbk sample-content-utf8.tex > sample-content-gbk.tex
+	pdflatex sample-gbk.tex
+	gbk2uni sample-gbk
+	pdflatex sample-gbk.tex
 
-${SAMPLE}.dvi: ${SAMPLE_SRC}
-	latex ${SAMPLE}
+sample-utf8.pdf: sample-utf8.tex ${PACKAGE}.cls
+	pdflatex sample-utf8.tex
+	pdflatex sample-utf8.tex
 
-
-${SAMPLE}.pdf: ${SAMPLE_SRC} ${PACKAGE}.cls ${PACKAGE}.cfg
-	pdflatex ${SAMPLE}
-	gbk2uni ${SAMPLE}
-	pdflatex ${SAMPLE}
-#	dvipdfm ${SAMPLE}
+main.pdf: ${MAIN_SRC} ${PACKAGE}.cls
+	pdflatex main.tex
+	pdflatex main.tex
