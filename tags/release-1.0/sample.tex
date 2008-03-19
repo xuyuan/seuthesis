@@ -1,0 +1,63 @@
+\documentclass[unicode,master]{seuthesis}
+
+ % 这里是导言区
+
+\begin{document}
+\categorynumber{000} % 分类采用《中国图书资料分类法》
+\UDC{000}            %《国际十进分类法UDC》的类号
+\secretlevel{公开}    %学位论文密级分为"公开"、"内部"、"秘密"和"机密"四种
+\studentid{050962}   %学号要完整，前面的零不能省略。
+\title{论文中文标题}{中文副标题}{Thesis Title}{subtitle}
+\author{许~元}{XU Yuan}
+\advisor{导师姓名}{教授}{Advisor's Name}{Prof.}
+%\coadvisor{副导师}{副教授}{Co-advisor's Name}{Associate Prof.}
+\major{学科专业名称}
+\submitdate{论文提交日期}{submiting date}
+\defenddate{答辩日期}
+\authorizedate{学位授予日期}
+\department{院系名称}{department name}
+\date{\today}
+\maketitle
+
+\begin{abstract}{中文关键字}
+  中文摘要。
+\end{abstract}
+
+\begin{englishabstract}{English Keywords}
+  English abstract.
+\end{englishabstract}
+
+\begin{terminology}
+  本论文专用术语的注释表
+\end{terminology}
+
+\begin{Main} % 开始正文
+
+\chapter{绪论(前言)}
+\section{研究的主要内容}
+\subsection{...}
+\subsubsection{...}
+\section{需要解决的问题}
+使得论文符合要求\cite{seugs:standard}。
+
+\chapter{...}
+...
+
+\end{Main} % 结束正文
+
+\chapter{致谢}
+感谢……
+
+\bibliography{seuthesis}
+
+\begin{appendix}
+  \chapter{附录A}
+  ……
+
+  \chapter{附录B}
+  ……
+\end{appendix}
+
+\printindex % 索引
+
+\end{document}
