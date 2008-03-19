@@ -20,18 +20,18 @@ PACKAGE=seuthesis
 SRC=${PACKAGE}.ins ${PACKAGE}.dtx
 
 MAIN=main
-MAIN_SRC=${MAIN}.tex content/*.tex
+MAIN_SRC=${MAIN}.tex content/*.tex content/reference.bib
 
-all: package sample
+all: package
 
 main: main.pdf
 
+sample: sample.pdf
+
 package: ${PACKAGE}.pdf
 
-sample: sample-gbk.pdf sample-utf8.pdf
-
 clean:
-	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.ist *.idx *.ilg *.out *.bak *.bbl *.brf *.blg *.dvi *.ps sample-content-gbk.tex
+	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.ist *.idx *.ilg *.out *.bak *.bbl *.brf *.blg *.dvi *.ps
 
 distclean: clean
 	rm -f *.cls *.cfg
@@ -41,21 +41,34 @@ ${PACKAGE}.cls: ${SRC}
 	latex ${PACKAGE}.ins
 	iconv -f utf8 -t gbk ${PACKAGE}-utf8.cfg > ${PACKAGE}-gbk.cfg
 
-${PACKAGE}.pdf: ${PACKAGE}.dtx ${PACKAGE}.bib
+${PACKAGE}.idx: ${PACKAGE}.dtx
+	pdflatex ${PACKAGE}.dtx
+
+${PACKAGE}.bbl: ${PACKAGE}.dtx ${PACKAGE}.bib
 	pdflatex ${PACKAGE}.dtx
 	bibtex ${PACKAGE}
+
+${PACKAGE}.ind: ${PACKAGE}.idx
+	makeindex -s gind ${PACKAGE}
+#	makeindex -s gglo -o ${PACKAGE}.gls ${PACKAGE}.glo
+
+${PACKAGE}.pdf: ${PACKAGE}.dtx ${PACKAGE}.cls ${PACKAGE}.ind ${PACKAGE}.bbl
+	pdflatex ${PACKAGE}.dtx
 	pdflatex ${PACKAGE}.dtx
 
-sample-gbk.pdf: sample-gbk.tex sample-content-utf8.tex ${PACKAGE}.cls
-	iconv -f utf8 -t gbk sample-content-utf8.tex > sample-content-gbk.tex
-	pdflatex sample-gbk.tex
-	gbk2uni sample-gbk
-	pdflatex sample-gbk.tex
+sample.bbl: seuthesis.bib sample.tex
+	pdflatex sample
+	bibtex sample
 
-sample-utf8.pdf: sample-utf8.tex ${PACKAGE}.cls
-	pdflatex sample-utf8.tex
-	pdflatex sample-utf8.tex
+sample.pdf: sample.tex ${PACKAGE}.cls sample.bbl
+	pdflatex sample
+	pdflatex sample
 
-main.pdf: ${MAIN_SRC} ${PACKAGE}.cls
-	pdflatex main.tex
-	pdflatex main.tex
+# rules of making main (my thesis)
+main.bbl: main.tex content/reference.bib
+	pdflatex main
+	bibtex -min-crossrefs=9000 main
+
+main.pdf: ${MAIN_SRC} ${PACKAGE}.cls main.bbl
+	pdflatex main
+	pdflatex main
