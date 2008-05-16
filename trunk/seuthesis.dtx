@@ -1,6 +1,7 @@
 % \iffalse meta-comment
 % 
 % Copyright (C) 2007, 2008 by Xu Yuan <xuyuan.cn@gmail.com>
+%                             SONG Yiha <syhannnn@gmail.com>
 % $Id$
 % 
 % This file is part of the seuthesis package project.
@@ -14,10 +15,28 @@
 % http://www.gnu.org/licenses/gpl.html
 % 
 % \fi
-
+%
+% \CheckSum{0}
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
 % \iffalse
 %<*driver> 
-\ProvidesFile{seuthesis.dtx}[2008/03/19 1.0 Southeast University Thesis Template]
+\ProvidesFile{seuthesis.dtx}[2008/05/16 1.1 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -45,9 +64,9 @@
 \secretlevel{公开} %学位论文密级分为“公开”、“内部”、“秘密”和“机密”四种
 \studentid{050962} %学号要完整，前面的零不能省略。
 
-\title{\textsf{seuthesis}~宏包（\fileversion版）} % 中文标题
+\title{\seuthesis{}~宏包（\fileversion版）} % 中文标题
 {——东南大学学位论文~\LaTeX{}~模板} % 中文副标题
-{The \textsf{seuthesis} class (version \fileversion)} % 英文标题
+{The \seuthesis{} class (version \fileversion)} % 英文标题
 {--- The \LaTeX{} template for thesis of Southeast University}%英文副标题
 
 \author{许~元}{XU Yuan}
@@ -64,13 +83,14 @@
 \maketitle
 
 \begin{abstract}{\LaTeX{}~模板，东南大学学位论文}
-  \TeX{} 是一个排版系统，可以把文章做成书那种效果。因此~\TeX{}非常适合
-  用来写学术论文和书籍。\textsf{seuthesis}是按照东南大学研究生院对研究
-  生学位论文的要求设计和实现的\LaTeX{}模板，帮助东大研究生以专业排版水
-  平来完成学位论文。
 
-  本文既是\textsf{seuthesis}使用手册也是范例，建议在使
-  用\textsf{seuthesis}之前阅读。
+  \TeX{} 是一个排版系统，可以把文章做成书那种效果。因此~\TeX{}非常适合
+  用来写学术论文和书籍。\seuthesis{}是按照东南大学研究生院和教务处对学
+  位论文的要求设计和实现的\LaTeX{}模板，帮助东南大学生以专业排版水平来
+  完成学位论文。
+
+  本文既是\seuthesis{}使用手册也是范例，建议在使用\seuthesis{}之前阅
+  读。
 \end{abstract}
 
 \begin{englishabstract}{\LaTeX{} template, thesis of Southeast
@@ -78,13 +98,13 @@
 
   \TeX is a typesetting system, it can make article as good as
   published book. Therefore, \TeX is very suitable for writing
-  academic papers and books. \textsf{seuthesis} is designed and
-  implemented as a \LaTeX template to help postgraduates writing
-  degree thesis in a professional typesetting, according to the
-  requirements of Southeast University Graduate School.
+  academic papers and books. \seuthesis{} is designed and implemented
+  as a \LaTeX template to help studnets writing degree thesis in a
+  professional typesetting, according to the requirements of Southeast
+  University.
 
-  This paper is \textsf{seuthesis} user manual and also the sample
-  document, it is better to be read before using \textsf{seuthesis}.
+  This paper is \seuthesis{} user manual and also the sample
+  document, it is better to be read before using \seuthesis{}.
 \end{englishabstract}
 
 \begin{terminology}
@@ -108,18 +128,23 @@
 
   \chapter{简介} 
   \label{cha:intro}
-  在硕士论文完成之际，\textsf{seuthesis}的第一个完整版也诞生了，同时支
-  持~UNICODE~和~GBK~编码，其格式尽量满足了研究生院的要求，当然由于水平
-  有限其中错漏在所难免，已在google建立项
+
+  在硕士论文完成之际，\seuthesis{}的第一个完整版也诞生了，同时支
+  持~UNICODE~和~GBK~编码，宋翊涵同学为模板加入了对东南大学本科论文的支
+  持。模板的格式尽量满足研东南大学究生院和教务处的要求，当然由于水平有
+  限其中错漏在所难免，我们已在google建立项
   目:\url{http://seuthesis.googlecode.com/}，欢迎东大的\LaTeX{}er一起参
   加开发和完善。
 
-  如果您对开发和完善\textsf{seuthesis}感兴趣、有任何想法或建议，请与我
-  联系。
+  如果您对开发和完善\seuthesis{}感兴趣、有任何想法或建议，请与我
+  们联系。
 
   \section{版权声明}
   \begin{flushleft}
-    版权所有\textcopyright 2007， 2008 ~许元~\url{(xuyuan.cn@gmail.com)}
+    \begin{tabular*}{1.0\linewidth}{lcl}
+      版权所有\textcopyright 2007， 2008 & 许元 & \url{(xuyuan.cn@gmail.com)} \\
+      & 宋翊涵 & \url{(syhannnn@gmail.com)} \\
+    \end{tabular*}
   \end{flushleft}
 
   这一程序是自由软件，你可以遵照自由软件基金会发布的《 GNU通用公共许可
@@ -130,6 +155,7 @@
 
   \section{版本历史}
   \begin{description}
+  \item[1.1] 2008/05/16，增加对东南大学本科论文的支持。
   \item[1.0] 2008/03/19，第一个完整版，包含了参考文献格式等完善。
   \item[0.2] 2007/12/23，增加unicode支持。
   \item[0.1] 2007/12/22，增加文档和示例。
@@ -212,17 +238,21 @@
   \item[\OPTgbk] 使用~GBK~编码。 
   \end{description}
   \subsection{学位选项}
+  \newcommand{\OPTbachelor}{\IndexOpt{bachelor}}
   \newcommand{\OPTmaster}{\IndexOpt{master}}
   \newcommand{\OPTdoctor}{\IndexOpt{doctor}}
   \begin{description}
-  \item[\OPTmaster] （默认）硕士学位；
+  \item[\OPTbachelor] 学士学位；
+  \item[\OPTmaster] 硕士学位（默认）；
   \item[\OPTdoctor] 博士学位。
   \end{description}
 
   \section{封面}
   \label{sec:use:cover} 使用\CmdMacro{maketitle}{}来生成中、英文封面以及
   《论文独创性声明和使用授权声明》，但是在调用\CmdMacro{maketitle}{}之前进
-  行相关设置，包括姓名、论文题目等。下面详细说明相关设置命令。
+  行相关设置，包括姓名、论文题目等。下面详细说明相关设置命令。由于本科
+  论文的封面和研究生论文的封面有很大差异，所以有些命令只在研究生论文中
+  起作用，而有些只在本科论文中才需要。
 
   \subsection{分类号}
   \CmdMacro{categorynumber}{\{分类号\}}，分类采用《中国图书资料分类法》。
@@ -279,12 +309,16 @@
   \CmdMacro{authorizedate}{\{学位授予日期中文\}}
   \subsubsection{论文完成日期}
   \CmdMacro{date}{\{论文完成日期中文\}}
+  \subsubsection{起讫日期}
+  \CmdMacro{duration}{\{论文开始时间——论文完成时间\}}，本科论文需要。
   \subsection{答辩委员会主席}
   \CmdMacro{committeechair}{\{答辩委员会主席姓名、职称\}}
   \subsection{评阅人}
   \CmdMacro{reader}{\{评阅人甲姓名、职称\}\{评阅人乙姓名、职称\}}
   \subsection{学位授予单位}
   \CmdMacro{authorizeorganization}{\{学位授予单位\}}，默认为“东南大学”。
+  \subsection{设计地点}
+  \CmdMacro{address}{\{设计地点\}}，本科论文需要。
 
   \section{摘要和关键词}
   \label{sec:use:abstract}
@@ -461,7 +495,8 @@
     \item[seuthesis.bib] 文献数据库，包含了本文的参考文献。
     \item[seuthesis.bst] 文献格式文件，定义了参考文献的格式。
     \item[Makefile] make编译规则，使用make命令由源文件得到目标文件。
-    \item[logo.eps/pdf] 东大校徽图案。
+    \item[figures/seu-badge-logo.eps/pdf] 东大校徽图案。
+    \item[figures/seu-text-logo.eps/png] 东大文字图案。
     \end{description}
   \item 目标文件：
     \begin{description}
@@ -495,11 +530,13 @@
 %    \end{macrocode}
 % \end{macro}
 % 
-% \begin{macro}{master/doctor}
-%   默认为申请硕士学位(\OPTmaster)，博士(\OPTdoctor)作为可
-%   选项。
+% \begin{macro}{bachelor/master/doctor}
+%   默认为申请硕士学位(\OPTmaster)，博士(\OPTdoctor)和申请本科学
+%   位(\OPTbachelor)作为可选项。
 %    \begin{macrocode}
+\newif\ifbachelordegree\bachelordegreefalse
 \newif\ifmasterdegree\masterdegreetrue
+\DeclareOption{bachelor}{\bachelordegreetrue}
 \DeclareOption{master}{\masterdegreetrue}
 \DeclareOption{doctor}{\masterdegreefalse}
 %    \end{macrocode}
@@ -534,7 +571,7 @@
 \ifseuunicode
 \typeout{[seuthesis]: Using UNICODE encoding}
 \RequirePackage{CJKutf8} %中文支持
-\RequirePackage[unicode]{hyperref}
+\RequirePackage[colorlinks,linkcolor=blue,citecolor=green,unicode]{hyperref}
 \hypersetup{unicode=true}
 \AtBeginDocument{\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
     \InputIfFileExists{seuthesis-utf8.cfg}%
@@ -577,6 +614,7 @@
 \newcommand{\lishu}{\CJKfamily{li}}
 \newcommand{\hei}{\CJKfamily{hei}}
 \newcommand{\kai}{\CJKfamily{kai}}
+\newcommand{\fs}{\CJKfamily{fs}}
 %    \end{macrocode}
 % \subsection{字号}
 %    \begin{macrocode}
@@ -779,6 +817,18 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% \begin{macro}{\duration}\IndexCmd{duration}
+%    \begin{macrocode}
+\newcommand{\@duration}{}
+  \newcommand{\duration}[1]{\renewcommand{\@duration}{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\addresspre}\IndexCmd{addresspre}
+%    \begin{macrocode}
+\newcommand{\@address}{}
+\newcommand{\address}[1]{\renewcommand{\@address}{#1}}
+%    \end{macrocode}
+% \end{macro}
 % \subsection{封面}
 % 
 % \begin{macro}{\maketitle}\IndexCmd{maketitle}
@@ -788,21 +838,36 @@
   % 设置书签 
   % Note: The `CJKbookmarks' option should only be used for bookmarks *not* in Unicode.
   \hypersetup{
-    pdfauthor={\@authoreng},
-    pdftitle={\universitynameeng{} Thesis}, %文件标题
-    pdfsubject={\@titleeng}, %文件主题
+    pdfauthor={\@author},
+    pdftitle={\universityname{}\academicdegree}, %文件标题
+    pdfsubject={\@title}, %文件主题
     bookmarksnumbered %书签中章节编号
   }
 
   \chinesecover
-  \englishcover
-  \frontmatter % 开始正文之前的部分
-  \pagestyle{seufrontstyle}
-  \seudeclare
+
+  \ifbachelordegree
+    \frontmatter
+    \pagestyle{seufrontstyle}
+  \else
+    \englishcover % 英文封面
+    \frontmatter % 开始正文之前的部分
+    \pagestyle{seufrontstyle}
+    \seudeclare % 独创性和使用授权声明
+  \fi
 }
 %    \end{macrocode}
 % \end{macro}
 % 
+% \subsubsection{本模板的logo}
+% \begin{macro}{\seuthesis}
+%    \begin{macrocode}
+\newcommand{\seuthesis}{S\kern-.1667em\lower.5ex\hbox{E}\kern-.125emU%
+\spacefactor1000\kern.05em$\emph{Thesis}$
+} 
+%    \end{macrocode}
+% \end{macro}
+%
 % \subsubsection{中文封面}
 % \begin{macro}{\chinesecover}
 %    \begin{macrocode}
@@ -830,7 +895,7 @@
     \end{tabular}
 
     \begin{picture}(0,0)(-325,55)
-      \includegraphics[width=3.5cm]{logo}
+      \includegraphics[width=3.5cm]{figures/seu-badge-logo}
     \end{picture}
 
     \vspace*{70pt}
@@ -891,6 +956,65 @@
 
   \end{titlepage}
 }
+\ifbachelordegree % 本科论文封面
+  \renewcommand{\chinesecover}{
+  \begin{titlepage}
+	  \begin{center}
+		  \vspace*{40pt}
+		  \includegraphics[scale=0.5]{figures/seu-badge-logo}
+                  \quad \includegraphics{figures/seu-text-logo} \\
+		  \vspace*{60pt}
+		  \yihao\hei \bachelortitle \\
+		  \vspace*{60pt} \xiaoerhao\song \titlepre \erhao\song
+		  \underline{\makebox[18em][s]{\hspace{1em}%
+                      \makebox[16em][c]{\fs\@title}}} \\
+		  \vspace*{40pt}
+
+		  \renewcommand{\arraystretch}{1.5}
+                  \setlength{\tabcolsep}{0pt}
+		  \begin{tabular}{clcl}
+			  \sanhao\fs
+			  \underline{\makebox[8em][s]{\makebox[8em][c]{\@department}}} &
+			  \sanhao
+			  \departmentpre &
+			  \sanhao\fs
+			  \underline{\makebox[8em][s]{\makebox[8em][c]{\@major}}} &
+			  \sanhao
+			  \majorpre \\
+                        \end{tabular}
+                        
+                        \vspace*{100pt}
+
+                        \renewcommand{\baselinestretch}{1.38}
+                        \renewcommand{\arraystretch}{1.5}
+                        \setlength{\tabcolsep}{0pt}
+                        \begin{tabular}{c}
+			  \sanhao\studentidpre\quad\underline{%
+                            \makebox[20em][s]{\makebox[20em][c]{\textsf{\@studentid}}}} \\
+			  \sanhao\studentnamepre\quad\underline{\makebox[20em][s]{
+                              \makebox[20em][c]{\fs{\@author}}}} \\
+			  \sanhao\advisorpre\quad\underline{\makebox[20em][s]{%
+                              \hspace{6em}\makebox[4em][c]{\fs{\@advisorname}}%
+                              \makebox[4em][r]{\fs{\@advisortitle}}}}
+                          \\
+                          \ifbcoadvisor
+                          \sanhao\coadvisorpre\quad\underline{\makebox[20em][s]{%
+                              \hspace{6em}\makebox[4em][c]{\fs{\@coadvisorname}}%
+                              \makebox[4em][r]{\fs{\@coadvisortitle}}}} \\
+                          \fi
+			  \sanhao\durationpre\quad\underline{\makebox[20em][s]{
+                              \makebox[20em]{\textsf{\@duration}}}} \\
+			  \sanhao\addresspre\quad\underline{\makebox[20em][s]{
+                              \makebox[20em][c]{\fs{\@address}}}} \\
+                        \end{tabular}
+
+		  \vfill
+
+		  \sanhao\today
+	  \end{center}
+  \end{titlepage}
+  }
+\fi
 %    \end{macrocode}
 % \end{macro}
 % 
@@ -1042,14 +1166,6 @@
 \newcommand{\authorpre}{研究生姓名：}
 \newcommand{\advisorpre}{导~~师~~姓~~名：}
 \newcommand{\appdegreepre}{申请学位级别}
-\ifmasterdegree
-\newcommand{\@appdegree}{硕士}
-\newcommand{\academicdegreeeng}{Master of Engineering}
-\else
-\newcommand{\@appdegree}{博士}
-\newcommand{\academicdegreeeng}{Doctor of Engineering}
-\fi
-\newcommand{\academicdegree}{\@appdegree学位论文}
 \newcommand{\majorpre}{学科专业名称}
 \newcommand{\submitdatepre}{论文提交日期}
 \newcommand{\defenddatepre}{论文答辩日期}
@@ -1062,6 +1178,30 @@
 \newcommand{\@abstracttitletoc}{摘要}
 \newcommand{\@terminologytitle}{本论文专用术语的注释表}
 \renewcommand{\bibname}{参考文献}
+% 本科论文需要
+\newcommand{\addresspre}{设计地点}
+\newcommand{\bachelortitle}{毕业设计（论文）报告}
+\newcommand{\durationpre}{起讫日期}
+\newcommand{\coadvisorpre}{顾问老师}
+
+\ifbachelordegree
+\newcommand{\@appdegree}{学士}
+\newcommand{\academicdegreeeng}{Bachelor of Engineering}
+\newcommand{\titlepre}{题目\quad}
+\newcommand{\departmentpre}{院（系）}
+\renewcommand{\majorpre}{专\quad 业}
+\renewcommand{\studentidpre}{学\hspace*{2.3em}号}
+\newcommand{\studentnamepre}{学生姓名}
+\renewcommand{\advisorpre}{指导教师}
+\else\ifmasterdegree
+\newcommand{\@appdegree}{硕士}
+\newcommand{\academicdegreeeng}{Master of Engineering}\relax
+\else
+\newcommand{\@appdegree}{博士}
+\newcommand{\academicdegreeeng}{Doctor of Engineering}\relax
+\fi
+\fi
+\newcommand{\academicdegree}{\@appdegree学位论文}
 \makeatother
 %    \end{macrocode}
 % 
@@ -1081,7 +1221,12 @@
     \hei\sanhao{东南大学学位论文独创性声明}
   \end{center}
   
-  \xiaosihao\parindent2em{本人声明所呈交的学位论文是我个人在导师指导下进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得东南大学或其它教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。}
+  \xiaosihao\parindent2em{本人声明所呈交的学位论文是我个人在导师指导下
+    进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致
+    谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含
+    为获得东南大学或其它教育机构的学位或证书而使用过的材料。与我一同工
+    作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢
+    意。}
   \\
   \begin{flushright}
     研究生签名：\signline 日~期：\signline
@@ -1093,7 +1238,12 @@
     \hei\sanhao{东南大学学位论文使用授权声明}
   \end{center}
   
-  \xiaosihao\parindent2em{东南大学、中国科学技术信息研究所、国家图书馆有权保留本人所送交学位论文的复印件和电子文档，可以采用影印、缩印或其他复制手段保存论文。本人电子文档的内容和纸质论文的内容相一致。除在保密期内的保密论文外，允许论文被查阅和借阅，可以公布（包括刊登）论文的全部或部分内容。论文的公布（包括刊登）授权东南大学研究生院办理。}
+  \xiaosihao\parindent2em{东南大学、中国科学技术信息研究所、国家图书馆
+    有权保留本人所送交学位论文的复印件和电子文档，可以采用影印、缩印或
+    其他复制手段保存论文。本人电子文档的内容和纸质论文的内容相一致。除
+    在保密期内的保密论文外，允许论文被查阅和借阅，可以公布（包括刊
+    登）论文的全部或部分内容。论文的公布（包括刊登）授权东南大学研究生
+    院办理。}
   \\
   \begin{flushright}
     研究生签名：\signline 导师签名：\signline 日~期：\signline
