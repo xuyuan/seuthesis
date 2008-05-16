@@ -840,7 +840,7 @@
   \hypersetup{
     pdfauthor={\@author},
     pdftitle={\universityname{}\academicdegree}, %文件标题
-    pdfsubject={\@title}, %文件主题
+    pdfsubject={\@title \@subtitle}, %文件主题
     bookmarksnumbered %书签中章节编号
   }
 
@@ -862,8 +862,9 @@
 % \subsubsection{本模板的logo}
 % \begin{macro}{\seuthesis}
 %    \begin{macrocode}
-\newcommand{\seuthesis}{S\kern-.1667em\lower.5ex\hbox{E}\kern-.125emU%
-\spacefactor1000\kern.05em$\emph{Thesis}$
+\newcommand{\seuthesis}{%
+S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
+$\emph{Thesis}$
 } 
 %    \end{macrocode}
 % \end{macro}
