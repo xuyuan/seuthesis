@@ -298,7 +298,8 @@
   \subsection{院系和专业}
   \CmdMacro{department}{\{院系中文名\}\{院系英文名\}}
 
-  \CmdMacro{major}{\{专业名称（中文）\}}
+  \CmdMacro{major}{[宽度]\{专业名称（中文）\}}，其中宽度选项只在本科论
+  文中有效。
 
   \subsection{日期}
   \subsubsection{论文提交日期}
@@ -749,8 +750,12 @@
 % 
 % \begin{macro}{\major}\IndexCmd{major}
 %    \begin{macrocode}
+\newcommand{\@majorlen}{8em}
 \newcommand{\@major}{}
-\newcommand{\major}[1]{\renewcommand{\@major}{#1}}
+\newcommand{\major}[2][8em]{
+  \renewcommand{\@majorlen}{#1}
+  \renewcommand{\@major}{#2}
+}
 %    \end{macrocode}
 % \end{macro}
 % 
@@ -979,7 +984,7 @@ $\emph{Thesis}$
 			  \sanhao
 			  \departmentpre &
 			  \sanhao\fs
-			  \underline{\makebox[8em][s]{\makebox[8em][c]{\@major}}} &
+			  \underline{\makebox[\@majorlen][s]{\makebox[\@majorlen][c]{\@major}}} &
 			  \sanhao
 			  \majorpre \\
                         \end{tabular}
