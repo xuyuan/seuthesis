@@ -36,7 +36,6 @@
 %
 % \iffalse
 %<*driver> 
-\ProvidesFile{seuthesis.dtx}[2008/05/16 1.1 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -57,7 +56,7 @@
 \newcommand{\EnvMacro}[2]{\fbox{\texttt{\IndexEnv{#1}\bs begin\{#1\}#2}}}
 
 \begin{document}
-\GetFileInfo{seuthesis.dtx}
+\GetFileInfo{seuthesis.cls}
 
 \categorynumber{000} % 分类采用《中国图书资料分类法》
 \UDC{000} %《国际十进分类法UDC》的类号
@@ -516,8 +515,8 @@
 %</driver> 
 % 
 %<cls> \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls> \ProvidesClass{seuthesis}[2007/12/23 v0.2 The LaTeX template for thesis of Southeast University]
-%<cls> \typeout{Document Style `seuthesis' v0.2 by Xu Yuan (2007/12/23)}
+%<cls> \ProvidesClass{seuthesis}[2008/05/16 1.1 The LaTeX template for thesis of Southeast University]
+%<cls> \typeout{Document Class `seuthesis' v1.1 by Xu Yuan (2008/05/16)}
 % \fi
 % 
 % \section{本宏包的选项}
@@ -546,7 +545,7 @@
 %    \begin{macrocode}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
 \ProcessOptions
-\LoadClass[a4paper,10.5pt]{scrbook}
+\LoadClass[a4paper,tablecaptionabove]{scrbook}
 %    \end{macrocode}
 % 
 % \section{依赖的其它宏包}
@@ -562,7 +561,7 @@
 % 题目录
 \RequirePackage[numbers,sort&compress]{natbib} % 修改引用参考文献格式
 \RequirePackage{array} % 扩展了 array 和 tabular 环境功能
-\RequirePackage[center,nooneline]{caption2} % 定义图的标题格式：居中、
+\RequirePackage[center,nooneline]{caption2} % 定义图的标题格式：居中
 % 可以断行（用\protect\\）
 %    \end{macrocode}
 % 
@@ -575,23 +574,24 @@
 \RequirePackage[colorlinks,linkcolor=blue,citecolor=green,unicode]{hyperref}
 \hypersetup{unicode=true}
 \AtBeginDocument{\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
+    \fontsize{10.5pt}{\baselineskip}\selectfont%
     \InputIfFileExists{seuthesis-utf8.cfg}%
-    \makeindex%
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg successfully!}}%
-    {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}
+    {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}%
+    \makeindex%
   } %引入配置文件
   \else
   \typeout{[seuthesis]: Using GBK encoding}
   \RequirePackage{CJK} %中文支持
   \RequirePackage[CJKbookmarks=true]{hyperref}
   \AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
+      \fontsize{10.5pt}{\baselineskip}\selectfont%
       \InputIfFileExists{seuthesis-gbk.cfg}%
-      \makeindex%
       {\typeout{[seuthesis]: Load seuthesis-gbk.cfg successfully!}}%
-      {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}
+      {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}%
+      \makeindex%
     } % 引入配置文件
     \fi
-    
     \RequirePackage{CJKnumb}
     \AtEndDocument{\end{CJK*}}
 %    \end{macrocode}
@@ -841,11 +841,14 @@
 \renewcommand{\maketitle}{
   % 
   % 设置书签 
-  % Note: The `CJKbookmarks' option should only be used for bookmarks *not* in Unicode.
+  % Note: The `CJKbookmarks' option should only be used for bookmarks
+  % *not* in Unicode.
+  \GetFileInfo{seuthesis.cls} % get the correct fileversion
   \hypersetup{
     pdfauthor={\@author},
     pdftitle={\universityname{}\academicdegree}, %文件标题
     pdfsubject={\@title \@subtitle}, %文件主题
+    pdfcreator={The \seuthesis{} class (v \fileversion)}, % 应用程序
     bookmarksnumbered %书签中章节编号
   }
 
@@ -879,7 +882,7 @@ $\emph{Thesis}$
 %    \begin{macrocode}
 \newcommand{\CoverTopOption}[3][s]{
   \makebox[1.25cm][#1]{\normalsize #2}{
-    \underline{\makebox[1.25cm][c]{#3}}}
+    \underline{\makebox[1.5cm][c]{#3}}}
 }
 
 \newcommand{\CoverBottomOption}[3][4.5cm]{
@@ -1123,13 +1126,25 @@ $\emph{Thesis}$
 
   \pagestyle{seustyle}
   \mainmatter % 开始正文部分
-  \song\wuhao
+  \song
+  \ifbachelordegree
+  \xiaosihao
+  \else
+  \wuhao
+  \fi
 }{
   \backmatter % 开始正文之后的部分
 }
 %    \end{macrocode}
 % \end{environment}
-% 
+%
+% \subsection{图、表浮动设置} 
+% 放宽松浮动的比例参数
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.65}
+\renewcommand{\floatpagefraction}{0.8}
+%
 % \section{参考文献}
 % 引用参考文献，上标形式
 % \begin{macro}{\cite}\IndexCmd{cite}
@@ -1270,10 +1285,12 @@ $\emph{Thesis}$
 % \subsection{章节标题}
 % 三号黑体居中
 %    \begin{macrocode}
-\titleformat{\chapter}[hang]{\centering\hei\sanhao}{\chaptername}{1em}{}
+\titleformat{\chapter}[hang]{\centering\hei\sanhao}{\chaptername}{1em}{}%三号黑体居中
 \renewcommand{\chaptername}{第\CJKnumber{\thechapter}章}
 \titleformat{\section}[hang]{\song\sihao\bfseries}{\thesection}{1em}{}%四号宋体（粗体）居左
 \titleformat{\subsection}[hang]{\song\xiaosihao}{\thesubsection}{1em}{}% 小四
+\setcounter{secnumdepth}{3}
+\titleformat{\subsubsection}[hang]{\song\xiaosihao}{\thesubsubsection}{1em}{}% 小四
 %    \end{macrocode}
 % \begin{macro}{\refsec}\IndexCmd{refsec}
 %    \begin{macrocode}
@@ -1293,6 +1310,7 @@ $\emph{Thesis}$
 % \end{quote}
 %    \begin{macrocode}
 \renewcommand{\captionlabeldelim}{} % 去掉图标签后的冒号
+\renewcommand{\captionfont}{\song\wuhao} % 表格名及图名用5号宋体
 \renewcommand{\figureautorefname}{图}
 \renewcommand{\prefigurename}{\song\wuhao图}
 \renewcommand{\postfigurename}{}
