@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 % 
 % Copyright (C) 2007, 2008 by Xu Yuan <xuyuan.cn@gmail.com>
-%                             SONG Yiha <syhannnn@gmail.com>
+%                             Song Yihan <syhannnn@gmail.com>
 % $Id$
 % 
 % This file is part of the seuthesis package project.
@@ -36,6 +36,7 @@
 %
 % \iffalse
 %<*driver> 
+\ProvidesFile{seuthesis.dtx}[2008/08/12 1.2 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -56,7 +57,7 @@
 \newcommand{\EnvMacro}[2]{\fbox{\texttt{\IndexEnv{#1}\bs begin\{#1\}#2}}}
 
 \begin{document}
-\GetFileInfo{seuthesis.cls}
+\GetFileInfo{seuthesis.dtx}
 
 \categorynumber{000} % 分类采用《中国图书资料分类法》
 \UDC{000} %《国际十进分类法UDC》的类号
@@ -85,8 +86,8 @@
 
   \TeX{} 是一个排版系统，可以把文章做成书那种效果。因此~\TeX{}非常适合
   用来写学术论文和书籍。\seuthesis{}是按照东南大学研究生院和教务处对学
-  位论文的要求设计和实现的\LaTeX{}模板，帮助东南大学学生以专业排版水平
-  来完成学位论文。
+  位论文的要求设计和实现的\LaTeX{}模板，帮助东南大学的学生以专业排版水
+  平来完成学位论文。
 
   本文既是\seuthesis{}使用手册也是范例，建议在使用\seuthesis{}之前阅
   读。
@@ -141,8 +142,8 @@
   \section{版权声明}
   \begin{flushleft}
     \begin{tabular*}{1.0\linewidth}{lcl}
-      版权所有\textcopyright 2007， 2008 & 许元 & \url{(xuyuan.cn@gmail.com)} \\
-      & 宋翊涵 & \url{(syhannnn@gmail.com)} \\
+      版权所有\textcopyright 2007， 2008 & 许元 & (\url{xuyuan.cn@gmail.com}) \\
+      & 宋翊涵 & (\url{syhannnn@gmail.com}) \\
     \end{tabular*}
   \end{flushleft}
 
@@ -154,6 +155,7 @@
 
   \section{版本历史}
   \begin{description}
+  \item[1.2] 2008/08/12，完善对东南大学本科论文的支持。
   \item[1.1] 2008/05/16，增加对东南大学本科论文的支持。
   \item[1.0] 2008/03/19，第一个完整版，包含了参考文献格式等完善。
   \item[0.2] 2007/12/23，增加unicode支持。
@@ -495,8 +497,8 @@
     \item[seuthesis.bib] 文献数据库，包含了本文的参考文献。
     \item[seuthesis.bst] 文献格式文件，定义了参考文献的格式。
     \item[Makefile] make编译规则，使用make命令由源文件得到目标文件。
-    \item[figures/seu-badge-logo.eps/pdf] 东大校徽图案。
-    \item[figures/seu-text-logo.eps/png] 东大文字图案。
+    \item[figures/seu-badge-logo.eps/pdf] 东南大学校徽图案。
+    \item[figures/seu-text-logo.eps/png] 东南大学文字图案。
     \end{description}
   \item 目标文件：
     \begin{description}
@@ -515,8 +517,8 @@
 %</driver> 
 % 
 %<cls> \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls> \ProvidesClass{seuthesis}[2008/05/16 1.1 The LaTeX template for thesis of Southeast University]
-%<cls> \typeout{Document Class `seuthesis' v1.1 by Xu Yuan (2008/05/16)}
+%<cls> \ProvidesClass{seuthesis}[2008/08/12 1.2 The LaTeX template for thesis of Southeast University]
+%<cls> \typeout{Document Class `seuthesis' v1.2 by Xu Yuan and Song Yihan (2008/08/12)}
 % \fi
 % 
 % \section{本宏包的选项}
@@ -545,13 +547,16 @@
 %    \begin{macrocode}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
 \ProcessOptions
-\LoadClass[a4paper,tablecaptionabove]{scrbook}
+\LoadClass[a4paper,10.5pt,tablecaptionabove]{scrbook}
 %    \end{macrocode}
 % 
 % \section{依赖的其它宏包}
 %    \begin{macrocode}
 \RequirePackage{doc}
-\RequirePackage{ccmap} % 可拷贝的~pdf
+\RequirePackage{ifpdf}
+\ifpdf
+\RequirePackage{ccmap} % 当使用pdflatex编译时生成可拷贝的pdf
+\else\fi
 \RequirePackage{graphicx}
 \RequirePackage{indentfirst}
 \RequirePackage{setspace}
@@ -571,7 +576,11 @@
 \ifseuunicode
 \typeout{[seuthesis]: Using UNICODE encoding}
 \RequirePackage{CJKutf8} %中文支持
+\ifpdf
 \RequirePackage[colorlinks,linkcolor=blue,citecolor=green,unicode]{hyperref}
+\else %配置dvipdfmx
+\RequirePackage[colorlinks,linkcolor=blue,citecolor=green,unicode,dvipdfmx]{hyperref}
+\fi
 \hypersetup{unicode=true}
 \AtBeginDocument{\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
     \fontsize{10.5pt}{\baselineskip}\selectfont%
@@ -872,8 +881,16 @@
 %    \begin{macrocode}
 \newcommand{\seuthesis}{%
 S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
-$\emph{Thesis}$
+\textsc{Thesis}
 } 
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{中文强调}
+% \begin{macro}{\emph}
+%    \begin{macrocode}
+\let\orig@emph=\emph
+\renewcommand{\emph}[1]{{\orig@emph{\kai#1}}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -969,16 +986,15 @@ $\emph{Thesis}$
   \renewcommand{\chinesecover}{
   \begin{titlepage}
 	  \begin{center}
-		  \vspace*{40pt}
+            \vspace*{40pt}
 		  \includegraphics[scale=0.5]{figures/seu-badge-logo}
                   \quad \includegraphics{figures/seu-text-logo} \\
 		  \vspace*{60pt}
 		  \yihao\hei \bachelortitle \\
 		  \vspace*{60pt} \xiaoerhao\song \titlepre \erhao\song
 		  \underline{\makebox[18em][s]{\hspace{1em}%
-                      \makebox[16em][c]{\fs\@title}}} \\
+                      \makebox[18em][c]{\fs\@title}}} \\
 		  \vspace*{40pt}
-
 		  \renewcommand{\arraystretch}{1.5}
                   \setlength{\tabcolsep}{0pt}
 		  \begin{tabular}{clcl}
@@ -999,26 +1015,23 @@ $\emph{Thesis}$
                         \setlength{\tabcolsep}{0pt}
                         \begin{tabular}{c}
 			  \sanhao\studentidpre\quad\underline{%
-                            \makebox[20em][s]{\makebox[20em][c]{\textsf{\@studentid}}}} \\
-			  \sanhao\studentnamepre\quad\underline{\makebox[20em][s]{
+                            \makebox[20em][s]{\makebox[20em][c]{%
+			    \textsf{\@studentid}}}} \\
+			  \sanhao\studentnamepre\quad\underline{\makebox[20em][s]{%
                               \makebox[20em][c]{\fs{\@author}}}} \\
 			  \sanhao\advisorpre\quad\underline{\makebox[20em][s]{%
-                              \hspace{6em}\makebox[4em][c]{\fs{\@advisorname}}%
-                              \makebox[4em][r]{\fs{\@advisortitle}}}}
+			  \makebox[20em][c]{\fs{\@advisorname}}}}%
                           \\
                           \ifbcoadvisor
                           \sanhao\coadvisorpre\quad\underline{\makebox[20em][s]{%
-                              \hspace{6em}\makebox[4em][c]{\fs{\@coadvisorname}}%
-                              \makebox[4em][r]{\fs{\@coadvisortitle}}}} \\
+			  \makebox[20em][c]{\fs{\@coadvisorname}}}}\\%
                           \fi
 			  \sanhao\durationpre\quad\underline{\makebox[20em][s]{
                               \makebox[20em]{\textsf{\@duration}}}} \\
 			  \sanhao\addresspre\quad\underline{\makebox[20em][s]{
                               \makebox[20em][c]{\fs{\@address}}}} \\
                         \end{tabular}
-
 		  \vfill
-
 		  \sanhao\today
 	  \end{center}
   \end{titlepage}
@@ -1074,7 +1087,21 @@ $\emph{Thesis}$
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\@abstracttitletoc}
+  \ifbachelordegree
+  \chapter*{\@title}
+  \begin{flushright}
+	  \begin{tabular}[h]{ll}
+		  \multicolumn{2}{l}{\@studentid \qquad \kai\@author} \\
+		  \advisorpre & \kai\@advisorname \\
+	  \end{tabular}
+  \end{flushright}
+
+  \begin{center}
+	  \Large \hei\@abstracttitle
+  \end{center}
+  \else
   \chapter*{\@abstracttitle}
+  \fi
 }{
   \begin{description}
   \item[关键词：] \@keywords
@@ -1092,7 +1119,20 @@ $\emph{Thesis}$
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{Abstract}
+  \ifbachelordegree
+  \chapter*{\@titleeng}
+  \begin{flushright}
+	  \begin{tabular}[h]{l}
+		 \@studentid \qquad \@authoreng \\
+		 \@advisornameeng \\
+	  \end{tabular}
+  \end{flushright}
+  \begin{center}
+	  \Large Abstract
+  \end{center}
+  \else
   \chapter*{Abstract}
+  \fi
 }{
   \begin{description}
   \item[Keywords:] \@keywords
