@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 % 
 % Copyright (C) 2007, 2008 by Xu Yuan <xuyuan.cn@gmail.com>
-%                             Song Yihan <syhannnn@gmail.com>
+% Song Yihan <syhannnn@gmail.com>
 % $Id$
 % 
 % This file is part of the seuthesis package project.
@@ -15,10 +15,10 @@
 % http://www.gnu.org/licenses/gpl.html
 % 
 % \fi
-%
+% 
 % \CheckSum{0}
 % \CharacterTable
-%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+% {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
 %   Digits        \0\1\2\3\4\5\6\7\8\9
 %   Exclamation   \!     Double quote  \"     Hash (number) \#
@@ -32,8 +32,8 @@
 %   Right bracket \]     Circumflex    \^     Underscore    \_
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
-%
-%
+% 
+% 
 % \iffalse
 %<*driver> 
 \ProvidesFile{seuthesis.dtx}[2008/08/12 1.2 Southeast University Thesis Template]
@@ -834,7 +834,7 @@
 % \begin{macro}{\duration}\IndexCmd{duration}
 %    \begin{macrocode}
 \newcommand{\@duration}{}
-  \newcommand{\duration}[1]{\renewcommand{\@duration}{#1}}
+\newcommand{\duration}[1]{\renewcommand{\@duration}{#1}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\address}\IndexCmd{address}
@@ -864,13 +864,13 @@
   \chinesecover
 
   \ifbachelordegree
-    \frontmatter
-    \pagestyle{seufrontstyle}
+  \frontmatter
+  \pagestyle{seufrontstyle}
   \else
-    \englishcover % 英文封面
-    \frontmatter % 开始正文之前的部分
-    \pagestyle{seufrontstyle}
-    \seudeclare % 独创性和使用授权声明
+  \englishcover % 英文封面
+  \frontmatter % 开始正文之前的部分
+  \pagestyle{seufrontstyle}
+  \seudeclare % 独创性和使用授权声明
   \fi
 }
 %    \end{macrocode}
@@ -880,12 +880,12 @@
 % \begin{macro}{\seuthesis}
 %    \begin{macrocode}
 \newcommand{\seuthesis}{%
-S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
-\textsc{Thesis}
+  S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
+  \textsc{Thesis}
 } 
 %    \end{macrocode}
 % \end{macro}
-%
+% 
 % \subsubsection{中文强调}
 % \begin{macro}{\emph}
 %    \begin{macrocode}
@@ -893,7 +893,7 @@ S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
 \renewcommand{\emph}[1]{{\orig@emph{\kai#1}}}
 %    \end{macrocode}
 % \end{macro}
-%
+% 
 % \subsubsection{中文封面}
 % \begin{macro}{\chinesecover}
 %    \begin{macrocode}
@@ -983,59 +983,59 @@ S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
   \end{titlepage}
 }
 \ifbachelordegree % 本科论文封面
-  \renewcommand{\chinesecover}{
+\renewcommand{\chinesecover}{
   \begin{titlepage}
-	  \begin{center}
-            \vspace*{40pt}
-		  \includegraphics[scale=0.5]{figures/seu-badge-logo}
-                  \quad \includegraphics{figures/seu-text-logo} \\
-		  \vspace*{60pt}
-		  \yihao\hei \bachelortitle \\
-		  \vspace*{60pt} \xiaoerhao\song \titlepre \erhao\song
-		  \underline{\makebox[18em][s]{\hspace{1em}%
-                      \makebox[18em][c]{\fs\@title}}} \\
-		  \vspace*{40pt}
-		  \renewcommand{\arraystretch}{1.5}
-                  \setlength{\tabcolsep}{0pt}
-		  \begin{tabular}{clcl}
-			  \sanhao\fs
-			  \underline{\makebox[8em][s]{\makebox[8em][c]{\@department}}} &
-			  \sanhao
-			  \departmentpre &
-			  \sanhao\fs
-			  \underline{\makebox[\@majorlen][s]{\makebox[\@majorlen][c]{\@major}}} &
-			  \sanhao
-			  \majorpre \\
-                        \end{tabular}
-                        
-                        \vspace*{100pt}
+    \begin{center}
+      \vspace*{40pt}
+      \includegraphics[height=2cm]{figures/seu-badge-logo}
+      \quad \includegraphics[height=2cm]{figures/seu-text-logo} \\
+      \vspace*{60pt}
+      \yihao\hei \bachelortitle \\
+      \vspace*{60pt} \xiaoerhao\song \titlepre \erhao\song
+      \underline{\makebox[18em][s]{\hspace{1em}%
+          \makebox[18em][c]{\fs\@title}}} \\
+      \vspace*{40pt}
+      \renewcommand{\arraystretch}{1.5}
+      \setlength{\tabcolsep}{0pt}
+      \begin{tabular}{clcl}
+        \sanhao\fs
+        \underline{\makebox[8em][s]{\makebox[8em][c]{\@department}}} &
+        \sanhao
+        \departmentpre &
+        \sanhao\fs
+        \underline{\makebox[\@majorlen][s]{\makebox[\@majorlen][c]{\@major}}} &
+        \sanhao
+        \majorpre \\
+      \end{tabular}
+      
+      \vspace*{100pt}
 
-                        \renewcommand{\baselinestretch}{1.38}
-                        \renewcommand{\arraystretch}{1.5}
-                        \setlength{\tabcolsep}{0pt}
-                        \begin{tabular}{c}
-			  \sanhao\studentidpre\quad\underline{%
-                            \makebox[20em][s]{\makebox[20em][c]{%
-			    \textsf{\@studentid}}}} \\
-			  \sanhao\studentnamepre\quad\underline{\makebox[20em][s]{%
-                              \makebox[20em][c]{\fs{\@author}}}} \\
-			  \sanhao\advisorpre\quad\underline{\makebox[20em][s]{%
-			  \makebox[20em][c]{\fs{\@advisorname}}}}%
-                          \\
-                          \ifbcoadvisor
-                          \sanhao\coadvisorpre\quad\underline{\makebox[20em][s]{%
-			  \makebox[20em][c]{\fs{\@coadvisorname}}}}\\%
-                          \fi
-			  \sanhao\durationpre\quad\underline{\makebox[20em][s]{
-                              \makebox[20em]{\textsf{\@duration}}}} \\
-			  \sanhao\addresspre\quad\underline{\makebox[20em][s]{
-                              \makebox[20em][c]{\fs{\@address}}}} \\
-                        \end{tabular}
-		  \vfill
-		  \sanhao\today
-	  \end{center}
+      \renewcommand{\baselinestretch}{1.38}
+      \renewcommand{\arraystretch}{1.5}
+      \setlength{\tabcolsep}{0pt}
+      \begin{tabular}{c}
+        \sanhao\studentidpre\quad\underline{%
+          \makebox[20em][s]{\makebox[20em][c]{%
+              \textsf{\@studentid}}}} \\
+        \sanhao\studentnamepre\quad\underline{\makebox[20em][s]{%
+            \makebox[20em][c]{\fs{\@author}}}} \\
+        \sanhao\advisorpre\quad\underline{\makebox[20em][s]{%
+            \makebox[20em][c]{\fs{\@advisorname}}}}%
+        \\
+        \ifbcoadvisor
+        \sanhao\coadvisorpre\quad\underline{\makebox[20em][s]{%
+            \makebox[20em][c]{\fs{\@coadvisorname}}}}\\%
+        \fi
+        \sanhao\durationpre\quad\underline{\makebox[20em][s]{
+            \makebox[20em]{\textsf{\@duration}}}} \\
+        \sanhao\addresspre\quad\underline{\makebox[20em][s]{
+            \makebox[20em][c]{\fs{\@address}}}} \\
+      \end{tabular}
+      \vfill
+      \sanhao\today
+    \end{center}
   \end{titlepage}
-  }
+}
 \fi
 %    \end{macrocode}
 % \end{macro}
@@ -1090,14 +1090,14 @@ S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
   \ifbachelordegree
   \chapter*{\@title}
   \begin{flushright}
-	  \begin{tabular}[h]{ll}
-		  \multicolumn{2}{l}{\@studentid \qquad \kai\@author} \\
-		  \advisorpre & \kai\@advisorname \\
-	  \end{tabular}
+    \begin{tabular}[h]{ll}
+      \multicolumn{2}{l}{\@studentid \qquad \kai\@author} \\
+      \advisorpre & \kai\@advisorname \\
+    \end{tabular}
   \end{flushright}
 
   \begin{center}
-	  \Large \hei\@abstracttitle
+    \Large \hei\@abstracttitle
   \end{center}
   \else
   \chapter*{\@abstracttitle}
@@ -1122,13 +1122,13 @@ S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
   \ifbachelordegree
   \chapter*{\@titleeng}
   \begin{flushright}
-	  \begin{tabular}[h]{l}
-		 \@studentid \qquad \@authoreng \\
-		 \@advisornameeng \\
-	  \end{tabular}
+    \begin{tabular}[h]{l}
+      \@studentid \qquad \@authoreng \\
+      \@advisornameeng \\
+    \end{tabular}
   \end{flushright}
   \begin{center}
-	  \Large Abstract
+    \Large Abstract
   \end{center}
   \else
   \chapter*{Abstract}
@@ -1177,14 +1177,14 @@ S\hspace{-0.3ex}\raisebox{-0.5ex}{E}\hspace{-0.3ex}U\hspace{0.1em}%
 }
 %    \end{macrocode}
 % \end{environment}
-%
+% 
 % \subsection{图、表浮动设置} 
 % 放宽松浮动的比例参数
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.8}
-%
+% 
 % \section{参考文献}
 % 引用参考文献，上标形式
 % \begin{macro}{\cite}\IndexCmd{cite}
