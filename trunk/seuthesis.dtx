@@ -73,12 +73,12 @@
 
 \advisor{导师姓名}{教授}{Advisor's Name}{Prof.}
 \coadvisor{副导师}{副教授}{Co-advisor's Name}{Associate Prof.}
+\degree{工学硕士}
 \major{\LaTeX}
-\submitdate{2007年12月20日}{December 20, 2007}
+\submajor{\seuthesis}
 \defenddate{2050年7月7日}
 \authorizedate{2050年7月7日}
 \department{自动化学院}{School of Automation}
-\date{\today}
 
 \maketitle
 
@@ -155,7 +155,7 @@
 
   \section{版本历史}
   \begin{description}
-  \item[1.2] 2008/08/12，完善对东南大学本科论文的支持。
+  \item[1.2] 2008/08/12，启用研究生学位论文新封面，完善对东南大学本科论文的支持。
   \item[1.1] 2008/05/16，增加对东南大学本科论文的支持。
   \item[1.0] 2008/03/19，第一个完整版，包含了参考文献格式等完善。
   \item[0.2] 2007/12/23，增加unicode支持。
@@ -255,6 +255,11 @@
   论文的封面和研究生论文的封面有很大差异，所以有些命令只在研究生论文中
   起作用，而有些只在本科论文中才需要。
 
+  \begin{quote}
+    博士学位论文封面颜色统一为“白色刚古艺术纸”，硕士学位论文封面颜色统一
+    为“淡黄色刚古艺术纸”。
+  \end{quote}
+
   \subsection{分类号}
   \CmdMacro{categorynumber}{\{分类号\}}，分类采用《中国图书资料分类法》。
   \subsection{UDC类号}
@@ -299,12 +304,22 @@
   \subsection{院系和专业}
   \CmdMacro{department}{\{院系中文名\}\{院系英文名\}}
 
-  \CmdMacro{major}{[宽度]\{专业名称（中文）\}}，其中宽度选项只在本科论
+  \CmdMacro{major}{[宽度]\{一级学科名称／专业名称（中文）\}}，其中宽度选项只在本科论
   文中有效。
 
+  \CmdMacro{submajor}{\{二级学科名称\}}
+
+  \subsection{申请学位类别}
+  \CmdMacro{degree}{\{申请学位类别\}}
+
+  \begin{quote}
+    学历博士、硕士的类别为哲学、经济学、法学、教育学、文学、管理学、理
+    学、工学、医学等（如：法学硕士、工学博士）。中职教师、高校教师在职
+    申请硕士学位，其学位类别注明中职教师、高校教师，如工学硕士（高校教
+    师）。
+  \end{quote}
+
   \subsection{日期}
-  \subsubsection{论文提交日期}
-  \CmdMacro{submitdate}{\{论文提交日期中文\}\{论文提交日期英文\}}
   \subsubsection{论文答辩日期}
   \CmdMacro{defenddate}{\{论文答辩日期中文\}}
   \subsubsection{学位授予日期}
@@ -513,6 +528,8 @@
 
 \printindex
 
+\backcover
+
 \end{document}
 %</driver> 
 % 
@@ -548,6 +565,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
 \ProcessOptions
 \LoadClass[a4paper,10.5pt,tablecaptionabove]{scrbook}
+\let\todayeng\today
 %    \end{macrocode}
 % 
 % \section{依赖的其它宏包}
@@ -757,6 +775,13 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% \begin{macro}{\degree}\IndexCmd{degree}
+%    \begin{macrocode}
+\newcommand{\degree}[1]{
+  \renewcommand{\@degree}{#1}
+}
+%    \end{macrocode}
+% \end{macro}
 % \begin{macro}{\major}\IndexCmd{major}
 %    \begin{macrocode}
 \newcommand{\@majorlen}{8em}
@@ -779,13 +804,11 @@
 %    \end{macrocode}
 % \end{macro}
 % 
-% \begin{macro}{\submitdate}\IndexCmd{submitdate}
+% \begin{macro}{\submajor}\IndexCmd{submajor}
 %    \begin{macrocode}
-\newcommand{\@submitdate}{}
-\newcommand{\@submitdateeng}{}
-\newcommand{\submitdate}[2]{
-  \renewcommand{\@submitdate}{#1}
-  \renewcommand{\@submitdateeng}{#2}
+\newcommand{\@submajor}{}
+\newcommand{\submajor}[1]{
+  \renewcommand{\@submajor}{#1}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -898,7 +921,7 @@
 % \begin{macro}{\chinesecover}
 %    \begin{macrocode}
 \newcommand{\CoverTopOption}[3][s]{
-  \makebox[1.25cm][#1]{\normalsize #2}{
+  \makebox[1.5cm][#1]{\normalsize #2}:{
     \underline{\makebox[1.5cm][c]{#3}}}
 }
 
@@ -912,25 +935,21 @@
 \newcommand{\chinesecover}{
   \begin{titlepage}
 
-    \begin{tabular}{ll}%宋体小四
+    \begin{picture}(0,0)(0,270)
+      {\includegraphics[width=\textwidth]{figures/front-cover}}
+    \end{picture}
+
+    \begin{tabular}{l}%宋体小四
       \song\xiaosihao
-      \CoverTopOption{\categorynumberpre}{\@categorynumber} &
+      \CoverTopOption{\schoolcodepre}{\schoolcode} \\
+      \CoverTopOption{\categorynumberpre}{\@categorynumber} \\
       \CoverTopOption{\secretlevelpre}{\@secretlevel}\\
-      \CoverTopOption[c]{U D C}{\@UDC} & 
+      \CoverTopOption{U D C}{\@UDC} \\
       \CoverTopOption{\studentidpre}{\@studentid}
     \end{tabular}
 
-    \begin{picture}(0,0)(-325,55)
-      \includegraphics[width=3.5cm]{figures/seu-badge-logo}
-    \end{picture}
+    \vspace*{7cm}
 
-    \vspace*{70pt}
-    \begin{center}
-      \makebox[10cm][s]{\xiaochuhao\lishu\universityname}\\%隶书小初
-      \makebox[14cm][s]{\xiaochuhao\lishu\academicdegree}%隶书小初
-    \end{center}
-
-    \vspace*{20pt}
     \begin{center}
       \yihao\hei\@title\\%题名 黑体一号居中
       \yihao\hei\@subtitle%副题名 黑体一号居中
@@ -965,10 +984,10 @@
     \begin{center}
       \begin{tabular}{ll}
         \CoverBottomOption{\appdegreepre}{\@appdegree} &
-        \CoverBottomOption{\majorpre}{\@major}\\
-        \CoverBottomOption{\submitdatepre}{\@submitdate} &
+        \CoverBottomOption{\authorizeorganizationpre}{\@authorizeorganization} \\
+        \CoverBottomOption{\majorpre}{\@major} &
         \CoverBottomOption{\defenddatepre}{\@defenddate}\\
-        \CoverBottomOption{\authorizeorganizationpre}{\@authorizeorganization} &
+        \CoverBottomOption{\submajorpre}{\@submajor} &
         \CoverBottomOption{\authorizedatepre}{\@authorizedate}\\
         \CoverBottomOption[4cm]{\committeechairpre}{\@committeechair} &
         \CoverBottomOption{\readerpre}{\@readerA}\\
@@ -1070,7 +1089,7 @@
         {\vfill}
         {\@departmenteng}\\
         {\universitynameeng}\\
-        {\@submitdateeng}\\
+        {\todayeng}\\
       }%
     \end{center}\end{spacing}%
   \clearpage%
@@ -1206,10 +1225,23 @@
 \makeatletter                   % Reference list option change
 \renewcommand\@biblabel[1]{#1}  %   from [1] to 1
 \makeatother                    %
+%    \end{macrocode}
+%
+% \section{正文之后部分}
+% \subsection{封底}
+%    \begin{macrocode}
+\newcommand{\backcover}{
+  \pagestyle{empty}
+  \begin{picture}(0,0)(0,650)
+    {\includegraphics[width=\textwidth]{figures/back-cover}}
+  \end{picture}
+}
+\ifbachelordegree
+\renewcommand{\backcover}{}
+\fi
 %</cls> 
 %    \end{macrocode}
 
-% \section{正文之后部分}
 
 % \section{中文关键字映射}
 % 将包含中文的代码放在\texttt{seuthesis-*.cfg}中，可以直接转换成不同版
@@ -1221,14 +1253,16 @@
 \makeatletter
 \newcommand{\universityname}{东南大学}
 \newcommand{\universitynameeng}{Southeast University}
+\newcommand{\schoolcodepre}{学校代码}
+\newcommand{\schoolcode}{10286}
 \newcommand{\secretlevelpre}{密级}
 \newcommand{\categorynumberpre}{分类号}
 \newcommand{\studentidpre}{学号}
 \newcommand{\authorpre}{研究生姓名：}
 \newcommand{\advisorpre}{导~~师~~姓~~名：}
-\newcommand{\appdegreepre}{申请学位级别}
-\newcommand{\majorpre}{学科专业名称}
-\newcommand{\submitdatepre}{论文提交日期}
+\newcommand{\appdegreepre}{申请学位类别}
+\newcommand{\majorpre}{一级学科名称}
+\newcommand{\submajorpre}{二级学科名称}
 \newcommand{\defenddatepre}{论文答辩日期}
 \newcommand{\authorizeorganizationpre}{学位授予单位}
 \newcommand{\@authorizeorganization}{~~东~南~大~学~~}
@@ -1246,6 +1280,7 @@
 \newcommand{\coadvisorpre}{顾问老师}
 
 \ifbachelordegree
+\newcommand{\@degree}{学士}
 \newcommand{\@appdegree}{学士}
 \newcommand{\academicdegreeeng}{Bachelor of Engineering}
 \newcommand{\titlepre}{题目\quad}
@@ -1255,14 +1290,16 @@
 \newcommand{\studentnamepre}{学生姓名}
 \renewcommand{\advisorpre}{指导教师}
 \else\ifmasterdegree
+\newcommand{\@degree}{硕士}
 \newcommand{\@appdegree}{硕士}
 \newcommand{\academicdegreeeng}{Master of Engineering}\relax
 \else
+\newcommand{\@degree}{博士}
 \newcommand{\@appdegree}{博士}
 \newcommand{\academicdegreeeng}{Doctor of Engineering}\relax
 \fi
 \fi
-\newcommand{\academicdegree}{\@appdegree学位论文}
+\newcommand{\academicdegree}{\@degree学位论文}
 \makeatother
 %    \end{macrocode}
 % 
