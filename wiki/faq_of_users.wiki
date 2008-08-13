@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary 常见问题及解决方法.
 
 *Q:* 不知道大家注意到没有，在使用seuthesis写论文时，当论文中出现中英文摘要、列出所有 
 图表（\listoftables、\listoffigures、\listoflistings）时出现一些空白页，
