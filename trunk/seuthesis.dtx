@@ -940,11 +940,11 @@
   \begin{titlepage}
 
     \begin{picture}(0,0)(27,250)
-      {\includegraphics[width=\textwidth]{figures/front-cover}}
+      {\includegraphics[width=\textwidth,bb=0 0 1683 986]{figures/front-cover.jpg}}
     \end{picture}
     \ifengineering
     \begin{picture}(0,0)(-70,255)
-      {\includegraphics[height=30pt]{figures/engineering}}
+      {\includegraphics[height=30pt,bb=0 0 484 55]{figures/engineering.png}}
     \end{picture}
     \else
     \begin{picture}(0,0)(-80,255)
@@ -953,11 +953,11 @@
       \else
       \def\@degreepic{doctor}
       \fi
-      {\includegraphics[height=30pt]{figures/\@degreepic}}
+      {\includegraphics[height=30pt,bb=0 0 1149 150]{figures/{\@degreepic}.png}}
     \end{picture}
     \fi
     \begin{picture}(0,0)(-350,50)
-      {\includegraphics[width=50pt]{figures/seu-color-logo}}
+      {\includegraphics[width=50pt,bb=0 0 500 501]{figures/seu-color-logo.png}}
     \end{picture}
 
     \begin{tabular}{l}%宋体小四
@@ -1254,7 +1254,7 @@
 \newcommand{\backcover}{
   \pagestyle{empty}
   \begin{picture}(0,0)(0,650)
-    {\includegraphics[width=\textwidth]{figures/back-cover}}
+    {\includegraphics[width=\textwidth,bb=0 0 2424 3508]{figures/back-cover.png}}
   \end{picture}
 }
 \ifbachelordegree
