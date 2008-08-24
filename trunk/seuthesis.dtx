@@ -242,9 +242,11 @@
   \newcommand{\OPTbachelor}{\IndexOpt{bachelor}}
   \newcommand{\OPTmaster}{\IndexOpt{master}}
   \newcommand{\OPTdoctor}{\IndexOpt{doctor}}
+  \newcommand{\OPTengineering}{\IndexOpt{engineering}}
   \begin{description}
   \item[\OPTbachelor] 学士学位；
   \item[\OPTmaster] 硕士学位（默认）；
+  \item[\OPTengineering] 工程硕士；
   \item[\OPTdoctor] 博士学位。
   \end{description}
 
@@ -550,13 +552,15 @@
 % \end{macro}
 % 
 % \begin{macro}{bachelor/master/doctor}
-%   默认为申请硕士学位(\OPTmaster)，博士(\OPTdoctor)和申请本科学
-%   位(\OPTbachelor)作为可选项。
+%   默认为申请硕士学位(\OPTmaster)，博士(\OPTdoctor)、本科学
+%   位(\OPTbachelor)、工程硕士(\OPTengineering)作为可选项。
 %    \begin{macrocode}
 \newif\ifbachelordegree\bachelordegreefalse
 \newif\ifmasterdegree\masterdegreetrue
+\newif\ifengineering\engineeringfalse
 \DeclareOption{bachelor}{\bachelordegreetrue}
 \DeclareOption{master}{\masterdegreetrue}
+\DeclareOption{engineering}{\engineeringtrue\masterdegreetrue}
 \DeclareOption{doctor}{\masterdegreefalse}
 %    \end{macrocode}
 % \end{macro}
@@ -878,7 +882,7 @@
   \GetFileInfo{seuthesis.cls} % get the correct fileversion
   \hypersetup{
     pdfauthor={\@author},
-    pdftitle={\universityname{}\academicdegree}, %文件标题
+    pdftitle={\universityname{}\@academicdegree}, %文件标题
     pdfsubject={\@title \@subtitle}, %文件主题
     pdfcreator={The \seuthesis{} class (v \fileversion)}, % 应用程序
     bookmarksnumbered %书签中章节编号
@@ -935,8 +939,25 @@
 \newcommand{\chinesecover}{
   \begin{titlepage}
 
-    \begin{picture}(0,0)(0,270)
+    \begin{picture}(0,0)(27,250)
       {\includegraphics[width=\textwidth]{figures/front-cover}}
+    \end{picture}
+    \ifengineering
+    \begin{picture}(0,0)(-70,255)
+      {\includegraphics[height=30pt]{figures/engineering}}
+    \end{picture}
+    \else
+    \begin{picture}(0,0)(-80,255)
+      \ifmasterdegree
+      \def\@degreepic{master}
+      \else
+      \def\@degreepic{doctor}
+      \fi
+      {\includegraphics[height=30pt]{figures/\@degreepic}}
+    \end{picture}
+    \fi
+    \begin{picture}(0,0)(-350,50)
+      {\includegraphics[width=50pt]{figures/seu-color-logo}}
     \end{picture}
 
     \begin{tabular}{l}%宋体小四
@@ -1299,7 +1320,7 @@
 \newcommand{\academicdegreeeng}{Doctor of Engineering}\relax
 \fi
 \fi
-\newcommand{\academicdegree}{\@degree学位论文}
+\newcommand{\@academicdegree}{\@degree学位论文}
 \makeatother
 %    \end{macrocode}
 % 
