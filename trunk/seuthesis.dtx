@@ -181,7 +181,7 @@
   将宏包中的文件与~\TeX{}~主文件放在同一目录下即可，当然也可以安装
   到~\TeX{}~系统中。
 
-  本模板在~\texttt{texlive2008}~下编译通过。如有您在使用中有
+  本模板在~\texttt{texlive2008}~和~\texttt{MiKTex2.7}~下编译通过。如有您在使用中有
   任何问题，欢迎与我联系。
 
   \chapter{使用说明}
@@ -587,7 +587,13 @@
 % 题目录
 \RequirePackage[numbers,sort&compress]{natbib} % 修改引用参考文献格式
 \RequirePackage{array} % 扩展了 array 和 tabular 环境功能
-\RequirePackage[center,nooneline]{caption2} % 定义图的标题格式：居中
+% \RequirePackage[center,nooneline]{caption2} % 定义图的标题格式：居中
+\RequirePackage{caption} % 定义图的标题格式：居中. 使用caption3.0
+\captionsetup{%
+	format=plain,%
+	labelformat=simple,%
+	justification=centering,%
+	singlelinecheck=off}
 % 可以断行（用\protect\\）
 %    \end{macrocode}
 % 
@@ -1405,17 +1411,26 @@
 %   表格名及图名用5号宋体
 % \end{quote}
 %    \begin{macrocode}
-\renewcommand{\captionlabeldelim}{} % 去掉图标签后的冒号
-\renewcommand{\captionfont}{\song\wuhao} % 表格名及图名用5号宋体
-\renewcommand{\figureautorefname}{图}
-\renewcommand{\prefigurename}{\song\wuhao图}
-\renewcommand{\postfigurename}{}
-\renewcommand{\listfigurename}{插图目录}
-\renewcommand{\tableautorefname}{表}
-\renewcommand{\pretablename}{\song\wuhao表}
-\renewcommand{\posttablename}{}
-\renewcommand{\listtablename}{表格目录}
-\renewcommand{\equationautorefname}{式}
+% \renewcommand{\captionlabeldelim}{} % 去掉图标签后的冒号
+% \renewcommand{\captionfont}{\song\wuhao} % 表格名及图名用5号宋体
+% \renewcommand{\figureautorefname}{图}
+% \renewcommand{\prefigurename}{\song\wuhao图}
+% \renewcommand{\postfigurename}{}
+% \renewcommand{\listfigurename}{插图目录}
+% \renewcommand{\tableautorefname}{表}
+% \renewcommand{\pretablename}{\song\wuhao表}
+% \renewcommand{\posttablename}{}
+% \renewcommand{\listtablename}{表格目录}
+% \renewcommand{\equationautorefname}{式}
+\DeclareCaptionFont{capFont}{\song\wuhao} % 表格名及图名用5号宋体
+\DeclareCaptionLabelSeparator{twospace}{~~}
+\captionsetup{
+	labelsep=twospace,% 去掉图标签后的冒号
+	font={capFont},%
+	figurename=图,%
+	tablename=表,%
+	listfigurename=插图目录,%
+	listtablename=表格目录}
 \makeatletter
 \renewcommand\fps@figure{htbp} % 设置图浮动的默认参数
 \renewcommand\fps@table{htbp}
