@@ -10,7 +10,7 @@
 \ProcessOptions
 
 % 加载依赖包
-\LoadClass[a4paper, DIV=16, 10.5pt]{scrartcl}% 双列排版
+\LoadClass[a4paper, DIV=16, fontsize=9pt]{scrartcl}% 双列排版
 \let\todayeng\today
 
 \RequirePackage{doc}
@@ -27,7 +27,7 @@
 	colorlinks=true,%
 	linkcolor=blue,%
 	urlcolor=black,%
-	citecolor=green,%
+	citecolor=black,%
 	bookmarksopen=true,%
 	bookmarksnumbered,%
 	pdfpagemode=UseOutlines,%
@@ -44,26 +44,31 @@
 \RequirePackage[numbers,sort&compress]{natbib} % 修改引用参考文献格式
 \RequirePackage[rm, bf]{titlesec}
 \RequirePackage{paralist}
+\RequirePackage{balance}
 
 % 正文预处理
-\linespread{1.1}% 行距
+\linespread{1.36}% 行距15pt
+\setlength{\parskip}{0pt}% 段落间距 Important
 \renewcommand{\rmdefault}{ptm}% 英文为time new roman
 \setlength{\bibsep}{0ex}% 参考文献间距
 \setlength{\textfloatsep}{1ex}% 浮动体间距
 \setlength{\intextsep}{1ex}
 \setlength{\floatsep}{1ex}
-\titlespacing*{\section}{0pt}{0ex}{0ex}% 节标题间距
-\titlespacing*{\subsection}{0pt}{0ex}{0ex}
-\titlespacing*{\subsubsection}{0pt}{0ex}{0ex}
+\titlespacing*{\section}{0pt}{0pt}{0pt}% 节标题间距
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 \setdefaultenum{1)}{a)}{i.}{A.}% 设置列表模式
 \setdefaultleftmargin{4ex}{}{}{}{}{}
+\setlength{\textheight}{244mm}
+\setlength{\textwidth}{170mm}
+\setlength{\columnsep}{7mm}
 
 \AtBeginDocument{%
-	\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
-	\fontsize{10.5pt}{\baselineskip}\selectfont%
 	\InputIfFileExists{zharticle.cfg}% 加载配置文件
 	{\typeout{[zharticle]: Load zharticle.cfg successfully!}}%
 	{\typeout{[zharticle]: Load zharticle.cfg failed!}}%
+	\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
+    \balance%
 }
 \AtEndDocument{%
 	\end{CJK*}
@@ -99,6 +104,7 @@
 \newcommand{\articleid}[1]{\renewcommand{\@articleid}{#1}}
 
 \renewcommand{\maketitle}{%
+	\linespread{1}
 	\clearpage
 	\let\footnote\thanks
 	\ifx\@extratitle\@empty \else
@@ -111,22 +117,22 @@
 		\end{minipage}\par
 	\fi
 	\null
-	\vskip 2em%
+	\vskip 28pt%
 	\begin{center}%
 		\ifx\@subject\@empty \else
 			{\subject@font \@subject \par}
 			\vskip 1em
 		\fi
-		{\textbf{\song\erhao \@title} \par}%
-		\vskip .5em
+		{\textbf{\song\xiaoerhao \@title} \par}%
+		\vskip 2pt
 		{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
-		\vskip .5em
-		{\kai\xiaosihao	\@author \par}
+		\vskip 6pt
+		{\kai\wuhao	\@author \par}
 		\vspace{-1mm}
-		{\song\xiaowuhao (\@address) \par}
+		{\song\liuhao (\@address) \par}
 		\ifwithdate
 		\vspace{-1mm}
-		{\song\xiaowuhao \@date \par}%       % Set date in \large size.
+		{\song\liuhao \@date \par}%       % Set date in \large size.
 		\else
 		\fi
 	\end{center}%
@@ -159,27 +165,28 @@
 }
 
 \newcommand{\maketitleeng}{% 请在\maketitle后调用
-	\vspace{2mm}
+	\linespread{1}
 	\begin{center}%
 		\ifx\@subject\@empty \else
 			{\subject@font \@subject \par}
 			\vskip 1em
 		\fi
-		{\textbf{\xiaoerhao \@titleeng} \par}%
-		\vskip .5em
+		{\textbf{\sihao \@titleeng} \par}%
+		\vskip 2pt
 		{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
-		\vskip .5em
+		\vskip 6pt
 		\vspace{-1mm}
-		{\textit{\xiaosihao	\@authoreng} \par}
+		{\textit{\wuhao	\@authoreng} \par}
 		\vspace{-1mm}
-		{\xiaowuhao (\@addresseng)\par}
+		{\liuhao (\@addresseng)\par}
 	\end{center}%
 	\vspace{-2mm}%
 }
 
 \renewenvironment{abstract}[1]{% 中文摘要, 关键字作为参数
+	\linespread{1}
 	\newcommand{\@keywords}{#1}
-	\kai\wuhao\noindent
+	\kai\xiaowuhao\noindent
 	\textbf{\song 摘要:~}\noindent
 }{%
 	\par\noindent
@@ -192,8 +199,9 @@
 }
 
 \newenvironment{engabstract}[1]{% 英文摘要
+	\linespread{1}
 	\newcommand{\@keywordseng}{#1}
-	\wuhao\noindent
+	\xiaowuhao\noindent
 	\textbf{Abstract:}\noindent
 }{%
 	\par\noindent
