@@ -2,7 +2,6 @@
 % 
 % Copyright (C) 2007, 2008 by Xu Yuan <xuyuan.cn@gmail.com>
 % Song Yihan <syhannnn@gmail.com>
-% Nobel Huang <nobel1984@gmail.com>
 % $Id$
 % 
 % This file is part of the seuthesis package project.
@@ -145,7 +144,6 @@
     \begin{tabular*}{1.0\linewidth}{lcl}
       版权所有\textcopyright 2007， 2008 & 许元 & (\url{xuyuan.cn@gmail.com}) \\
       & 宋翊涵 & (\url{syhannnn@gmail.com}) \\
-      & 黄小雨 & {\url{nobel1984@gmail.com}} \\
     \end{tabular*}
   \end{flushleft}
 
@@ -589,22 +587,21 @@
 % 题目录
 \RequirePackage[numbers,sort&compress]{natbib} % 修改引用参考文献格式
 \RequirePackage{array} % 扩展了 array 和 tabular 环境功能
-% \RequirePackage[center,nooneline]{caption2} % 定义图的标题格式：居中
 \RequirePackage{caption} % 定义图的标题格式：居中. 使用caption3.0
 \captionsetup{%
-	format=plain,%
-	labelformat=simple,%
-	justification=centering,%
-	singlelinecheck=off}
+  format=plain,%
+  labelformat=simple,%
+  justification=centering,%
+  singlelinecheck=off}
 % 可以断行（用\protect\\）
 %    \end{macrocode}
 % 
 % \subsection{编码}
 % 选择\OPTgbk编码还是\OPTunicode编码
 %    \begin{macrocode}
-\ifseuunicode
+\ifseuunicode% 使用unicode
 \typeout{[seuthesis]: Using UNICODE encoding}
-\RequirePackage{CJKutf8} %中文支持
+\RequirePackage{CJKutf8} %中文支持unicode
 \ifpdf
 \RequirePackage[colorlinks,linkcolor=blue,citecolor=green,unicode]{hyperref}
 \else %配置dvipdfmx
@@ -612,26 +609,26 @@
 \fi
 \hypersetup{unicode=true}
 \AtBeginDocument{\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
-    \fontsize{10.5pt}{\baselineskip}\selectfont%
-    \InputIfFileExists{seuthesis-utf8.cfg}%
+    \InputIfFileExists{seuthesis-utf8.cfg}% 引入配置文件
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg successfully!}}%
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}%
     \makeindex%
-  } %引入配置文件
-  \else
-  \typeout{[seuthesis]: Using GBK encoding}
-  \RequirePackage{CJK} %中文支持
-  \RequirePackage[CJKbookmarks=true]{hyperref}
-  \AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
-      \fontsize{10.5pt}{\baselineskip}\selectfont%
-      \InputIfFileExists{seuthesis-gbk.cfg}%
-      {\typeout{[seuthesis]: Load seuthesis-gbk.cfg successfully!}}%
-      {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}%
-      \makeindex%
-    } % 引入配置文件
-    \fi
-    \RequirePackage{CJKnumb}
-    \AtEndDocument{\end{CJK*}}
+    \wuhao%
+  } 
+\else% 使用GBK
+\typeout{[seuthesis]: Using GBK encoding}
+\RequirePackage{CJK} %中文支持gbk
+\RequirePackage[CJKbookmarks=true]{hyperref}
+\AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
+    \InputIfFileExists{seuthesis-gbk.cfg}% 引入配置文件
+    {\typeout{[seuthesis]: Load seuthesis-gbk.cfg successfully!}}%
+    {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}%
+    \makeindex%
+    \wuhao%
+  } 
+\fi
+\RequirePackage{CJKnumb}
+\AtEndDocument{\end{CJK*}}
 %    \end{macrocode}
 % 
 % \section{页面设置}
@@ -668,8 +665,9 @@
 \newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
 \newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
 \newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
-\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}
-\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.5pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoliuhao}{\fontsize{6.5pt}{\baselineskip}\selectfont}
+\newcommand{\qihao}{\fontsize{5.5pt}{\baselineskip}\selectfont}
 %    \end{macrocode}
 % 
 % \subsection{页眉、页脚}
@@ -682,7 +680,7 @@
 % \end{quote}
 %    \begin{macrocode}
 \newpagestyle{seustyle}{
-  \sethead[][\song\xiaowuhao东南大学\@appdegree学位论文][] % 偶数页
+  \sethead[][\song\xiaowuhao东南大学\@degree学位论文][] % 偶数页
   {}{\song\xiaowuhao\chaptername\quad\chaptertitle}{} % 奇数页
   \setfoot{}{\thepage}{}
   \headrule
@@ -691,8 +689,8 @@
   \setfoot{}{\thepage}{}
 }
 \newpagestyle{seufrontstyle}{
-  \sethead[][\song\xiaowuhao东南大学\@appdegree学位论文][]
-  {}{\song\xiaowuhao东南大学\@appdegree学位论文}{}
+  \sethead[][\song\xiaowuhao东南大学\@degree学位论文][]
+  {}{\song\xiaowuhao东南大学\@degree学位论文}{}
   \setfoot{}{\thepage}{}
   \headrule
 }
@@ -788,7 +786,7 @@
 % \begin{macro}{\degree}\IndexCmd{degree}
 %    \begin{macrocode}
 \newcommand{\degree}[1]{
-  \renewcommand{\@degree}{#1}
+  \renewcommand{\@appdegree}{#1}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1226,11 +1224,13 @@
 % 
 % \subsection{图、表浮动设置} 
 % 放宽松浮动的比例参数
+%    \begin{macrocode}
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.8}
-% 
+%    \end{macrocode}
+%
 % \section{参考文献}
 % 引用参考文献，上标形式
 % \begin{macro}{\cite}\IndexCmd{cite}
@@ -1427,12 +1427,12 @@
 \DeclareCaptionFont{capFont}{\song\wuhao} % 表格名及图名用5号宋体
 \DeclareCaptionLabelSeparator{twospace}{~~}
 \captionsetup{
-	labelsep=twospace,% 去掉图标签后的冒号
-	font={capFont},%
-	figurename=图,%
-	tablename=表,%
-	listfigurename=插图目录,%
-	listtablename=表格目录}
+  labelsep=twospace,% 去掉图标签后的冒号
+  font={capFont},%
+  figurename=图,%
+  tablename=表,%
+  listfigurename=插图目录,%
+  listtablename=表格目录}
 \makeatletter
 \renewcommand\fps@figure{htbp} % 设置图浮动的默认参数
 \renewcommand\fps@table{htbp}
