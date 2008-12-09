@@ -2,6 +2,7 @@
 % 
 % Copyright (C) 2007, 2008 by Xu Yuan <xuyuan.cn@gmail.com>
 % Song Yihan <syhannnn@gmail.com>
+% Nobel Huang <nobel1984@gmail.com>
 % $Id$
 % 
 % This file is part of the seuthesis package project.
@@ -36,7 +37,7 @@
 % 
 % \iffalse
 %<*driver> 
-\ProvidesFile{seuthesis.dtx}[2008/08/12 1.2 Southeast University Thesis Template]
+\ProvidesFile{seuthesis.dtx}[2008/12/9 1.2.3 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -144,6 +145,7 @@
     \begin{tabular*}{1.0\linewidth}{lcl}
       版权所有\textcopyright 2007， 2008 & 许元 & (\url{xuyuan.cn@gmail.com}) \\
       & 宋翊涵 & (\url{syhannnn@gmail.com}) \\
+      & 黄小雨 & {\url{nobel1984@gmail.com}} \\
     \end{tabular*}
   \end{flushleft}
 
@@ -957,7 +959,7 @@
       \else
       \def\@degreepic{doctor}
       \fi
-      {\includegraphics[height=30pt,bb=0 0 1149 150]{figures/{\@degreepic}.png}}
+      {\includegraphics[height=40pt,bb=0 0 1149 150]{figures/{\@degreepic}.png}}
     \end{picture}
     \fi
     \begin{picture}(0,0)(-350,50)
@@ -987,17 +989,22 @@
     \begin{center}
       \begin{tabular}{cr}
         \makebox[4cm][s]{\xiaoerhao\song\authorpre~~~~~~} &%宋体小二
-        \underline{\makebox[6cm][s]{\hspace{2cm}\makebox[2cm][s]{\xiaoerhao\hei\@author}}} \\%黑体小二粗体
+        \underline{\makebox[6cm][s]{
+            \hspace*{1cm}
+            \makebox[2.5cm][c]{\xiaoerhao\hei\@author}
+            \makebox[2cm][r]{}}} \\%黑体小二粗体
         \makebox[4cm][s]{\xiaoerhao\song\advisorpre~~} &
         \underline{\makebox[6cm][s]{
-            \hspace{0.5cm}\xiaoerhao\hei\@advisorname
-            \hspace{0.5cm}\makebox[2cm][r]{\xiaoerhao\hei\@advisortitle}}}
+            \hspace*{1cm}
+            \makebox[2.5cm][c]{\xiaoerhao\hei\@advisorname}
+            \makebox[2cm][r]{\xiaoerhao\hei\@advisortitle}}}
         \\
         & 
         \ifbcoadvisor
         \underline{\makebox[6cm][s]{
-            \hspace{0.5cm}\xiaoerhao\hei\@coadvisorname
-            \hspace{0.5cm}\makebox[2cm][r]{\xiaoerhao\hei\@coadvisortitle}}}
+            \hspace*{1cm}
+            \makebox[2.5cm][c]{\xiaoerhao\hei\@coadvisorname}
+            \makebox[2cm][r]{\xiaoerhao\hei\@coadvisortitle}}}
         \else
         \fi \\
       \end{tabular}
