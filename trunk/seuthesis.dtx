@@ -132,7 +132,7 @@
 
   在硕士论文完成之际，\seuthesis{}的第一个完整版也诞生了，同时支
   持~UNICODE~和~GBK~编码，宋翊涵同学为模板加入了对东南大学本科论文的支
-  持。模板的格式尽量满足研东南大学究生院和教务处的要求，当然由于水平有
+  持。模板的格式尽量满足东南大学研究生院和教务处的要求，当然由于水平有
   限其中错漏在所难免，我们已在google建立项
   目:\url{http://seuthesis.googlecode.com/}，欢迎东大的\LaTeX{}er一起参
   加开发和完善。
@@ -145,7 +145,7 @@
     \begin{tabular*}{1.0\linewidth}{lcl}
       版权所有\textcopyright 2007， 2008 & 许元 & (\url{xuyuan.cn@gmail.com}) \\
       & 宋翊涵 & (\url{syhannnn@gmail.com}) \\
-      & 黄小雨 & {\url{nobel1984@gmail.com}} \\
+      & 黄小雨 & (\url{nobel1984@gmail.com}) \\
     \end{tabular*}
   \end{flushleft}
 
@@ -582,7 +582,6 @@
 \else\fi
 \RequirePackage{graphicx}
 \RequirePackage{indentfirst}
-\RequirePackage{setspace}
 \RequirePackage{makeidx} % 索引
 \RequirePackage[nottoc]{tocbibind} % 将参考文献、索引、表格目录和图形
 % 目录等标题及其所在页码自动地添加到标
@@ -616,7 +615,8 @@
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}%
     \makeindex%
     \wuhao%
-  } 
+    \linespacing{1.4}
+  }
 \else% 使用GBK
 \typeout{[seuthesis]: Using GBK encoding}
 \RequirePackage{CJK} %中文支持gbk
@@ -627,7 +627,8 @@
     {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}%
     \makeindex%
     \wuhao%
-  } 
+    \linespacing{1.4}
+  }
 \fi
 \RequirePackage{CJKnumb}
 \AtEndDocument{\end{CJK*}}
@@ -641,7 +642,7 @@
 % \subsection{页边距}
 %    \begin{macrocode}
 \RequirePackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
-\RequirePackage[pagestyles]{titlesec}
+\RequirePackage[pagestyles, rm]{titlesec}
 \RequirePackage{titletoc} % 设置目录
 %    \end{macrocode}
 % 
@@ -653,23 +654,25 @@
 \newcommand{\hei}{\CJKfamily{hei}}
 \newcommand{\kai}{\CJKfamily{kai}}
 \newcommand{\fs}{\CJKfamily{fs}}
+\renewcommand{\rmdefault}{ptm}% 英文默认Time New Roman
 %    \end{macrocode}
 % \subsection{字号}
 %    \begin{macrocode}
-\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
-\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
-\newcommand{\yichu}{\fontsize{32pt}{\baselineskip}\selectfont}
-\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
-\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
-\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
-\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
-\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
-\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
-\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
-\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
-\newcommand{\liuhao}{\fontsize{7.5pt}{\baselineskip}\selectfont}
-\newcommand{\xiaoliuhao}{\fontsize{6.5pt}{\baselineskip}\selectfont}
-\newcommand{\qihao}{\fontsize{5.5pt}{\baselineskip}\selectfont}
+\newcommand{\chuhao}{\fontsize{42pt}{46pt}\selectfont}
+\newcommand{\xiaochuhao}{\fontsize{36pt}{40pt}\selectfont}
+\newcommand{\yichu}{\fontsize{32pt}{36pt}\selectfont}
+\newcommand{\yihao}{\fontsize{28pt}{32pt}\selectfont}
+\newcommand{\erhao}{\fontsize{21pt}{24pt}\selectfont}
+\newcommand{\xiaoerhao}{\fontsize{18pt}{20}\selectfont}
+\newcommand{\sanhao}{\fontsize{15.75pt}{18pt}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{16pt}\selectfont}
+\newcommand{\xiaosihao}{\fontsize{12pt}{14pt}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{13pt}\selectfont}
+\newcommand{\xiaowuhao}{\fontsize{9pt}{11pt}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.5pt}{9pt}\selectfont}
+\newcommand{\xiaoliuhao}{\fontsize{6.5pt}{7.5pt}\selectfont}
+\newcommand{\qihao}{\fontsize{5.5pt}{6.5pt}\selectfont}
+\newcommand{\linespacing}[1]{\linespread{#1}\selectfont}% 行距命令
 %    \end{macrocode}
 % 
 % \subsection{页眉、页脚}
@@ -682,8 +685,8 @@
 % \end{quote}
 %    \begin{macrocode}
 \newpagestyle{seustyle}{
-  \sethead[][\song\xiaowuhao东南大学\@degree学位论文][] % 偶数页
-  {}{\song\xiaowuhao\chaptername\quad\chaptertitle}{} % 奇数页
+  \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][] % 偶数页
+  {}{{\song\xiaowuhao\chaptername\quad\chaptertitle}}{} % 奇数页
   \setfoot{}{\thepage}{}
   \headrule
 }
@@ -691,8 +694,8 @@
   \setfoot{}{\thepage}{}
 }
 \newpagestyle{seufrontstyle}{
-  \sethead[][\song\xiaowuhao东南大学\@degree学位论文][]
-  {}{\song\xiaowuhao东南大学\@degree学位论文}{}
+  \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][]
+  {}{{\song\xiaowuhao东南大学\@degree学位论文}}{}
   \setfoot{}{\thepage}{}
   \headrule
 }
@@ -931,8 +934,8 @@
 % \begin{macro}{\chinesecover}
 %    \begin{macrocode}
 \newcommand{\CoverTopOption}[3][s]{
-  \makebox[1.5cm][#1]{\normalsize #2}:{
-    \underline{\makebox[1.5cm][c]{#3}}}
+  \makebox[1.5cm][#1]{\wuhao #2}:{
+    \underline{\makebox[1.5cm][c]{\wuhao #3}}}
 }
 
 \newcommand{\CoverBottomOption}[3][4.5cm]{
@@ -944,8 +947,8 @@
 
 \newcommand{\chinesecover}{
   \begin{titlepage}
-
-    \begin{picture}(0,0)(27,250)
+    \linespacing{1.0}
+    \begin{picture}(0,0)(24,250)
       {\includegraphics[width=\textwidth,bb=0 0 1683 986]{figures/front-cover.jpg}}
     \end{picture}
     \ifengineering
@@ -953,7 +956,7 @@
       {\includegraphics[height=30pt,bb=0 0 484 55]{figures/engineering.png}}
     \end{picture}
     \else
-    \begin{picture}(0,0)(-80,255)
+    \begin{picture}(0,0)(-86,255)
       \ifmasterdegree
       \def\@degreepic{master}
       \else
@@ -966,8 +969,7 @@
       {\includegraphics[width=50pt,bb=0 0 500 501]{figures/seu-color-logo.png}}
     \end{picture}
 
-    \begin{tabular}{l}%宋体小四
-      \song\xiaosihao
+    \begin{tabular}{l}
       \CoverTopOption{\schoolcodepre}{\schoolcode} \\
       \CoverTopOption{\categorynumberpre}{\@categorynumber} \\
       \CoverTopOption{\secretlevelpre}{\@secretlevel}\\
@@ -978,28 +980,29 @@
     \vspace*{7cm}
 
     \begin{center}
+      \linespacing{1.25}
       \yihao\hei\@title\\%题名 黑体一号居中
       \yihao\hei\@subtitle%副题名 黑体一号居中
     \end{center}
 
-    \vspace*{40pt}
+    \vspace*{20pt}
 
-    \renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{2.0}
     \setlength{\tabcolsep}{0pt}
     \begin{center}
       \begin{tabular}{cr}
-        \makebox[4cm][s]{\xiaoerhao\song\authorpre~~~~~~} &%宋体小二
+        \makebox[3.5cm][s]{\xiaoerhao\song\authorpre} &%宋体小二
         \underline{\makebox[6cm][s]{
             \hspace*{1cm}
             \makebox[2.5cm][c]{\xiaoerhao\hei\@author}
             \makebox[2cm][r]{}}} \\%黑体小二粗体
-        \makebox[4cm][s]{\xiaoerhao\song\advisorpre~~} &
+        \makebox[3.5cm][s]{\xiaoerhao\song\advisorpre} &
         \underline{\makebox[6cm][s]{
             \hspace*{1cm}
             \makebox[2.5cm][c]{\xiaoerhao\hei\@advisorname}
             \makebox[2cm][r]{\xiaoerhao\hei\@advisortitle}}}
         \\
-        & 
+        &
         \ifbcoadvisor
         \underline{\makebox[6cm][s]{
             \hspace*{1cm}
@@ -1010,7 +1013,7 @@
       \end{tabular}
     \end{center}
 
-    \vspace*{20pt}
+    \vspace*{10pt}
 
     \setlength{\tabcolsep}{10pt}
     \begin{center}
@@ -1029,22 +1032,23 @@
 
     \vfill
 
-    \song\sihao\centerline{\@date}
+    {\song\sihao\centerline{\@date} \par}
 
   \end{titlepage}
 }
 \ifbachelordegree % 本科论文封面
 \renewcommand{\chinesecover}{
   \begin{titlepage}
+    \linespacing{1.0}
     \begin{center}
-      \vspace*{40pt}
+      \vspace*{20pt}
       \includegraphics[height=2cm]{figures/seu-badge-logo}
       \quad \includegraphics[height=2cm]{figures/seu-text-logo} \\
       \vspace*{60pt}
       \yihao\hei \bachelortitle \\
-      \vspace*{60pt} \xiaoerhao\song \titlepre \erhao\song
-      \underline{\makebox[18em][s]{\hspace{1em}%
-          \makebox[18em][c]{\fs\@title}}} \\
+      \vspace*{60pt}
+      {\xiaoerhao\song \titlepre}
+      {\erhao\song \underline{\makebox[18em][c]{\fs\@title}}} \\
       \vspace*{40pt}
       \renewcommand{\arraystretch}{1.5}
       \setlength{\tabcolsep}{0pt}
@@ -1055,14 +1059,12 @@
         \departmentpre &
         \sanhao\fs
         \underline{\makebox[\@majorlen][s]{\makebox[\@majorlen][c]{\@major}}} &
-        \sanhao
-        \majorpre \\
+        \sanhao \majorpre \\
       \end{tabular}
-      
-      \vspace*{100pt}
 
-      \renewcommand{\baselinestretch}{1.38}
-      \renewcommand{\arraystretch}{1.5}
+      \vspace*{70pt}
+
+      \renewcommand{\arraystretch}{1.1}
       \setlength{\tabcolsep}{0pt}
       \begin{tabular}{c}
         \sanhao\studentidpre\quad\underline{%
@@ -1083,7 +1085,7 @@
             \makebox[20em][c]{\fs{\@address}}}} \\
       \end{tabular}
       \vfill
-      \sanhao\today
+      {\sanhao\today \par}
     \end{center}
   \end{titlepage}
 }
@@ -1096,9 +1098,11 @@
 %    \begin{macrocode}
 \newcommand{\englishcover}{
   \thispagestyle{empty}%
-  \begin{spacing}{1.0}\begin{center}
-      ~\\%
-      \begin{spacing}{1.5}\LARGE\textrm{\@titleeng}\end{spacing}%
+  \begin{center}
+      \linespacing{1.0}
+      ~\\
+      {\linespacing{1.5}\LARGE\textrm{\@titleeng} \par}%
+      \vspace*{7mm}
       \normalsize{\@subtitleeng}
 
       \vspace{1.0in}%
@@ -1121,9 +1125,10 @@
         {\vfill}
         {\@departmenteng}\\
         {\universitynameeng}\\
-        {\todayeng}\\
+        {\todayeng}
+        \par
       }%
-    \end{center}\end{spacing}%
+    \end{center}%
   \clearpage%
 }
 %    \end{macrocode}
@@ -1140,9 +1145,10 @@
   \addcontentsline{toc}{chapter}{\@abstracttitletoc}
   \ifbachelordegree
   \chapter*{\@title}
+
   \begin{flushright}
     \begin{tabular}[h]{ll}
-      \multicolumn{2}{l}{\@studentid \qquad \kai\@author} \\
+      \@studentid & \kai\@author \\
       \advisorpre & \kai\@advisorname \\
     \end{tabular}
   \end{flushright}
@@ -1150,10 +1156,18 @@
   \begin{center}
     \Large \hei\@abstracttitle
   \end{center}
+  \par
   \else
   \chapter*{\@abstracttitle}
   \fi
+  \song
+  \ifbachelordegree
+  \xiaosihao
+  \else
+  \wuhao
+  \fi
 }{
+  \par
   \begin{description}
   \item[关键词：] \@keywords
   \end{description}
@@ -1179,12 +1193,20 @@
     \end{tabular}
   \end{flushright}
   \begin{center}
-    \Large Abstract
+    {\Large Abstract}
   \end{center}
+  \par
   \else
   \chapter*{Abstract}
   \fi
+  \song
+  \ifbachelordegree
+  \xiaosihao
+  \else
+  \wuhao
+  \fi
 }{
+  \par
   \begin{description}
   \item[Keywords:] \@keywords
   \end{description}
@@ -1204,6 +1226,7 @@
   \chapter*{#1}
   \song\wuhao
 }{
+  \par
 }
 %    \end{macrocode}
 % \end{environment}
@@ -1213,7 +1236,9 @@
 %    \begin{macrocode}
 \newenvironment{Main}
 {
-  {\song\sihao\tableofcontents} %目录部分字体可采用4号宋体。
+  {\linespacing{1.0}%
+  \song\sihao%
+  \tableofcontents \par} %目录部分字体可采用4号宋体。
 
   \pagestyle{seustyle}
   \mainmatter % 开始正文部分
@@ -1224,6 +1249,7 @@
   \wuhao
   \fi
 }{
+  \par
   \backmatter % 开始正文之后的部分
 }
 %    \end{macrocode}
@@ -1320,7 +1346,7 @@
 \newcommand{\titlepre}{题目\quad}
 \newcommand{\departmentpre}{院（系）}
 \renewcommand{\majorpre}{专\quad 业}
-\renewcommand{\studentidpre}{学\hspace*{2.3em}号}
+\renewcommand{\studentidpre}{学\hspace*{2.2em}号}
 \newcommand{\studentnamepre}{学生姓名}
 \renewcommand{\advisorpre}{指导教师}
 \else\ifmasterdegree
@@ -1349,37 +1375,40 @@
 % \begin{macro}{\seudeclare}
 %    \begin{macrocode}
 \newcommand{\seudeclare}{
+  {\xiaosihao 
   \begin{center}
-    \hei\sanhao{东南大学学位论文独创性声明}
+    {\hei\sanhao 东南大学学位论文独创性声明}
   \end{center}
-  
-  \xiaosihao\parindent2em{本人声明所呈交的学位论文是我个人在导师指导下
+
+  {\CJKindent 本人声明所呈交的学位论文是我个人在导师指导下
     进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致
     谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含
     为获得东南大学或其它教育机构的学位或证书而使用过的材料。与我一同工
     作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢
-    意。}
-  \\
+    意。\par}
+  
   \begin{flushright}
     研究生签名：\signline 日~期：\signline
   \end{flushright}
 
-  {\vspace{1in}}
+  \vspace{1in}
 
   \begin{center}
-    \hei\sanhao{东南大学学位论文使用授权声明}
+    {\hei\sanhao 东南大学学位论文使用授权声明}
   \end{center}
-  
-  \xiaosihao\parindent2em{东南大学、中国科学技术信息研究所、国家图书馆
+
+  {\CJKindent 东南大学、中国科学技术信息研究所、国家图书馆
     有权保留本人所送交学位论文的复印件和电子文档，可以采用影印、缩印或
     其他复制手段保存论文。本人电子文档的内容和纸质论文的内容相一致。除
     在保密期内的保密论文外，允许论文被查阅和借阅，可以公布（包括刊
     登）论文的全部或部分内容。论文的公布（包括刊登）授权东南大学研究生
-    院办理。}
-  \\
+    院办理。\par}
+  
   \begin{flushright}
     研究生签名：\signline 导师签名：\signline 日~期：\signline
   \end{flushright}
+  \par
+  }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1420,17 +1449,6 @@
 %   表格名及图名用5号宋体
 % \end{quote}
 %    \begin{macrocode}
-% \renewcommand{\captionlabeldelim}{} % 去掉图标签后的冒号
-% \renewcommand{\captionfont}{\song\wuhao} % 表格名及图名用5号宋体
-% \renewcommand{\figureautorefname}{图}
-% \renewcommand{\prefigurename}{\song\wuhao图}
-% \renewcommand{\postfigurename}{}
-% \renewcommand{\listfigurename}{插图目录}
-% \renewcommand{\tableautorefname}{表}
-% \renewcommand{\pretablename}{\song\wuhao表}
-% \renewcommand{\posttablename}{}
-% \renewcommand{\listtablename}{表格目录}
-% \renewcommand{\equationautorefname}{式}
 \DeclareCaptionFont{capFont}{\song\wuhao} % 表格名及图名用5号宋体
 \DeclareCaptionLabelSeparator{twospace}{~~}
 \captionsetup{
