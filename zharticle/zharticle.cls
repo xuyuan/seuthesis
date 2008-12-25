@@ -104,7 +104,6 @@
 \newcommand{\articleid}[1]{\renewcommand{\@articleid}{#1}}
 
 \renewcommand{\maketitle}{%
-	\linespread{1}
 	\clearpage
 	\let\footnote\thanks
 	\ifx\@extratitle\@empty \else
@@ -123,20 +122,20 @@
 			{\subject@font \@subject \par}
 			\vskip 1em
 		\fi
-		{\textbf{\song\xiaoerhao \@title} \par}%
+		{\song\xiaoerhao \textbf{\@title} \par}%
 		\vskip 2pt
 		{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
 		\vskip 6pt
 		{\kai\wuhao	\@author \par}
-		\vspace{-1mm}
+		\vspace{0mm}
 		{\song\liuhao (\@address) \par}
 		\ifwithdate
-		\vspace{-1mm}
+		\vspace{0mm}
 		{\song\liuhao \@date \par}%       % Set date in \large size.
 		\else
 		\fi
 	\end{center}%
-	\vspace{-2mm}
+	\vspace{-1mm}
 	
 	\setcounter{footnote}{0}%
     \let\thanks\relax
@@ -165,26 +164,24 @@
 }
 
 \newcommand{\maketitleeng}{% 请在\maketitle后调用
-	\linespread{1}
 	\begin{center}%
 		\ifx\@subject\@empty \else
 			{\subject@font \@subject \par}
 			\vskip 1em
 		\fi
-		{\textbf{\sihao \@titleeng} \par}%
+		{\sihao \textbf{\@titleeng} \par}%
 		\vskip 2pt
 		{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
 		\vskip 6pt
-		\vspace{-1mm}
-		{\textit{\wuhao	\@authoreng} \par}
-		\vspace{-1mm}
+		\vspace{0mm}
+		{\wuhao	\textit{\@authoreng} \par}
+		\vspace{0mm}
 		{\liuhao (\@addresseng)\par}
 	\end{center}%
-	\vspace{-2mm}%
+	\vspace{-1mm}%
 }
 
 \renewenvironment{abstract}[1]{% 中文摘要, 关键字作为参数
-	\linespread{1}
 	\newcommand{\@keywords}{#1}
 	\kai\xiaowuhao\noindent
 	\textbf{\song 摘要:~}\noindent
@@ -195,11 +192,11 @@
 	\textbf{\song 中图分类号:} \makebox[3cm][l]{\@categorynumber}%
 	\textbf{\song 文献标识码:} \makebox[1.5cm][l]{\@refmark}%
 	\textbf{\song 文章编号:}   \makebox[5cm][l]{\@articleid}
+	\par
 	\hypersetup{pdfkeywords={\@keywords}}
 }
 
 \newenvironment{engabstract}[1]{% 英文摘要
-	\linespread{1}
 	\newcommand{\@keywordseng}{#1}
 	\xiaowuhao\noindent
 	\textbf{Abstract:}\noindent
