@@ -604,9 +604,9 @@
 \typeout{[seuthesis]: Using UNICODE encoding}
 \RequirePackage{CJKutf8} %中文支持unicode
 \ifpdf
-\RequirePackage[colorlinks,linkcolor=blue,citecolor=green,unicode]{hyperref}
+\RequirePackage{hyperref}
 \else %配置dvipdfmx
-\RequirePackage[colorlinks,linkcolor=blue,citecolor=green,unicode,dvipdfmx]{hyperref}
+\RequirePackage[dvipdfmx]{hyperref}
 \fi
 \hypersetup{unicode=true}
 \AtBeginDocument{\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
@@ -675,6 +675,14 @@
 \newcommand{\linespacing}[1]{\linespread{#1}\selectfont}% 行距命令
 %    \end{macrocode}
 % 
+% \subsection{超文本格式}
+%    \begin{macrocode}
+\hypersetup{
+  colorlinks,
+  linkcolor=blue,
+  citecolor=green
+}
+%    \end{macrocode}
 % \subsection{页眉、页脚}
 % \begin{quote}
 %   页眉采用下列形式（在页眉页脚的页面设置中选择“奇偶页不同”）：偶数页：
@@ -894,7 +902,7 @@
     pdftitle={\universityname{}\@academicdegree}, %文件标题
     pdfsubject={\@title \@subtitle}, %文件主题
     pdfcreator={The \seuthesis{} class (v \fileversion)}, % 应用程序
-    bookmarksnumbered %书签中章节编号
+    bookmarksnumbered=true %书签中章节编号
   }
 
   \chinesecover
@@ -1140,6 +1148,7 @@
 \newenvironment{abstract}[1]
 {
   \newcommand{\@keywords}{#1}
+  \hypersetup{pdfkeywords={\@keywords}}
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\@abstracttitletoc}
@@ -1180,7 +1189,6 @@
 \newenvironment{englishabstract}[1]
 {
   \newcommand{\@keywords}{#1}
-  \hypersetup{pdfkeywords={\@keywords}}
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{Abstract}
