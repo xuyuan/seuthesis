@@ -10,7 +10,7 @@
 \ProcessOptions
 
 % 加载依赖包
-\LoadClass[a4paper, DIV=16, fontsize=9pt]{scrartcl}% 双列排版
+\LoadClass[a4paper, DIV=16, fontsize=9pt, twocolumn]{scrartcl}% 双列排版
 \let\todayeng\today
 
 \RequirePackage{doc}
@@ -103,7 +103,18 @@
 \newcommand{\@articleid}{}% 文章编号
 \newcommand{\articleid}[1]{\renewcommand{\@articleid}{#1}}
 
-\renewcommand{\maketitle}{%
+\newcommand{\@abstract}{}
+\newcommand{\@abstracteng}{}
+\newcommand{\@keywords}{}
+\newcommand{\@keywordseng}{}
+\newcommand{\abstractkeyword}[4]{
+	\renewcommand{\@abstract}{#1}
+	\renewcommand{\@abstracteng}{#2}
+	\renewcommand{\@keywords}{#3}
+	\renewcommand{\@keywordseng}{#4}
+}
+
+\renewcommand{\@maketitle}{%
 	\clearpage
 	\let\footnote\thanks
 	\ifx\@extratitle\@empty \else
@@ -118,42 +129,38 @@
 	\null
 	\vskip 28pt%
 	\begin{center}%
-		\ifx\@subject\@empty \else
-			{\subject@font \@subject \par}
-			\vskip 1em
-		\fi
-		{\song\xiaoerhao \textbf{\@title} \par}%
-		\vskip 2pt
-		{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
-		\vskip 6pt
-		{\kai\wuhao	\@author \par}
-		\vspace{0mm}
-		{\song\liuhao (\@address) \par}
-		\ifwithdate
-		\vspace{0mm}
-		{\song\liuhao \@date \par}%       % Set date in \large size.
-		\else
-		\fi
+	\ifx\@subject\@empty \else
+		{\subject@font \@subject \par}
+		\vskip 1em
+	\fi
+	{\song\xiaoerhao \textbf{\@title} \par}%
+	\vskip 2pt
+	{\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+	\vskip 6pt
+	{\kai\wuhao	\@author \par}
+	\vspace{0mm}
+	{\song\liuhao (\@address) \par}
+	\ifwithdate
+	\vspace{0mm}
+	{\song\liuhao \@date \par}%       % Set date in \large size.
+	\else
+	\fi
 	\end{center}%
+	\par
 	\vspace{-1mm}
-	
-	\setcounter{footnote}{0}%
-    \let\thanks\relax
-    \let\maketitle\relax
-    \let\@maketitle\relax
-    \global\let\author\relax
-    \global\let\title\relax
-    \global\let\extratitle\relax
-    \global\let\titlehead\relax
-    \global\let\subject\relax
-    \global\let\publishers\relax
-    \global\let\uppertitleback\relax
-    \global\let\lowertitleback\relax
-    \global\let\dedication\relax
-    \global\let\date\relax
-    \global\let\and\relax
-	
-	% 设置文件属性
+  
+	\begin{abstract}{\@keywords}
+	\@abstract
+	\end{abstract}
+
+	\maketitleeng
+	\begin{engabstract}{\@keywordseng}
+	\@abstracteng
+	\end{engabstract}
+
+	\vspace{1em}
+  
+	%设置文件属性
 	\GetFileInfo{zharticle.cls}
 	\hypersetup{
 		pdfauthor={\@author},
@@ -182,7 +189,6 @@
 }
 
 \renewenvironment{abstract}[1]{% 中文摘要, 关键字作为参数
-	\newcommand{\@keywords}{#1}
 	\kai\xiaowuhao\noindent
 	\textbf{\song 摘要:~}\noindent
 }{%
@@ -197,21 +203,12 @@
 }
 
 \newenvironment{engabstract}[1]{% 英文摘要
-	\newcommand{\@keywordseng}{#1}
 	\xiaowuhao\noindent
 	\textbf{Abstract:}\noindent
 }{%
 	\par\noindent
 	\textbf{Key words:} \@keywordseng
 	\par
-}
-
-\newcommand{\onecoltitle}[1]{% 构成通栏的文本
-	\newcommand{\@tempcontent}{#1}
-	\twocolumn[%
-	\@tempcontent
-	\vspace{1em}
-	]
 }
 
 % 其他
