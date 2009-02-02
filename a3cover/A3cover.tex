@@ -1,0 +1,17 @@
+\documentclass{article}
+
+\usepackage[a3paper, landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\includepdf[nup=2x1, noautoscale, delta=10 0, pages={last-last, 1}, pagecommand={%
+\begin{picture}(0,0)(-393,654.5)%
+\includegraphics{bookspine_res.pdf}%
+\end{picture}%
+}]{../seuthesis.pdf}
+
+\end{document}
