@@ -608,7 +608,7 @@
 %    \begin{macrocode}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
 \ProcessOptions
-\LoadClass[a4paper,10.5pt,tablecaptionabove,twoside]{scrbook}
+\LoadClass[a4paper,10.5pt,tablecaptionabove]{scrbook}
 \let\todayeng\today
 %    \end{macrocode}
 % 
@@ -1327,7 +1327,8 @@
   \song\xiaosihao%
   \phantomsection
   \addcontentsline{toc}{chapter}{\@contentsnametoc}
-  \tableofcontents \par} %目录部分字体可采用小四号宋体。
+  \tableofcontents \par
+  \pagestyle{seunolabelstyle}\clearpage} %目录部分字体可采用小四号宋体。
 
   \pagestyle{seustyle}
   \mainmatter % 开始正文部分
@@ -1394,7 +1395,16 @@
 % \begin{environment}{Appendix}\IndexEnv{Appendix}
 %    \begin{macrocode}
 \newenvironment{Appendix}
-{\@mainmattertrue\appendix\titlecontentsappendix}{\@mainmatterfalse\par}
+{%
+  \pagestyle{seunolabelstyle}\clearpage
+  \@mainmattertrue
+  \appendix
+  \pagestyle{seustyle}
+  \titlecontentsappendix
+}{\@mainmatterfalse\par
+  \thispagestyle{seustyle}\clearpage
+  \pagestyle{seunolabelstyle}
+}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -1403,6 +1413,7 @@
 %    \begin{macrocode}
 \newenvironment{Resume}[1][\@resumetitle]
 {%
+  \pagestyle{seufrontstyle}
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\@resumetitletoc}
