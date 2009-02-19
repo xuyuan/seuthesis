@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 % 
-% Copyright (C) 2007, 2008 by Xu Yuan <xuyuan.cn@gmail.com>
+% Copyright (C) 2007, 2008, 2009 by Xu Yuan <xuyuan.cn@gmail.com>
 % Song Yihan <syhannnn@gmail.com>
 % Nobel Huang <nobel1984@gmail.com>
 % $Id$
@@ -37,7 +37,7 @@
 % 
 % \iffalse
 %<*driver> 
-\ProvidesFile{seuthesis.dtx}[2008/12/9 1.2.3 Southeast University Thesis Template]
+\ProvidesFile{seuthesis.dtx}[2009/2/19 1.3.0 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -143,7 +143,7 @@
   \section{版权声明}
   \begin{flushleft}
     \begin{tabular*}{1.0\linewidth}{lcl}
-      版权所有\textcopyright 2007， 2008 & 许元 & (\url{xuyuan.cn@gmail.com}) \\
+      版权所有\textcopyright 2007, 2008, 2009  & 许元 & (\url{xuyuan.cn@gmail.com}) \\
       & 宋翊涵 & (\url{syhannnn@gmail.com}) \\
       & 黄小雨 & (\url{nobel1984@gmail.com}) \\
     \end{tabular*}
@@ -181,7 +181,7 @@
   \section{安装}
   \label{sec:install}
   将宏包中的文件与~\TeX{}~主文件放在同一目录下即可，当然也可以安装
-  到~\TeX{}~系统中。
+  到~\TeX{}~系统中，不过需要注意是参考文献样式文件 \texttt{.bst} 必须置于 \texttt{TEXMF/bibtex/bst}目录或子目录下。
 
   本模板在~\texttt{texlive2008}~和~\texttt{MiKTex2.7}~下编译通过。如有您在使用中有
   任何问题，欢迎与我联系。
@@ -239,6 +239,7 @@
   \item[\OPTunicode] （默认）使用~UNICODE~编码；
   \item[\OPTgbk] 使用~GBK~编码。 
   \end{description}
+
   \subsection{学位选项}
   \newcommand{\OPTbachelor}{\IndexOpt{bachelor}}
   \newcommand{\OPTmaster}{\IndexOpt{master}}
@@ -249,6 +250,16 @@
   \item[\OPTmaster] 硕士学位（默认）；
   \item[\OPTengineering] 工程硕士；
   \item[\OPTdoctor] 博士学位。
+  \end{description}
+
+  \subsection{打印相关选项}
+  \newcommand{\OPTnocolor}{\IndexOpt{nocolorlinks}}
+  \newcommand{\OPTdoublecover}{\IndexOpt{doublecover}}
+  \newcommand{\OPTprintedition}{\IndexOpt{printedition}}
+  \begin{description}
+  \item[\OPTnocolor] 所有链接文字不使用彩色标识，全部黑色，并由框线表示 (打印时框线不会被打印出来) (默认关闭)；
+  \item[\OPTdoublecover] 中文封面和英文封面各占两页以使得封面皆打印在奇数页 (默认关闭)；
+  \item[\OPTprintedition] 作为 \OPTnocolor 和 \OPTdoublecover 选项的综合，即使该两个选项同时生效生成打印版文稿。
   \end{description}
 
   \section{封面}
@@ -465,7 +476,7 @@
   \section{致谢} 
 
   在正文结束之后（即\CmdMacro{end\{Main\}}{}之后）使
-  用\CmdMacro{chapter}{\{致谢\}}将致谢内容作为新的一章就可以了。自己的
+  用\EnvMacro{Thanks}{}环境，并在环境内书写致谢内容就可以了。自己的
   姓名和日期放在\EnvMacro{flushright}{}环境中就可以右对齐了，可参
   考\hyperref[cha:acknowledgement]{本文的致谢}。
   
@@ -479,14 +490,22 @@
   会报错误，在经过修改之后本人的论文中已不会报错，但不保证所有的文献条
   目都没有问题，如果您遇到问题请将错误发给我，我会尽力完善它。有关文献
   中的必需条目和使用注意事项请参考\citet{wkbst,seugs:standard}。
+  
+  \section{附录}
+  在参考文献后使用\EnvMacro{Appendix}{}环境进入附录章节的编写。附录可以分为
+  多个章，使用 \CmdMacro{chapter\{第一个附录\}}{}就可以生成大写英文字母编号
+  的附录章了，其余的节及子节写法与正文类似。
+  
+  \section{作者简介}
+  在\CmdMacro{printindex}{}命令之后可以使用\EnvMacro{Resume}{}环境进入\emph{作者简介}的编写。
 
   \chapter{模板实现代码}
   \DocInput{seuthesis.dtx}
 
 \end{Main}
 
-\chapter{致谢}
-\label{cha:acknowledgement} 
+\begin{Thanks}
+\label{cha:acknowledgement}
 本模板参考了网上的一些文
 档\cite{seugs:standard,seucover,wloo,xrn:thuthesis,xrn:howtopackage,wkbst}，
 在此表示感谢！
@@ -501,12 +520,12 @@
   \makebox[6cm][c]{许~元}\\
   2008年3月19日于东南大学河海院
 \end{flushright}
-
+\end{Thanks}
 
 \bibliography{seuthesis}
 
-\begin{appendix}
-  \chapter{附录：文件}
+\begin{Appendix}
+  \chapter{文件}
   \begin{itemize}
   \item 源文件：
     \begin{description}
@@ -527,7 +546,7 @@
     \item[seuthesis-*.cfg] 供类包或宏包调用的配置文件，有~UNICODE~和~GBK~两种编码。
     \end{description}
   \end{itemize}
-\end{appendix}
+\end{Appendix}
 
 \printindex
 
@@ -537,8 +556,8 @@
 %</driver> 
 % 
 %<cls> \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls> \ProvidesClass{seuthesis}[2008/08/12 1.2 The LaTeX template for thesis of Southeast University]
-%<cls> \typeout{Document Class `seuthesis' v1.2 by Xu Yuan and Song Yihan (2008/08/12)}
+%<cls> \ProvidesClass{seuthesis}[2009/2/19 1.3.0 The LaTeX template for thesis of Southeast University]
+%<cls> \typeout{Document Class `seuthesis' v1.3 by Xu Yuan, Song Yihan, Huang Xiaoyu (2009/2/19)}
 % \fi
 % 
 % \section{本宏包的选项}
@@ -565,11 +584,31 @@
 \DeclareOption{doctor}{\masterdegreefalse}
 %    \end{macrocode}
 % \end{macro}
+% \begin{macro}{nocolorlinks}
+%   默认使用彩色标识各类链接，包括文档内跳转、URL、引用、外部文件链接等。如果不希望使用彩色标识(要打印时)，利用该选项可关闭。
+%    \begin{macrocode}
+\newif\ifnocolorlinks\nocolorlinksfalse
+\DeclareOption{nocolorlinks}{\nocolorlinkstrue}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{doublecover}
+%   中英文封面各占两页。
+%    \begin{macrocode}
+\newif\ifdoublecover\doublecoverfalse
+\DeclareOption{doublecover}{\doublecovertrue}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{printedition}
+%   生成打印版本，是 \texttt{nocolorlinks} 和 \texttt{doublecover} 两个选项的综合。
+%    \begin{macrocode}
+\DeclareOption{printedition}{\doublecovertrue\nocolorlinkstrue}
+%    \end{macrocode}
+% \end{macro}
 % 将选项传递给\emph{scrbook}类。
 %    \begin{macrocode}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
 \ProcessOptions
-\LoadClass[a4paper,10.5pt,tablecaptionabove]{scrbook}
+\LoadClass[a4paper,10.5pt,tablecaptionabove,twoside]{scrbook}
 \let\todayeng\today
 %    \end{macrocode}
 % 
@@ -577,15 +616,17 @@
 %    \begin{macrocode}
 \RequirePackage{doc}
 \RequirePackage{ifpdf}
+\RequirePackage{ifthen}
 \ifpdf
 \RequirePackage{ccmap} % 当使用pdflatex编译时生成可拷贝的pdf
 \else\fi
 \RequirePackage{graphicx}
+\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{indentfirst}
 \RequirePackage{makeidx} % 索引
 \RequirePackage[nottoc]{tocbibind} % 将参考文献、索引、表格目录和图形
 % 目录等标题及其所在页码自动地添加到标
-% 题目录
+% 题目录，可以断行（用\protect\\）
 \RequirePackage[numbers,sort&compress]{natbib} % 修改引用参考文献格式
 \RequirePackage{array} % 扩展了 array 和 tabular 环境功能
 \RequirePackage{caption} % 定义图的标题格式：居中. 使用caption3.0
@@ -594,7 +635,9 @@
   labelformat=simple,%
   justification=centering,%
   singlelinecheck=off}
-% 可以断行（用\protect\\）
+\RequirePackage{paralist}% 修改列表格式
+\setdefaultenum{1)}{a)}{i.}{A.}% 设置列表模式
+\setdefaultleftmargin{4ex}{}{}{}{}{}
 %    \end{macrocode}
 % 
 % \subsection{编码}
@@ -615,7 +658,7 @@
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}%
     \makeindex%
     \wuhao%
-    \linespacing{1.4}
+    \linespacing{\mainlineskip}
   }
 \else% 使用GBK
 \typeout{[seuthesis]: Using GBK encoding}
@@ -627,11 +670,11 @@
     {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}%
     \makeindex%
     \wuhao%
-    \linespacing{1.4}
+    \linespacing{\mainlineskip}
   }
 \fi
-\RequirePackage{CJKnumb}
 \AtEndDocument{\end{CJK*}}
+\RequirePackage{CJKnumb}
 %    \end{macrocode}
 % 
 % \section{页面设置}
@@ -642,8 +685,13 @@
 % \subsection{页边距}
 %    \begin{macrocode}
 \RequirePackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+%    \end{macrocode}
+%
+% \subsection{标题与目录}
+%    \begin{macrocode}
 \RequirePackage[pagestyles, rm]{titlesec}
 \RequirePackage{titletoc} % 设置目录
+\hypersetup{bookmarksnumbered=true}%书签中章节编号
 %    \end{macrocode}
 % 
 % 
@@ -656,7 +704,7 @@
 \newcommand{\fs}{\CJKfamily{fs}}
 \renewcommand{\rmdefault}{ptm}% 英文默认Time New Roman
 %    \end{macrocode}
-% \subsection{字号}
+% \subsection{字号及间距}
 %    \begin{macrocode}
 \newcommand{\chuhao}{\fontsize{42pt}{46pt}\selectfont}
 \newcommand{\xiaochuhao}{\fontsize{36pt}{40pt}\selectfont}
@@ -672,15 +720,32 @@
 \newcommand{\liuhao}{\fontsize{7.5pt}{9pt}\selectfont}
 \newcommand{\xiaoliuhao}{\fontsize{6.5pt}{7.5pt}\selectfont}
 \newcommand{\qihao}{\fontsize{5.5pt}{6.5pt}\selectfont}
+\setlength{\parskip}{0pt}% 段距
+\newcommand{\mainlineskip}{1.3}% 主行距1.3
+\titlespacing{\section}{0pt}{3.5ex plus .05ex minus .01ex}{2.9ex plus .04ex} % 标题间距
+\titlespacing{\subsection}{0pt}{3ex plus .05ex minus .01ex}{2ex plus .04ex}
+\titlespacing{\subsubsection}{0pt}{1.5ex plus .05ex minus .01ex}{1ex plus .01ex}
+%    \end{macrocode}
+% \begin{macro}{\linespacing}\IndexCmd{linespacing}
+%    \begin{macrocode}
 \newcommand{\linespacing}[1]{\linespread{#1}\selectfont}% 行距命令
 %    \end{macrocode}
+% \end{macro}
 % 
 % \subsection{超文本格式}
 %    \begin{macrocode}
+\ifnocolorlinks
+\hypersetup{colorlinks=false}
+\else
+\hypersetup{colorlinks=true}
+\fi
 \hypersetup{
-  colorlinks,
   linkcolor=blue,
-  citecolor=green
+  anchorcolor=black,
+  citecolor=olive,
+  filecolor=magenta,
+  menucolor=red,
+  urlcolor=magenta
 }
 %    \end{macrocode}
 % \subsection{页眉、页脚}
@@ -694,18 +759,24 @@
 %    \begin{macrocode}
 \newpagestyle{seustyle}{
   \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][] % 偶数页
-  {}{{\song\xiaowuhao\chaptername\quad\chaptertitle}}{} % 奇数页
+  {}{{\song\xiaowuhao\chaptertitlename\quad\chaptertitle}}{} % 奇数页
   \setfoot{}{\thepage}{}
   \headrule
-}
-\renewpagestyle{plain}{
-  \setfoot{}{\thepage}{}
 }
 \newpagestyle{seufrontstyle}{
   \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][]
   {}{{\song\xiaowuhao东南大学\@degree学位论文}}{}
   \setfoot{}{\thepage}{}
   \headrule
+}
+\newpagestyle{seunolabelstyle}{
+  \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][]
+  {}{{\song\xiaowuhao\chaptertitle}}{}
+  \setfoot{}{\thepage}{}
+  \headrule
+}
+\renewpagestyle{plain}{
+  \setfoot{}{\thepage}{}
 }
 % 
 %    \end{macrocode}
@@ -901,21 +972,28 @@
     pdfauthor={\@author},
     pdftitle={\universityname{}\@academicdegree}, %文件标题
     pdfsubject={\@title \@subtitle}, %文件主题
-    pdfcreator={The \seuthesis{} class (v \fileversion)}, % 应用程序
-    bookmarksnumbered=true %书签中章节编号
+    pdfcreator={The \seuthesis{} class (v \fileversion)} % 应用程序
   }
 
+  \pagestyle{empty}
+  \ifdoublecover
+  \cleardoublepage
+  \else\fi
   \chinesecover
 
   \ifbachelordegree
   \frontmatter
-  \pagestyle{seufrontstyle}
   \else
+  \ifdoublecover
+  \cleardoublepage
+  \else\fi
   \englishcover % 英文封面
   \frontmatter % 开始正文之前的部分
-  \pagestyle{seufrontstyle}
+  \pagestyle{seufrontstyle}\clearpage
+  \thispagestyle{seufrontstyle}
   \seudeclare % 独创性和使用授权声明
   \fi
+  \pagestyle{seunolabelstyle}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1040,7 +1118,7 @@
 
     \vfill
 
-    {\song\sihao\centerline{\@date} \par}
+    {\song\sihao\centerline{\today} \par}
 
   \end{titlepage}
 }
@@ -1244,9 +1322,12 @@
 %    \begin{macrocode}
 \newenvironment{Main}
 {
-  {\linespacing{1.0}%
-  \song\sihao%
-  \tableofcontents \par} %目录部分字体可采用4号宋体。
+  \cleardoublepage
+  {\linespacing{1.15}%
+  \song\xiaosihao%
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\@contentsnametoc}
+  \tableofcontents \par} %目录部分字体可采用小四号宋体。
 
   \pagestyle{seustyle}
   \mainmatter % 开始正文部分
@@ -1266,10 +1347,11 @@
 % \subsection{图、表浮动设置} 
 % 放宽松浮动的比例参数
 %    \begin{macrocode}
-\renewcommand{\textfraction}{0.15}
-\renewcommand{\topfraction}{0.85}
-\renewcommand{\bottomfraction}{0.65}
-\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{totalnumber}{6}
 %    \end{macrocode}
 %
 % \section{参考文献}
@@ -1290,17 +1372,53 @@
 % 定义参考文献样式
 %    \begin{macrocode}
 \bibliographystyle{seuthesis}
-\makeatletter                   % Reference list option change
-\renewcommand\@biblabel[1]{#1}  %   from [1] to 1
-\makeatother                    %
+\renewcommand\@biblabel[1]{#1}  % Reference list option change from [1] to 1
 %    \end{macrocode}
 %
 % \section{正文之后部分}
+% \subsection{致谢}
+% \begin{environment}{Thanks}\IndexEnv{Thanks}
+%    \begin{macrocode}
+\newenvironment{Thanks}[1][\@thankstitle]
+{%
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\@thankstitletoc}
+  \chapter*{#1}
+  \song\wuhao
+}{\par}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsection{附录}
+% \begin{environment}{Appendix}\IndexEnv{Appendix}
+%    \begin{macrocode}
+\newenvironment{Appendix}
+{\@mainmattertrue\appendix\titlecontentsappendix}{\@mainmatterfalse\par}
+%    \end{macrocode}
+% \end{environment}
+%
+% \subsection{作者简介}
+% \begin{environment}{Resume}\IndexEnv{Resume}
+%    \begin{macrocode}
+\newenvironment{Resume}[1][\@resumetitle]
+{%
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\@resumetitletoc}
+  \chapter*{#1}
+  \song\wuhao
+}{\par}
+%    \end{macrocode}
+% \end{environment}
+%
 % \subsection{封底}
+% \begin{macro}{\backcover}\IndexCmd{backcover}
 %    \begin{macrocode}
 \newcommand{\backcover}{
   \pagestyle{empty}
-  \begin{picture}(0,0)(0,650)
+  \clearpage
+  \begin{picture}(0,0)(20,650)
     {\includegraphics[width=\textwidth,bb=0 0 2424 3508]{figures/back-cover.png}}
   \end{picture}
 }
@@ -1309,6 +1427,7 @@
 \fi
 %</cls> 
 %    \end{macrocode}
+% \end{macro}
 
 
 % \section{中文关键字映射}
@@ -1340,7 +1459,7 @@
 \newcommand{\@abstracttitle}{摘\quad 要}
 \newcommand{\@abstracttitletoc}{摘要}
 \newcommand{\@terminologytitle}{本论文专用术语的注释表}
-\renewcommand{\bibname}{参考文献}
+\renewcommand{\today}{\the\year~年~\the\month~月~\the\day~日}
 % 本科论文需要
 \newcommand{\addresspre}{设计地点}
 \newcommand{\bachelortitle}{毕业设计（论文）报告}
@@ -1424,31 +1543,58 @@
 % \subsubsection{目录}
 %    \begin{macrocode}
 \renewcommand{\contentsname}{目\quad 录}
+\makeatletter
+\newcommand{\@contentsnametoc}{目录}
+\makeatother
+\newcommand{\titlecontentschapter}{%
 \titlecontents{chapter}[0pt]{\vspace{.5\baselineskip}\bfseries}
 {第\CJKnumber{\thecontentslabel}章\quad}{}
 {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+}
+\newcommand{\titlecontentsappendix}{%
+\titlecontents{chapter}[0pt]{\vspace{.5\baselineskip}\bfseries}
+{附录 \thecontentslabel\quad}{}
+{\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+}
+\titlecontentschapter % 使目录格式生效
 %    \end{macrocode}
 % 
 % \subsection{正文}
 % \subsection{章节标题}
 % 三号黑体居中
 %    \begin{macrocode}
-\titleformat{\chapter}[hang]{\centering\hei\sanhao}{\chaptername}{1em}{}%三号黑体居中
 \renewcommand{\chaptername}{第\CJKnumber{\thechapter}章}
-\titleformat{\section}[hang]{\song\sihao\bfseries}{\thesection}{1em}{}%四号宋体（粗体）居左
-\titleformat{\subsection}[hang]{\song\xiaosihao}{\thesubsection}{1em}{}% 小四
+\renewcommand{\appendixname}{附录 \thechapter}
+\titleformat{\chapter}[hang]{\centering\hei\sanhao}{\chaptertitlename}{1em}{}%三号黑体居中
+\titleformat{\section}[hang]{\song\sihao\bfseries}{\thesection}{1ex}{}%四号宋体（粗体）居左
+\titleformat{\subsection}[hang]{\song\xiaosihao}{\thesubsection}{1ex}{}% 小四
+\titleformat{\subsubsection}[hang]{\song\wuhao}{\thesubsubsection}{1ex}{}% 五号
 \setcounter{secnumdepth}{3}
-\titleformat{\subsubsection}[hang]{\song\xiaosihao}{\thesubsubsection}{1em}{}% 小四
 %    \end{macrocode}
-% \begin{macro}{\refsec}\IndexCmd{refsec}
-%    \begin{macrocode}
-\newcommand{\refsec}[1]{\hyperref[#1]{\ref*{#1}节}}
-%    \end{macrocode}
-% \end{macro}
 % 
 % \begin{macro}{\refchapter}\IndexCmd{refchapter}
 %    \begin{macrocode}
-\newcommand{\refchapter}[1]{\hyperref[#1]{第\ref*{#1}章}}
+\newcommand{\refchapter}[1]{\hyperref[#1]{第 \ref*{#1} 章}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\refappendix}\IndexCmd{refappendix}
+%    \begin{macrocode}
+\newcommand{\refappendix}[1]{\hyperref[#1]{附录 \ref*{#1}}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\refsec}\IndexCmd{refsec}
+%    \begin{macrocode}
+\newcommand{\refsec}[1]{\hyperref[#1]{\ref*{#1} 节}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\refsubsec}\IndexCmd{refsubsec}
+%    \begin{macrocode}
+\newcommand{\refsubsec}[1]{\hyperref[#1]{\ref*{#1} 小节}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\refsubsubsec}\IndexCmd{refsubsubsec}
+%    \begin{macrocode}
+\newcommand{\refsubsubsec}[1]{\hyperref[#1]{\ref*{#1} 子节}}
 %    \end{macrocode}
 % \end{macro}
 % 
@@ -1475,8 +1621,14 @@
 % \subsection{正文之后部分}
 % 
 %    \begin{macrocode}
+\makeatletter
+\newcommand{\@thankstitle}{致\quad 谢}
+\newcommand{\@thankstitletoc}{致谢}
+\newcommand{\@resumetitle}{作者简介~(包括论文和成果清单)}
+\newcommand{\@resumetitletoc}{作者简介}
+\renewcommand{\bibname}{参考文献}
+\makeatother
 \IndexPrologue{\chapter*{索\quad 引}}
-% 
 %</cfg> 
 %    \end{macrocode}
 % 
