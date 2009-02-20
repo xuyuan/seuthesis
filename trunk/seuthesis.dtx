@@ -157,6 +157,7 @@
 
   \section{版本历史}
   \begin{description}
+  \item[1.3] 2009/02/19，增加A3封面制作工具，优化版式。
   \item[1.2] 2008/08/12，启用研究生学位论文新封面，完善对东南大学本科论文的支持。
   \item[1.1] 2008/05/16，增加对东南大学本科论文的支持。
   \item[1.0] 2008/03/19，第一个完整版，包含了参考文献格式等完善。
@@ -993,7 +994,6 @@
   \thispagestyle{seufrontstyle}
   \seudeclare % 独创性和使用授权声明
   \fi
-  \pagestyle{seunolabelstyle}
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1374,6 +1374,11 @@
 %    \begin{macrocode}
 \bibliographystyle{seuthesis}
 \renewcommand\@biblabel[1]{#1}  % Reference list option change from [1] to 1
+\let\orig@bibliography=\bibliography
+\renewcommand{\bibliography}[1]{
+  \orig@bibliography{#1}
+  \pagestyle{seunolabelstyle}\clearpage % 使参考文献使用 seunolabel 页面样式
+  \pagestyle{seufrontstyle}} % 恢复原有样式给后续部分
 %    \end{macrocode}
 %
 % \section{正文之后部分}
@@ -1396,14 +1401,12 @@
 %    \begin{macrocode}
 \newenvironment{Appendix}
 {%
-  \pagestyle{seunolabelstyle}\clearpage
+  \pagestyle{seustyle}
   \@mainmattertrue
   \appendix
-  \pagestyle{seustyle}
   \titlecontentsappendix
 }{\@mainmatterfalse\par
   \thispagestyle{seustyle}\clearpage
-  \pagestyle{seunolabelstyle}
 }
 %    \end{macrocode}
 % \end{environment}
@@ -1413,7 +1416,6 @@
 %    \begin{macrocode}
 \newenvironment{Resume}[1][\@resumetitle]
 {%
-  \pagestyle{seufrontstyle}
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\@resumetitletoc}
