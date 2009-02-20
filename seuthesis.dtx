@@ -616,6 +616,7 @@
 % \section{依赖的其它宏包}
 %    \begin{macrocode}
 \RequirePackage{doc}
+\RequirePackage{keyval}
 \RequirePackage{ifpdf}
 \RequirePackage{ifthen}
 \ifpdf
@@ -698,11 +699,22 @@
 % 
 % \subsection{字体}
 %    \begin{macrocode}
-\newcommand{\song}{\CJKfamily{song}}
-\newcommand{\lishu}{\CJKfamily{li}}
-\newcommand{\hei}{\CJKfamily{hei}}
-\newcommand{\kai}{\CJKfamily{kai}}
-\newcommand{\fs}{\CJKfamily{fs}}
+\newcommand{\@fn@song}{song}
+\newcommand{\@fn@fs}{fs}
+\newcommand{\@fn@kai}{kai}
+\newcommand{\@fn@hei}{hei}
+\newcommand{\@fn@li}{li}
+\define@key{font}{song}{\renewcommand{\@fn@song}{#1}}
+\define@key{font}{fs}{\renewcommand{\@fn@fs}{#1}}
+\define@key{font}{kai}{\renewcommand{\@fn@kai}{#1}}
+\define@key{font}{hei}{\renewcommand{\@fn@hei}{#1}}
+\define@key{font}{li}{\renewcommand{\@fn@li}{#1}}
+\newcommand{\STfontsetup}[1]{\setkeys{font}{#1}}
+\newcommand{\song}{\CJKfamily{\@fn@song}}
+\newcommand{\lishu}{\CJKfamily{\@fn@li}}
+\newcommand{\hei}{\CJKfamily{\@fn@hei}}
+\newcommand{\kai}{\CJKfamily{\@fn@kai}}
+\newcommand{\fs}{\CJKfamily{\@fn@fs}}
 \renewcommand{\rmdefault}{ptm}% 英文默认Time New Roman
 %    \end{macrocode}
 % \subsection{字号及间距}
