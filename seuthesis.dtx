@@ -605,6 +605,16 @@
 \DeclareOption{printedition}{\doublecovertrue\nocolorlinkstrue}
 %    \end{macrocode}
 % \end{macro}
+% \begin{macro}{printoneside}
+%   单面打印。注意不要使用标准的 \emph{oneside} 选项。
+%    \begin{macrocode}
+\newif\ifstoneside\stonesidefalse
+\DeclareOption{printoneside}{%
+  \PassOptionsToClass{openany}{scrbook}
+  \stonesidetrue
+}
+%    \end{macrocode}
+% \end{macro}
 % 将选项传递给\emph{scrbook}类。
 %    \begin{macrocode}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
@@ -742,6 +752,17 @@
 % \begin{macro}{\linespacing}\IndexCmd{linespacing}
 %    \begin{macrocode}
 \newcommand{\linespacing}[1]{\linespread{#1}\selectfont}% 行距命令
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\stcleardp}\IndexCmd{stcleardp}
+%    \begin{macrocode}
+\newcommand{\stcleardp}{%
+  \ifstoneside
+  \clearpage
+  \else
+  \cleardoublepage
+  \fi
+}
 %    \end{macrocode}
 % \end{macro}
 % 
@@ -990,7 +1011,7 @@
 
   \pagestyle{empty}
   \ifdoublecover
-  \cleardoublepage
+  \stcleardp
   \else\fi
   \chinesecover
 
@@ -998,7 +1019,7 @@
   \frontmatter
   \else
   \ifdoublecover
-  \cleardoublepage
+  \stcleardp
   \else\fi
   \englishcover % 英文封面
   \frontmatter % 开始正文之前的部分
@@ -1239,7 +1260,7 @@
 {
   \newcommand{\@keywords}{#1}
   \hypersetup{pdfkeywords={\@keywords}}
-  \cleardoublepage
+  \stcleardp
   \phantomsection
   \addcontentsline{toc}{chapter}{\@abstracttitletoc}
   \ifbachelordegree
@@ -1279,7 +1300,7 @@
 \newenvironment{englishabstract}[1]
 {
   \newcommand{\@keywords}{#1}
-  \cleardoublepage
+  \stcleardp
   \phantomsection
   \addcontentsline{toc}{chapter}{Abstract}
   \ifbachelordegree
@@ -1318,7 +1339,7 @@
 %    \begin{macrocode}
 \newenvironment{terminology}[1][\@terminologytitle]
 {
-  \cleardoublepage
+  \stcleardp
   \phantomsection
   \addcontentsline{toc}{chapter}{#1}
   \chapter*{#1}
@@ -1334,7 +1355,7 @@
 %    \begin{macrocode}
 \newenvironment{Main}
 {
-  \cleardoublepage
+  \stcleardp
   {\linespacing{1.15}%
   \song\xiaosihao%
   \phantomsection
@@ -1399,7 +1420,7 @@
 %    \begin{macrocode}
 \newenvironment{Thanks}[1][\@thankstitle]
 {%
-  \cleardoublepage
+  \stcleardp
   \phantomsection
   \addcontentsline{toc}{chapter}{\@thankstitletoc}
   \chapter*{#1}
@@ -1428,7 +1449,7 @@
 %    \begin{macrocode}
 \newenvironment{Resume}[1][\@resumetitle]
 {%
-  \cleardoublepage
+  \stcleardp
   \phantomsection
   \addcontentsline{toc}{chapter}{\@resumetitletoc}
   \chapter*{#1}
