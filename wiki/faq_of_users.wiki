@@ -1,5 +1,5 @@
 #summary 常见问题及解决方法.
-有问题请先看 seuthesis.pdf，再看本 FAQ，最后实在没招，就去[http://bbs.seu.edu.cn/bbsdoc.php?board=TeX 这里]。
+有问题请先看 seuthesis.pdf，再看本 FAQ，最后实在没招，就去[http://bbs.seu.edu.cn/bbsdoc.php?board=TeX 这里] 提问。
 
 *Q:* 为什么我的 sample.tex 之类的文件打开是乱码？
 
