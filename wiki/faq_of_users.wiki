@@ -1,4 +1,9 @@
 #summary 常见问题及解决方法.
+有问题请先看 seuthesis.pdf，再看本 FAQ，最后实在没招，就去[http://bbs.seu.edu.cn/bbsdoc.php?board=TeX 这里]。
+
+*Q:* 为什么我的 sample.tex 之类的文件打开是乱码？
+
+*A:* 请注意：seuthesis 默认为 [http://zh.wikipedia.org/wiki/UTF-8 utf-8] 编码。如果您是 windows用户，推荐您也使用 utf-8 编码您的论文，这样做会减少很多问题。当然您也可以使用 gbk 编码，此时您需要指定编码:`\documentclass[gbk]{seuthesis}`。
 
 *Q:* 不知道大家注意到没有，在使用seuthesis写论文时，当论文中出现中英文摘要、列出所有 
 图表（\listoftables、\listoffigures、\listoflistings）时出现一些空白页，
