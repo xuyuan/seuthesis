@@ -1,6 +1,10 @@
 #summary 常见问题及解决方法.
 有问题请先看 seuthesis.pdf，再看本 FAQ，最后实在没招，就去[http://bbs.seu.edu.cn/bbsdoc.php?board=TeX 这里] 提问。
 
+*Q:* 为什么 seuthesis 编译不通过。
+
+*A:* 这个可能原因有很多。不过用 texlive 并且 CJK 字体设置好的话，肯定能通过编译。其他发行版的问题我暂时不知道，_*知道的请 [mailto://dongjianning1990@gmail.com mail] 我，或者留下 comments*_。
+
 *Q:* 为什么我的 sample.tex 之类的文件打开是乱码？
 
 *A:* 请注意：seuthesis 默认为 [http://zh.wikipedia.org/wiki/UTF-8 utf-8] 编码。如果您是 windows用户，推荐您也使用 utf-8 编码您的论文，这样做会减少很多问题。当然您也可以使用 gbk 编码，此时您需要指定编码:`\documentclass[gbk]{seuthesis}`。
