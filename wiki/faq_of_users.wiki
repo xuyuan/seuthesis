@@ -1,6 +1,10 @@
 #summary 常见问题及解决方法.
 有问题请先看 seuthesis.pdf，再看本 FAQ，最后实在没招，就去[http://bbs.seu.edu.cn/bbsdoc.php?board=TeX 这里] 提问。
 
+*Q:* 怎样在 texlive 2009 里使用 seuthesis？
+
+*A:* TeXLive 2009 完美支持中文，无需中文定制包！之前用 fontforge 生成中文字体或者满世界找配置好的中文包的日子结束了（请参阅[http://bbs.seu.edu.cn/bbscon.php?bid=230&id=2827&ftype=3&num=199 这里]）。要在 2009 里使用 seuthesis，只需在 seuthesis.cls 里的 `\AtBeginDocument` 下面加上 `\input zhwinfonts`，在`\AtEndDocument` 里面加上`\newpage`，然后用 `latex+dvipdfmx` 的方法编译就OK了。
+
 *Q:* 为什么 seuthesis 编译不通过。
 
 *A:* 这个可能原因有很多。不过用 texlive 并且 CJK 字体设置好的话，肯定能通过编译。其他发行版的问题我暂时不知道，_*知道的请 [mailto://dongjianning1990@gmail.com mail] 我，或者留下 comments*_。
