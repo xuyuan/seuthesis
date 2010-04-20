@@ -150,12 +150,12 @@
 	\vspace{-1mm}
   
 	\begin{abstract}{\@keywords}
-	\@abstract
+	\@abstrac
 	\end{abstract}
 
 	\maketitleeng
 	\begin{engabstract}{\@keywordseng}
-	\@abstracteng
+	\@abstracten
 	\end{engabstract}
 
 	\vspace{1em}
