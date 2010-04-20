@@ -1,9 +1,8 @@
 % \iffalse meta-comment
 % 
-% Copyright (C) 2007, 2008, 2009 by Xu Yuan <xuyuan.cn@gmail.com>
+% Copyright (C) 2007 - 2010 by Xu Yuan <xuyuan.cn@gmail.com>
 % Song Yihan <syhannnn@gmail.com>
 % Nobel Huang <nobel1984@gmail.com>
-% $Id$
 % 
 % This file is part of the seuthesis package project.
 % http://seuthesis.googlecode.com/
@@ -37,7 +36,7 @@
 % 
 % \iffalse
 %<*driver> 
-\ProvidesFile{seuthesis.dtx}[2009/2/19 1.3.0 Southeast University Thesis Template]
+\ProvidesFile{seuthesis.dtx}[2010/04/20 2.0.0 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -133,12 +132,11 @@
   在硕士论文完成之际，\seuthesis{}的第一个完整版也诞生了，使用CJK实现中
   文支持，并在在google建立项目:\url{http://seuthesis.googlecode.com/}。
   之后宋翊涵同学为模板加入了对东南大学本科论文的支持，黄小雨同学在写硕
-  士论文期间对模板进行了完善。模板的格式尽量满足东南大学研究生院和教务
-  处的要求，当然由于水平有限其中错漏在所难免，我们欢迎东大
-  的\LaTeX{}er一起参加开发和完善。
+  士论文期间对模板进行了完善。
 
-  如果您对开发和完善\seuthesis{}感兴趣、有任何想法或建议，请与我
-  们联系。
+  模板的格式尽量满足东南大学研究生院和教务处的要求，当然由于水平有限其
+  中错漏在所难免，我们欢迎东大的\LaTeX{}er一起参加开发和完善。如果您对
+  开发和完善\seuthesis{}感兴趣、有任何想法或建议，请与我们联系。
 
   \section{版权声明}
   \begin{flushleft}
@@ -157,6 +155,7 @@
 
   \section{版本历史}
   \begin{description}
+  \item[2.0] 2010/04/20，使用xeCJK，避免字体安装。
   \item[1.3] 2009/02/19，增加A3封面制作工具，优化版式。
   \item[1.2] 2008/08/12，启用研究生学位论文新封面，完善对东南大学本科论文的支持。
   \item[1.1] 2008/05/16，增加对东南大学本科论文的支持。
@@ -184,8 +183,8 @@
   将宏包中的文件与~\TeX{}~主文件放在同一目录下即可，当然也可以安装
   到~\TeX{}~系统中，不过需要注意是参考文献样式文件 \texttt{.bst} 必须置于 \texttt{TEXMF/bibtex/bst}目录或子目录下。
 
-  本模板在~\texttt{texlive2008}~和~\texttt{MiKTex2.7}~下编译通过。如有您在使用中有
-  任何问题，欢迎与我联系。
+  本模板在~\texttt{texlive2009}~和~\texttt{MiKTex2.7}~下使用 XeLaTeX 编译通过。如有
+  您在使用中有任何问题，欢迎与我联系。
 
   \chapter{使用说明}
   \begin{quote}
@@ -227,7 +226,7 @@
 
   \section{例子} 也许一个例子更能说清楚，下面就是使用本宏包的简要例子。
   这个例子就是宏包中的~\texttt{sample.tex}~文件，可以使用~\texttt{make
-    sample}~命令来编译这个例子。
+    sample}~或者~\texttt{xelatex sample}~命令来编译这个例子。
 
   \verbatiminput{sample}
 
@@ -510,7 +509,7 @@
 
 \begin{flushright}
   \kai
-  \makebox[6cm][c]{许~元}\\
+  \makebox[6cm][c]{许\quad{}元}\\
   2008年3月19日于东南大学河海院
 \end{flushright}
 \end{Thanks}
@@ -518,6 +517,24 @@
 \bibliography{seuthesis}
 
 \begin{Appendix}
+  \chapter{常见问题}
+
+  \section{为什么我的 sample.tex 之类的文件打开是乱码？}
+
+  seuthesis 默认为 utf-8 编码。如果您是 windows用户，推荐您也使
+  用 utf-8 编码您的论文，这样做会减少很多问题。
+
+  \section{在使用seuthesis写论文时，当论文中出现中英文摘要、列出所有图
+    表（\texttt{\textbackslash{}listoftables}、
+    \texttt{\textbackslash{}listoffigures}、
+    \texttt{\textbackslash{}listoflistings}）时出现一些空白页，即使第二
+    页没有内容仍然会产生出来，这样很影响美观。}
+
+  其实这个不是问题，空白页是因为模板默认为双面打印，插入空白页保证每一
+  章的第一页在奇数页，这样设计是为了美观。如果想去掉加参数就可以
+  了 \texttt{\textbackslash{}documentclass[oneside]{seuthesis}}。 使用
+  时，可以编译一个“电子版” 一个“打印版”。
+
   \chapter{文件}
   \begin{itemize}
   \item 源文件：
@@ -550,24 +567,16 @@
 %</driver> 
 % 
 %<cls> \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls> \ProvidesClass{seuthesis}[2009/2/19 1.3.0 The LaTeX template for thesis of Southeast University]
-%<cls> \typeout{Document Class `seuthesis' v1.3 by Xu Yuan, Song Yihan, Huang Xiaoyu (2009/2/19)}
+%<cls> \ProvidesClass{seuthesis}[2010/04/20 2.0.0 The LaTeX template for thesis of Southeast University]
+%<cls> \typeout{Document Class `seuthesis' v2.0.0 by Xu Yuan, Song Yihan, Huang Xiaoyu (2010/04/20)}
 % \fi
 % 
 % \section{本宏包的选项}
-% \begin{macro}{unicode/gbk}
-%    \begin{macrocode}
-%<*cls>      
-\newif\ifseuunicode\seuunicodetrue
-\DeclareOption{gbk}{\seuunicodefalse}
-\DeclareOption{unicode}{\seuunicodetrue}
-%    \end{macrocode}
-% \end{macro}
-% 
 % \begin{macro}{bachelor/master/doctor}
 %   默认为申请硕士学位(\OPTmaster)，博士(\OPTdoctor)、本科学
 %   位(\OPTbachelor)、工程硕士(\OPTengineering)作为可选项。
 %    \begin{macrocode}
+%<*cls>
 \newif\ifbachelordegree\bachelordegreefalse
 \newif\ifmasterdegree\masterdegreetrue
 \newif\ifengineering\engineeringfalse
