@@ -65,7 +65,7 @@
 \secretlevel{公开} %学位论文密级分为“公开”、“内部”、“秘密”和“机密”四种
 \studentid{050962} %学号要完整，前面的零不能省略。
 
-\title{\seuthesis{}~宏包（\fileversion版）} % 中文标题
+\title{\seuthesis{}~宏包（\fileversion{}版）} % 中文标题
 {——东南大学学位论文~\LaTeX{}~模板} % 中文副标题
 {The \seuthesis{} class (version \fileversion)} % 英文标题
 {--- The \LaTeX{} template for thesis of Southeast University}%英文副标题
@@ -232,15 +232,6 @@
   \verbatiminput{sample}
 
   \section{选项}
-  \label{sec:use:opt}
-  \subsection{编码选项}
-  \newcommand{\OPTunicode}{\IndexOpt{unicode}}
-  \newcommand{\OPTgbk}{\IndexOpt{gbk}}
-  \begin{description}
-  \item[\OPTunicode] （默认）使用~UNICODE~编码；
-  \item[\OPTgbk] 使用~GBK~编码。 
-  \end{description}
-
   \subsection{学位选项}
   \newcommand{\OPTbachelor}{\IndexOpt{bachelor}}
   \newcommand{\OPTmaster}{\IndexOpt{master}}
@@ -563,7 +554,6 @@
 % 
 % \section{本宏包的选项}
 % \begin{macro}{unicode/gbk}
-%   默认使用\OPTunicode编码，\OPTgbk作为可选项
 %    \begin{macrocode}
 %<*cls>      
 \newif\ifseuunicode\seuunicodetrue
@@ -653,18 +643,23 @@
 %    \end{macrocode}
 % 
 % \subsection{编码}
-% 选择\OPTgbk编码还是\OPTunicode编码
 %    \begin{macrocode}
 \ifseuunicode% 使用unicode
 \typeout{[seuthesis]: Using UNICODE encoding}
-\RequirePackage{CJKutf8} %中文支持unicode
+\RequirePackage[CJKnumber]{xeCJK}
+\newlength\CJK@twochars
+\def\CJK@spaceChar{\Unicode{48}{7}}
+\def\CJKindent{%
+    \settowidth\CJK@twochars{\CJK@spaceChar\CJK@spaceChar}%
+    \parindent\CJK@twochars}
+
 \ifpdf
 \RequirePackage{hyperref}
 \else %配置dvipdfmx
 \RequirePackage[dvipdfmx]{hyperref}
 \fi
 \hypersetup{unicode=true}
-\AtBeginDocument{\begin{CJK*}{UTF8}{song}\CJKtilde\CJKindent\CJKcaption{zh-Hans}%
+\AtBeginDocument{\CJKindent{}%
     \InputIfFileExists{seuthesis-utf8.cfg}% 引入配置文件
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg successfully!}}%
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}%
@@ -685,7 +680,7 @@
     \linespacing{\mainlineskip}
   }
 \fi
-\AtEndDocument{\end{CJK*}}
+\AtEndDocument{}
 \RequirePackage{CJKnumb}
 %    \end{macrocode}
 % 
@@ -709,23 +704,19 @@
 % 
 % \subsection{字体}
 %    \begin{macrocode}
-\newcommand{\@fn@song}{song}
-\newcommand{\@fn@fs}{fs}
-\newcommand{\@fn@kai}{kai}
-\newcommand{\@fn@hei}{hei}
-\newcommand{\@fn@li}{li}
-\define@key{font}{song}{\renewcommand{\@fn@song}{#1}}
-\define@key{font}{fs}{\renewcommand{\@fn@fs}{#1}}
-\define@key{font}{kai}{\renewcommand{\@fn@kai}{#1}}
-\define@key{font}{hei}{\renewcommand{\@fn@hei}{#1}}
-\define@key{font}{li}{\renewcommand{\@fn@li}{#1}}
-\newcommand{\STfontsetup}[1]{\setkeys{font}{#1}}
-\newcommand{\song}{\CJKfamily{\@fn@song}}
-\newcommand{\lishu}{\CJKfamily{\@fn@li}}
-\newcommand{\hei}{\CJKfamily{\@fn@hei}}
-\newcommand{\kai}{\CJKfamily{\@fn@kai}}
-\newcommand{\fs}{\CJKfamily{\@fn@fs}}
-\renewcommand{\rmdefault}{ptm}% 英文默认Time New Roman
+\setCJKmainfont{SimSun}
+\setCJKfamilyfont{zhsong}{SimSun}
+\newcommand{\song}{\CJKfamily{zhsong}}
+\setCJKfamilyfont{zhlishu}{SimSun}
+\newcommand{\lishu}{\CJKfamily{zhlishu}}
+\setCJKfamilyfont{zhhei}{SimHei}
+\newcommand{\hei}{\CJKfamily{zhhei}}
+\setCJKfamilyfont{zhkai}{KaiTi}
+\newcommand{\kai}{\CJKfamily{zhkai}}
+\setCJKfamilyfont{zhfs}{FangSong}
+\newcommand{\fs}{\CJKfamily{zhfs}}
+\setCJKfamilyfont{zhSTZhongsong}{STZhongsong}
+\newcommand{\STZhongsong}{\CJKfamily{zhSTZhongsong}}
 %    \end{macrocode}
 % \subsection{字号及间距}
 %    \begin{macrocode}
@@ -792,20 +783,20 @@
 % \end{quote}
 %    \begin{macrocode}
 \newpagestyle{seustyle}{
-  \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][] % 偶数页
-  {}{{\song\xiaowuhao\chaptertitlename\quad\chaptertitle}}{} % 奇数页
+  \sethead[][{\song{}\xiaowuhao{}东南大学\@degree{}学位论文}][] % 偶数页
+  {}{{\song{}\xiaowuhao{}\chaptertitlename\quad\chaptertitle}}{} % 奇数页
   \setfoot{}{\thepage}{}
   \headrule
 }
 \newpagestyle{seufrontstyle}{
-  \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][]
-  {}{{\song\xiaowuhao东南大学\@degree学位论文}}{}
+  \sethead[][{\song{}\xiaowuhao{}东南大学\@degree{}学位论文}][]
+  {}{{\song{}\xiaowuhao{}东南大学\@degree{}学位论文}}{}
   \setfoot{}{\thepage}{}
   \headrule
 }
 \newpagestyle{seunolabelstyle}{
-  \sethead[][{\song\xiaowuhao东南大学\@degree学位论文}][]
-  {}{{\song\xiaowuhao\chaptertitle}}{}
+  \sethead[][{\song{}\xiaowuhao{}东南大学\@degree{}学位论文}][]
+  {}{{\song{}\xiaowuhao{}\chaptertitle}}{}
   \setfoot{}{\thepage}{}
   \headrule
 }
@@ -1532,7 +1523,7 @@
 \newcommand{\academicdegreeeng}{Doctor of Engineering}\relax
 \fi
 \fi
-\newcommand{\@academicdegree}{\@degree学位论文}
+\newcommand{\@academicdegree}{\@degree{}学位论文}
 \makeatother
 %    \end{macrocode}
 % 
@@ -1553,12 +1544,11 @@
     {\hei\sanhao 东南大学学位论文独创性声明}
   \end{center}
 
-  {\CJKindent 本人声明所呈交的学位论文是我个人在导师指导下
-    进行的研究工作及取得的研究成果。尽我所知，除了文中特别加以标注和致
-    谢的地方外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含
-    为获得东南大学或其它教育机构的学位或证书而使用过的材料。与我一同工
-    作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢
-    意。\par}
+  { 本人声明所呈交的学位论文是我个人在导师指导下进行的研究工作及取得的
+    研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文中不包
+    含其他人已经发表或撰写过的研究成果，也不包含为获得东南大学或其它教
+    育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的
+    任何贡献均已在论文中作了明确的说明并表示了谢意。\par}
   
   \begin{flushright}
     研究生签名：\signline 日~期：\signline
@@ -1570,12 +1560,11 @@
     {\hei\sanhao 东南大学学位论文使用授权声明}
   \end{center}
 
-  {\CJKindent 东南大学、中国科学技术信息研究所、国家图书馆
-    有权保留本人所送交学位论文的复印件和电子文档，可以采用影印、缩印或
-    其他复制手段保存论文。本人电子文档的内容和纸质论文的内容相一致。除
-    在保密期内的保密论文外，允许论文被查阅和借阅，可以公布（包括刊
-    登）论文的全部或部分内容。论文的公布（包括刊登）授权东南大学研究生
-    院办理。\par}
+  { 东南大学、中国科学技术信息研究所、国家图书馆有权保留本人所送交学位
+    论文的复印件和电子文档，可以采用影印、缩印或其他复制手段保存论文。
+    本人电子文档的内容和纸质论文的内容相一致。除在保密期内的保密论文
+    外，允许论文被查阅和借阅，可以公布（包括刊登）论文的全部或部分内容。
+    论文的公布（包括刊登）授权东南大学研究生院办理。\par}
   
   \begin{flushright}
     研究生签名：\signline 导师签名：\signline 日~期：\signline
