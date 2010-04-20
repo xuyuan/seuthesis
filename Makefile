@@ -42,10 +42,10 @@ ${PACKAGE}.cls: ${SRC}
 	iconv -f utf8 -t gbk ${PACKAGE}-utf8.cfg > ${PACKAGE}-gbk.cfg
 
 ${PACKAGE}.idx: ${PACKAGE}.dtx
-	pdflatex ${PACKAGE}.dtx
+	xelatex ${PACKAGE}.dtx
 
 ${PACKAGE}.bbl: ${PACKAGE}.dtx ${PACKAGE}.bib
-	pdflatex ${PACKAGE}.dtx
+	xelatex ${PACKAGE}.dtx
 	bibtex ${PACKAGE}
 
 ${PACKAGE}.ind: ${PACKAGE}.idx
@@ -53,22 +53,22 @@ ${PACKAGE}.ind: ${PACKAGE}.idx
 #	makeindex -s gglo -o ${PACKAGE}.gls ${PACKAGE}.glo
 
 ${PACKAGE}.pdf: ${PACKAGE}.dtx ${PACKAGE}.cls ${PACKAGE}.ind ${PACKAGE}.bbl
-	pdflatex ${PACKAGE}.dtx
-	pdflatex ${PACKAGE}.dtx
+	xelatex ${PACKAGE}.dtx
+	xelatex ${PACKAGE}.dtx
 
 sample.bbl: seuthesis.bib sample.tex
-	pdflatex sample
+	xelatex sample
 	bibtex sample
 
 sample.pdf: sample.tex ${PACKAGE}.cls sample.bbl
-	pdflatex sample
-	pdflatex sample
+	xelatex sample
+	xelatex sample
 
 # rules of making main (my thesis)
 main.bbl: main.tex content/reference.bib
-	pdflatex main
+	xelatex main
 	bibtex -min-crossrefs=9000 main
 
 main.pdf: ${MAIN_SRC} ${PACKAGE}.cls main.bbl
-	pdflatex main
-	pdflatex main
+	xelatex main
+	xelatex main
