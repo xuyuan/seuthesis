@@ -70,7 +70,7 @@
 {The \seuthesis{} class (version \fileversion)} % 英文标题
 {--- The \LaTeX{} template for thesis of Southeast University}%英文副标题
 
-\author{许~元}{XU Yuan}
+\author{许\quad{}元}{XU Yuan}
 
 \advisor{导师姓名}{教授}{Advisor's Name}{Prof.}
 \coadvisor{副导师}{副教授}{Co-advisor's Name}{Associate Prof.}
@@ -130,12 +130,12 @@
   \chapter{简介} 
   \label{cha:intro}
 
-  在硕士论文完成之际，\seuthesis{}的第一个完整版也诞生了，同时支
-  持~UNICODE~和~GBK~编码，宋翊涵同学为模板加入了对东南大学本科论文的支
-  持。模板的格式尽量满足东南大学研究生院和教务处的要求，当然由于水平有
-  限其中错漏在所难免，我们已在google建立项
-  目:\url{http://seuthesis.googlecode.com/}，欢迎东大的\LaTeX{}er一起参
-  加开发和完善。
+  在硕士论文完成之际，\seuthesis{}的第一个完整版也诞生了，使用CJK实现中
+  文支持，并在在google建立项目:\url{http://seuthesis.googlecode.com/}。
+  之后宋翊涵同学为模板加入了对东南大学本科论文的支持，黄小雨同学在写硕
+  士论文期间对模板进行了完善。模板的格式尽量满足东南大学研究生院和教务
+  处的要求，当然由于水平有限其中错漏在所难免，我们欢迎东大
+  的\LaTeX{}er一起参加开发和完善。
 
   如果您对开发和完善\seuthesis{}感兴趣、有任何想法或建议，请与我
   们联系。
@@ -143,7 +143,7 @@
   \section{版权声明}
   \begin{flushleft}
     \begin{tabular*}{1.0\linewidth}{lcl}
-      版权所有\textcopyright 2007, 2008, 2009  & 许元 & (\url{xuyuan.cn@gmail.com}) \\
+      版权所有\textcopyright 2007 - \the\year & 许\quad{}元 & (\url{xuyuan.cn@gmail.com}) \\
       & 宋翊涵 & (\url{syhannnn@gmail.com}) \\
       & 黄小雨 & (\url{nobel1984@gmail.com}) \\
     \end{tabular*}
@@ -232,6 +232,7 @@
   \verbatiminput{sample}
 
   \section{选项}
+  \label{sec:use:opt}
   \subsection{学位选项}
   \newcommand{\OPTbachelor}{\IndexOpt{bachelor}}
   \newcommand{\OPTmaster}{\IndexOpt{master}}
@@ -540,6 +541,7 @@
   \end{itemize}
 \end{Appendix}
 
+\renewcommand\indexname{索引}
 \printindex
 
 \backcover
@@ -619,9 +621,7 @@
 \RequirePackage{keyval}
 \RequirePackage{ifpdf}
 \RequirePackage{ifthen}
-\ifpdf
-\RequirePackage{ccmap} % 当使用pdflatex编译时生成可拷贝的pdf
-\else\fi
+
 \RequirePackage{graphicx}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{indentfirst}
@@ -641,12 +641,9 @@
 \setdefaultenum{1)}{a)}{i.}{A.}% 设置列表模式
 \setdefaultleftmargin{4ex}{}{}{}{}{}
 %    \end{macrocode}
-% 
-% \subsection{编码}
+%
 %    \begin{macrocode}
-\ifseuunicode% 使用unicode
-\typeout{[seuthesis]: Using UNICODE encoding}
-\RequirePackage[CJKnumber]{xeCJK}
+\RequirePackage[CJKnumber,slantfont,boldfont]{xeCJK}
 \newlength\CJK@twochars
 \def\CJK@spaceChar{\Unicode{48}{7}}
 \def\CJKindent{%
@@ -667,19 +664,6 @@
     \wuhao%
     \linespacing{\mainlineskip}
   }
-\else% 使用GBK
-\typeout{[seuthesis]: Using GBK encoding}
-\RequirePackage{CJK} %中文支持gbk
-\RequirePackage[CJKbookmarks=true]{hyperref}
-\AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKtilde\CJKindent\CJKcaption{GB}%
-    \InputIfFileExists{seuthesis-gbk.cfg}% 引入配置文件
-    {\typeout{[seuthesis]: Load seuthesis-gbk.cfg successfully!}}%
-    {\typeout{[seuthesis]: Load seuthesis-gbk.cfg failed!}}%
-    \makeindex%
-    \wuhao%
-    \linespacing{\mainlineskip}
-  }
-\fi
 \AtEndDocument{}
 \RequirePackage{CJKnumb}
 %    \end{macrocode}
@@ -707,16 +691,13 @@
 \setCJKmainfont{SimSun}
 \setCJKfamilyfont{zhsong}{SimSun}
 \newcommand{\song}{\CJKfamily{zhsong}}
-\setCJKfamilyfont{zhlishu}{SimSun}
-\newcommand{\lishu}{\CJKfamily{zhlishu}}
 \setCJKfamilyfont{zhhei}{SimHei}
 \newcommand{\hei}{\CJKfamily{zhhei}}
 \setCJKfamilyfont{zhkai}{KaiTi}
 \newcommand{\kai}{\CJKfamily{zhkai}}
 \setCJKfamilyfont{zhfs}{FangSong}
 \newcommand{\fs}{\CJKfamily{zhfs}}
-\setCJKfamilyfont{zhSTZhongsong}{STZhongsong}
-\newcommand{\STZhongsong}{\CJKfamily{zhSTZhongsong}}
+\setmainfont{Times New Roman}% 英文默认Time New Roman
 %    \end{macrocode}
 % \subsection{字号及间距}
 %    \begin{macrocode}
