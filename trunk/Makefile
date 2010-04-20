@@ -31,7 +31,7 @@ sample: sample.pdf
 package: ${PACKAGE}.pdf
 
 clean:
-	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.ist *.idx *.ilg *.out *.bak *.bbl *.brf *.blg *.dvi *.ps
+	rm -f *.aux *.log *.toc *.ind *.inx *.gls *.glo *.idx *.ilg *.out *.bak *.bbl *.brf *.blg *.dvi *.ps
 
 distclean: clean
 	rm -f *.cls *.cfg
