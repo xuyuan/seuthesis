@@ -518,22 +518,33 @@
 
 \begin{Appendix}
   \chapter{常见问题}
+  \label{app:faq}
 
-  \section{为什么我的 sample.tex 之类的文件打开是乱码？}
+  \section{为什么 sample.tex 文件打开是乱码？}
+  \label{faq:utf8}
 
-  seuthesis 默认为 utf-8 编码。如果您是 windows用户，推荐您也使
-  用 utf-8 编码您的论文，这样做会减少很多问题。
+  \seuthesis{} 使用 utf-8 编码。如果您是 windows用户，请使用支持 utf-8
+  编码的编辑器。
 
-  \section{在使用seuthesis写论文时，当论文中出现中英文摘要、列出所有图
+  \section{当论文中出现中英文摘要、列出所有图
     表（\texttt{\textbackslash{}listoftables}、
     \texttt{\textbackslash{}listoffigures}、
     \texttt{\textbackslash{}listoflistings}）时出现一些空白页，即使第二
     页没有内容仍然会产生出来，这样很影响美观。}
+  \label{faq:oneside}
 
   其实这个不是问题，空白页是因为模板默认为双面打印，插入空白页保证每一
   章的第一页在奇数页，这样设计是为了美观。如果想去掉加参数就可以
-  了 \texttt{\textbackslash{}documentclass[oneside]{seuthesis}}。 使用
-  时，可以编译一个“电子版” 一个“打印版”。
+  了 \CmdMacro{documentclass}{[oneside]\{sethesis\}}。 使用时，可以编译
+  一个“电子版” 一个“打印版”。
+
+  \section{本科论文标题太长怎么办？}
+  \label{faq:longtitle}
+
+  在要断行的地方插入\CmdMacro{newtitleline}{\{\}}，如：
+\begin{verbatim}
+  \title{汽柴油变频发电机组中永磁发电机\newtitleline{}及整流环节的研究}{}{}{}
+\end{verbatim}
 
   \chapter{文件}
   \begin{itemize}
@@ -560,8 +571,6 @@
 
 \renewcommand\indexname{索引}
 \printindex
-
-\backcover
 
 \end{document}
 %</driver> 
@@ -653,6 +662,7 @@
 %
 %    \begin{macrocode}
 \RequirePackage[CJKnumber,slantfont,boldfont]{xeCJK}
+\RequirePackage{CJKulem}
 \newlength\CJK@twochars
 \def\CJK@spaceChar{\Unicode{48}{7}}
 \def\CJKindent{%
@@ -673,7 +683,7 @@
     \wuhao%
     \linespacing{\mainlineskip}
   }
-\AtEndDocument{}
+\AtEndDocument{\backcover}
 \RequirePackage{CJKnumb}
 %    \end{macrocode}
 % 
@@ -822,6 +832,13 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% \begin{macro}{\newtitleline}\IndexCmd{newtitleline}
+%   \begin{macrocode}
+\newcommand{\newtitleline}{\hfill\\%
+  \hspace*{\fill}\hspace{0em}}
+% \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\advisor}\IndexCmd{advisor}
 %    \begin{macrocode}
 \newcommand{\@advisorname}{}
@@ -1148,7 +1165,7 @@
       \yihao\hei \bachelortitle \\
       \vspace*{60pt}
       {\xiaoerhao\song \titlepre}
-      {\erhao\song \underline{\makebox[18em][c]{\fs\@title}}} \\
+      {\erhao\song \parbox[t]{18em}{\fs\uline{\hfill\@title\hfill}}} \\
       \vspace*{40pt}
       \renewcommand{\arraystretch}{1.5}
       \setlength{\tabcolsep}{0pt}
@@ -1245,6 +1262,7 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{\@abstracttitletoc}
   \ifbachelordegree
+  \renewcommand{\newtitleline}{\\}
   \chapter*{\@title}
 
   \begin{flushright}
