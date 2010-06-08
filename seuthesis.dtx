@@ -1013,6 +1013,11 @@
   \else\fi
   \chinesecover
 
+  \renewcommand*\frontmatter{%
+    \if@twoside\cleardoubleoddpage\else\clearpage\fi
+    \@mainmatterfalse\pagenumbering{Roman}% 大写罗马字母
+  } 
+
   \ifbachelordegree
   \frontmatter
   \else
