@@ -183,8 +183,8 @@
   将宏包中的文件与~\TeX{}~主文件放在同一目录下即可，当然也可以安装
   到~\TeX{}~系统中，不过需要注意是参考文献样式文件 \texttt{.bst} 必须置于 \texttt{TEXMF/bibtex/bst}目录或子目录下。
 
-  本模板在~\texttt{texlive2009}~和~\texttt{MiKTex2.7}~下使用 XeLaTeX 编译通过。如有
-  您在使用中有任何问题，欢迎与我联系。
+  本模板在~\TeX{}\texttt{Live 2010}~和~\texttt{MiKTex2.7}~下使
+  用 \XeLaTeX{} 编译通过。如有您在使用中有任何问题，欢迎与我联系。
 
   \chapter{使用说明}
   \begin{quote}
@@ -637,9 +637,9 @@
 %    \begin{macrocode}
 \RequirePackage{doc}
 \RequirePackage{keyval}
-\RequirePackage{ifpdf}
 \RequirePackage{ifthen}
 
+\RequirePackage{xltxtra}
 \RequirePackage{graphicx}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{indentfirst}
@@ -669,11 +669,7 @@
     \settowidth\CJK@twochars{\CJK@spaceChar\CJK@spaceChar}%
     \parindent\CJK@twochars}
 
-\ifpdf
 \RequirePackage{hyperref}
-\else %配置dvipdfmx
-\RequirePackage[dvipdfmx]{hyperref}
-\fi
 \hypersetup{unicode=true}
 \AtBeginDocument{\CJKindent{}%
     \InputIfFileExists{seuthesis-utf8.cfg}% 引入配置文件
