@@ -475,13 +475,15 @@
   \section{参考文献}
   
   使用\CmdMacro{bibliography}{\{参考文献数据库文件名\}}命令包含文献数据
-  库即可。
+  库即可，中文文献请添加\texttt{language = \{Chinese\}}域。
 
   由于研究生院对参考文献的要求和国标\cite{GBT7714-2005}比较接近，因此本
   模板的参考文献格式文件参考自\citet{wkbst}，但是\citet{wkbst}在使用中
   会报错误，在经过修改之后本人的论文中已不会报错，但不保证所有的文献条
-  目都没有问题，如果您遇到问题请将错误发给我，我会尽力完善它。有关文献
-  中的必需条目和使用注意事项请参考\citet{wkbst,seugs:standard}。
+  目都没有问题，如果您遇到问题请将错误发给我，我会尽力完善它。
+
+  有关文献中的必需条目和使用注意事项请参
+  考\citet{wkbst,seugs:standard}。
   
   \section{附录}
   在参考文献后使用\EnvMacro{Appendix}{}环境进入附录章节的编写。附录可以分为
@@ -545,6 +547,10 @@
 \begin{verbatim}
   \title{汽柴油变频发电机组中永磁发电机\newtitleline{}及整流环节的研究}{}{}{}
 \end{verbatim}
+
+  \section{参考文献中出现乱码，怎么办？}
+
+  在参考文献条目中中英字符之间插入空格。
 
   \chapter{文件}
   \begin{itemize}
@@ -670,7 +676,6 @@
     \parindent\CJK@twochars}
 
 \RequirePackage{hyperref}
-\hypersetup{unicode=true}
 \AtBeginDocument{\CJKindent{}%
     \InputIfFileExists{seuthesis-utf8.cfg}% 引入配置文件
     {\typeout{[seuthesis]: Load seuthesis-utf8.cfg successfully!}}%
@@ -680,7 +685,7 @@
     \linespacing{\mainlineskip}
   }
 \AtEndDocument{\backcover}
-\RequirePackage{CJKnumb}
+
 %    \end{macrocode}
 % 
 % \section{页面设置}
