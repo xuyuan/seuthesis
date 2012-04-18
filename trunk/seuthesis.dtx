@@ -107,6 +107,8 @@
   document, it is better to be read before using \seuthesis{}.
 \end{englishabstract}
 
+\tableofcontents
+
 \begin{terminology}
   \begin{table}
     \centering
@@ -367,6 +369,14 @@
     时，确实需要强调过去的事情或者已经完成的行为才使用过去时、完成时等其他
     时态。可以多采用被动语态，但要避免出现用“This paper”作为主语代替作者
     完成某些研究行为。
+  \end{quote}
+
+  \section{目录}
+  使用\CmdMacro{tableofcontents}{}插入自动生成的目录。
+
+  \begin{quote}
+    目录是论文的大纲，它反映论文的梗概。论文目录要求层次清楚，应将论文
+    的章节按顺序编好页码，页码居页面的右侧并排列整齐。
   \end{quote}
 
   \section{本论文专用术语的注释表} 
@@ -1338,6 +1348,23 @@
 %    \end{macrocode}
 % \end{environment}
 % 
+% \subsection{目录}
+% \begin{macro}{\tableofcontents}
+%    \begin{macrocode}
+\let\tableofcontents@orig=\tableofcontents
+\renewcommand{\tableofcontents}
+{
+  \stcleardp
+  {\linespacing{1.15}%
+  \song\xiaosihao%
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\@contentsnametoc}
+  \tableofcontents@orig \par
+  \pagestyle{seunolabelstyle}\clearpage} %目录部分字体可采用小四号宋体。
+}
+%    \end{macrocode}
+% \end{macro}
+%
 % \subsection{本论文专用术语的注释表}
 % 本论文专用术语（符号、变量、缩略词等）的注释表（任选）
 % \begin{environment}{terminology}\IndexEnv{terminology}
@@ -1348,7 +1375,7 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{#1}
   \chapter*{#1}
-  \song\wuhao
+  \song\xiaosihao
 }{
   \par
 }
@@ -1360,14 +1387,6 @@
 %    \begin{macrocode}
 \newenvironment{Main}
 {
-  \stcleardp
-  {\linespacing{1.15}%
-  \song\xiaosihao%
-  \phantomsection
-  \addcontentsline{toc}{chapter}{\@contentsnametoc}
-  \tableofcontents \par
-  \pagestyle{seunolabelstyle}\clearpage} %目录部分字体可采用小四号宋体。
-
   \pagestyle{seustyle}
   \mainmatter % 开始正文部分
   \song
