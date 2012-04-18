@@ -478,7 +478,7 @@
   \section{致谢} 
 
   在正文结束之后（即\CmdMacro{end\{Main\}}{}之后）使
-  用\EnvMacro{Thanks}{}环境，并在环境内书写致谢内容就可以了。自己的
+  用\EnvMacro{Acknowledgement}{}环境，并在环境内书写致谢内容就可以了。自己的
   姓名和日期放在\EnvMacro{flushright}{}环境中就可以右对齐了，可参
   考\hyperref[cha:acknowledgement]{本文的致谢}。
   
@@ -508,7 +508,7 @@
 
 \end{Main}
 
-\begin{Thanks}
+\begin{Acknowledgement}
 \label{cha:acknowledgement}
 本模板参考了网上的一些文
 档\cite{seugs:standard,seucover,wloo,xrn:thuthesis,xrn:howtopackage,wkbst}，
@@ -524,7 +524,7 @@
   \makebox[6cm][c]{许\quad{}元}\\
   2008年3月19日于东南大学河海院
 \end{flushright}
-\end{Thanks}
+\end{Acknowledgement}
 
 \bibliography{seuthesis}
 
@@ -1495,13 +1495,13 @@
 %
 % \section{正文之后部分}
 % \subsection{致谢}
-% \begin{environment}{Thanks}\IndexEnv{Thanks}
+% \begin{environment}{Acknowledgement}\IndexEnv{Acknowledgement}
 %    \begin{macrocode}
-\newenvironment{Thanks}[1][\@thankstitle]
+\newenvironment{Acknowledgement}[1][\@acknowledgementtitle]
 {%
   \stcleardp
   \phantomsection
-  \addcontentsline{toc}{chapter}{\@thankstitletoc}
+  \addcontentsline{toc}{chapter}{\@acknowledgementtitletoc}
   \chapter*{#1}
   \song\wuhao
 }{\par}
@@ -1745,8 +1745,8 @@
 % 
 %    \begin{macrocode}
 \makeatletter
-\newcommand{\@thankstitle}{致\quad 谢}
-\newcommand{\@thankstitletoc}{致谢}
+\newcommand{\@acknowledgementtitle}{致\quad 谢}
+\newcommand{\@acknowledgementtitletoc}{致谢}
 \newcommand{\@resumetitle}{作者简介~(包括论文和成果清单)}
 \newcommand{\@resumetitletoc}{作者简介}
 \renewcommand{\bibname}{参考文献}
