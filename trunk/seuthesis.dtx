@@ -1002,8 +1002,13 @@
 %    \end{macrocode}
 % \end{macro}
 %
-
-\renewcommand{\thanks}{}
+% \begin{macro}{\thanks}\IndexCmd{thanks}
+%    \begin{macrocode}
+\newif\ifseuthesisthanks\seuthesisthanksfalse
+\newcommand{\seuthesis@thanks}{}
+\renewcommand{\thanks}[1]{\seuthesisthankstrue\renewcommand{\seuthesis@thanks}{#1}}
+%    \end{macrocode}
+% \end{macro}
 %
 % \subsection{封面}
 % 
@@ -1224,7 +1229,9 @@
   \end{center}
 
   \def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
-  \blfootnote{\wuhao}
+  \ifseuthesisthanks
+  \blfootnote{\wuhao\seuthesis@thanks}
+  \fi
 
   \clearpage%
 }
