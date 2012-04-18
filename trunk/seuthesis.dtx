@@ -36,7 +36,7 @@
 % 
 % \iffalse
 %<*driver> 
-\ProvidesFile{seuthesis.dtx}[2010/04/20 2.0.0 Southeast University Thesis Template]
+\ProvidesFile{seuthesis.dtx}[2012/04/17 2.1.0 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -157,6 +157,7 @@
 
   \section{版本历史}
   \begin{description}
+  \item[2.1] 2012/04/17，根据研究生院新规定，增加中文封二。
   \item[2.0] 2010/04/20，使用xeCJK，避免字体安装。
   \item[1.3] 2009/02/19，增加A3封面制作工具，优化版式。
   \item[1.2] 2008/08/12，启用研究生学位论文新封面，完善对东南大学本科论文的支持。
@@ -193,6 +194,7 @@
     学位论文应包括:
     \begin{enumerate}
     \item 中文封面；
+    \item 中文页面；
     \item 英文页面；
     \item 论文独创性声明和使用授权声明；
     \item 中文内容提要及关键词；
@@ -226,9 +228,10 @@
   了之后使用\CmdMacro{maketitle}{}来生成封面、目录等，所以这条命令在设
   置之后正文开始之前使用，后面就可以开始论文了。
 
-  \section{例子} 也许一个例子更能说清楚，下面就是使用本宏包的简要例子。
-  这个例子就是宏包中的~\texttt{sample.tex}~文件，可以使用~\texttt{make
-    sample}~或者~\texttt{xelatex sample}~命令来编译这个例子。
+  \section{例子} 
+  例子最能说明问题，下面通过一个简要的例子来说明怎样使用本宏包。这个例子就是宏
+  包中的\texttt{sample.tex}文件，可以使用\texttt{make sample}或
+  者\texttt{xelatex sample}命令来编译这个例子。
 
   \verbatiminput{sample}
 
@@ -344,6 +347,9 @@
   \CmdMacro{authorizeorganization}{\{学位授予单位\}}，默认为“东南大学”。
   \subsection{设计地点}
   \CmdMacro{address}{\{设计地点\}}，本科论文需要。
+  \subsection{感谢}
+  \CmdMacro{thanks}{\{感谢内容\}}，在中文封二添加脚注，对提供资助或者支
+  持的基金、单位表达感谢。
 
   \section{摘要和关键词}
   \label{sec:use:abstract}
@@ -592,8 +598,8 @@
 %</driver> 
 % 
 %<cls> \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls> \ProvidesClass{seuthesis}[2010/04/20 2.0.0 The LaTeX template for thesis of Southeast University]
-%<cls> \typeout{Document Class `seuthesis' v2.0.0 by Xu Yuan, Song Yihan, Huang Xiaoyu (2010/04/20)}
+%<cls> \ProvidesClass{seuthesis}[2012/04/17 2.0.1 The LaTeX template for thesis of Southeast University]
+%<cls> \typeout{Document Class `seuthesis' v2.0.1 by Xu Yuan, Song Yihan, Huang Xiaoyu (2012/04/17)}
 % \fi
 % 
 % \section{本宏包的选项}
