@@ -1001,6 +1001,10 @@
 \newcommand{\address}[1]{\renewcommand{\@address}{#1}}
 %    \end{macrocode}
 % \end{macro}
+%
+
+\renewcommand{\thanks}{}
+%
 % \subsection{封面}
 % 
 % \begin{macro}{\maketitle}\IndexCmd{maketitle}
@@ -1079,6 +1083,16 @@
 }
 
 \newcommand{\chinesecover}{
+  \ifengineering
+  \def\@degreepic{engineering}
+  \else
+  \ifmasterdegree
+  \def\@degreepic{master}
+  \else
+  \def\@degreepic{doctor}
+  \fi
+  \fi
+
   \begin{titlepage}
     \linespacing{1.0}
     \begin{picture}(0,0)(24,250)
@@ -1090,11 +1104,6 @@
     \end{picture}
     \else
     \begin{picture}(0,0)(-86,255)
-      \ifmasterdegree
-      \def\@degreepic{master}
-      \else
-      \def\@degreepic{doctor}
-      \fi
       {\includegraphics[height=40pt,bb=0 0 1149 150]{figures/{\@degreepic}.png}}
     \end{picture}
     \fi
@@ -1168,7 +1177,58 @@
     {\song\sihao\centerline{\today} \par}
 
   \end{titlepage}
+
+  % 中文封二
+  \thispagestyle{empty}%
+  \begin{center}
+    \xiaochuhao
+    \includegraphics[height=0.63in]{figures/seu-text-logo}
+    
+    \includegraphics[height=36pt]{figures/{\@degreepic}.png}
+
+    \vspace{31.5pt}
+
+    \linespacing{1.25}
+    \yihao\hei\@title\\%题名 黑体一号居中
+    \yihao\hei\@subtitle%副题名 黑体一号居中
+
+    \vspace{42pt}
+    \begin{tabular}{cr}
+      \makebox[3.5cm][s]{\xiaoerhao\hei{}专~~业~~名~~称：} &
+      \underline{\makebox[6cm][s]{
+          \hspace*{1cm}
+          \makebox[2.5cm][c]{\xiaoerhao\song\textbf{\@major}}
+          \makebox[2cm][r]{}}} \\
+      \\
+        \makebox[3.5cm][s]{\xiaoerhao\hei\authorpre} &
+        \underline{\makebox[6cm][s]{
+            \hspace*{1cm}
+            \makebox[2.5cm][c]{\xiaoerhao\song\textbf{\@author}}
+            \makebox[2cm][r]{}}} \\
+        \\
+        \makebox[3.5cm][s]{\xiaoerhao\hei\advisorpre} &
+        \underline{\makebox[6cm][s]{
+            \hspace*{1cm}
+            \makebox[2.5cm][c]{\xiaoerhao\song\textbf{\@advisorname}}
+            \makebox[2cm][r]{\xiaoerhao\song\textbf{\@advisortitle}}}}
+        \\
+        &
+        \ifbcoadvisor
+        \underline{\makebox[6cm][s]{
+            \hspace*{1cm}
+            \makebox[2.5cm][c]{\xiaoerhao\song\textbf{\@coadvisorname}}
+            \makebox[2cm][r]{\xiaoerhao\song\textbf{\@coadvisortitle}}}}
+        \else
+        \fi \\
+      \end{tabular}
+  \end{center}
+
+  \def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+  \blfootnote{\wuhao}
+
+  \clearpage%
 }
+
 \ifbachelordegree % 本科论文封面
 \renewcommand{\chinesecover}{
   \begin{titlepage}
