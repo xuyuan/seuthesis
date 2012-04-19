@@ -1313,14 +1313,15 @@
 \newcommand{\englishcover}{
   \thispagestyle{empty}%
   \begin{center}
-      \linespacing{1.0}
-      ~\\
-      {\linespacing{1.5}\LARGE\textrm{\@titleeng} \par}%
-      \vspace*{7mm}
-      \normalsize{\@subtitleeng}
+    ~\\
+      {\fontsize{24pt}{28pt}\selectfont
+        \MakeUppercase{\@titleeng}\\
+        \MakeUppercase{\@subtitleeng}
+        \par
+      }
 
       \vspace{1.0in}%
-      {\large
+      {\fontsize{16pt}{24pt}\selectfont
         {A 
           \ifmasterdegree
           Thesis
