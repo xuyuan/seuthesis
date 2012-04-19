@@ -36,7 +36,7 @@
 % 
 % \iffalse
 %<*driver> 
-\ProvidesFile{seuthesis.dtx}[2012/04/17 2.1.0 Southeast University Thesis Template]
+\ProvidesFile{seuthesis.dtx}[2012/04/17 2.1.1 Southeast University Thesis Template]
 \documentclass{seuthesis}
 \usepackage{color}
 \usepackage{manfnt}
@@ -67,7 +67,7 @@
 \title{\seuthesis{}~宏包（\fileversion{}版）} % 中文标题
 {——东南大学学位论文~\LaTeX{}~模板} % 中文副标题
 {The \seuthesis{} class (version \fileversion)} % 英文标题
-{--- The \LaTeX{} template for thesis of Southeast University}%英文副标题
+{-- The \LaTeX{} template for thesis of Southeast University}%英文副标题
 
 \author{许\quad{}元}{XU Yuan}
 
@@ -601,8 +601,8 @@
 %</driver> 
 % 
 %<cls> \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls> \ProvidesClass{seuthesis}[2012/04/17 2.0.1 The LaTeX template for thesis of Southeast University]
-%<cls> \typeout{Document Class `seuthesis' v2.0.1 by Xu Yuan, Song Yihan, Huang Xiaoyu (2012/04/17)}
+%<cls> \ProvidesClass{seuthesis}[2012/04/17 2.1.1 The LaTeX template for thesis of Southeast University]
+%<cls> \typeout{Document Class `seuthesis' v2.1.1 by Xu Yuan, Song Yihan, Huang Xiaoyu (2012/04/17)}
 % \fi
 % 
 % \section{本宏包的选项}
@@ -1198,7 +1198,11 @@
     \xiaochuhao
     \includegraphics[height=0.63in]{figures/seu-text-logo}
     
-    \includegraphics[height=36pt]{figures/{\@degreepic}.png}
+    \ifmasterdegree
+    \includegraphics{figures/master-hwzs}
+    \else
+    \includegraphics{figures/doctor-hwzs}
+    \fi
 
     \vspace{31.5pt}
 
