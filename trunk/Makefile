@@ -37,9 +37,8 @@ distclean: clean
 	rm -f *.cls *.cfg
 
 ${PACKAGE}.cls: ${SRC}
-	rm -f ${PACKAGE}.cls ${PACKAGE}-gbk.cfg ${PACKAGE}-utf8.cfg
+	rm -f ${PACKAGE}.cls
 	latex ${PACKAGE}.ins
-	iconv -f utf8 -t gbk ${PACKAGE}-utf8.cfg > ${PACKAGE}-gbk.cfg
 
 ${PACKAGE}.idx: ${PACKAGE}.dtx
 	xelatex ${PACKAGE}.dtx
