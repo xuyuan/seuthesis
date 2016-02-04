@@ -1,3 +1,7 @@
-The LaTeX template for thesis of Southeast University
-Home page of project: http://seuthesis.googlecode.com/
-Please read seuthesis.pdf for more information.
+This is a LaTeX document class for typesetting  thesis of 
+Southeast University, Nanjing, China.
+version:v3.0
+Maintainer: Xu Yuan
+License: GNU General Public License, version 3
+Homepage: http://www.github.com/xuyuan/seuthesis/
+
